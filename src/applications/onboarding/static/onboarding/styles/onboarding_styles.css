@@ -1,0 +1,150 @@
+body{
+    background: linear-gradient(to bottom, black, #00a2e8);
+    color: #fff
+}
+
+/* intro */
+.intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.intro_signed-out{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.nav_sign:hover{
+    color: coral;
+}
+
+.nav__link:after{
+    background-color: coral;
+
+}
+
+.nav__link:hover{
+    color: coral;
+}
+
+/* ONBOARDING PAGE */
+
+.container_form{
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.intro_title{
+    margin-bottom: 20px;
+    font-size: 70px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    /*text-transform: uppercase;*/
+
+    line-height: 1;
+}
+
+label{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input{
+    /*background-color: #262835;*/
+    color: #262835;
+    width: 100%;
+    font-size: 20px;
+
+    padding: 5px 12px;
+
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid white;
+    border-radius: 20px;
+}
+
+button{
+    margin: 0 auto;
+
+    color: white;
+    background: transparent;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+
+
+    width: 140px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 3px solid white;
+    border-radius: 4px;
+
+    transition: background .1s linear,
+    color .1s linear;
+}
+
+button:hover{
+    background-color: white;
+    color: #262835;
+}
+
+/* SIGN UP */
+
+#sign_button{
+    width: 100%;
+    max-width: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+#sign_up_button{
+    background-color: #333545;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+
+    width: 100%;
+    max-width: 800px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 3px solid #333545;
+    border-radius: 10px;
+
+    transition: background .1s linear,
+    color .1s linear;
+}
+
+.form-field{
+    margin-bottom: 10px;
+}
+
+a.provider_google{
+    padding-top: 30px;
+    /*text-decoration: none;*/
+
+    /*background-color: red;*/
+    /*box-sizing: border-box;*/
+    /*border: 3px solid white;*/
+    /*padding: 10px 10px;*/
+    /*border-radius: 10px;*/
+}
+
+/*.provider_google:hover{*/
+/*    color: red;*/
+/*    background-color: white;*/
+/*}*/

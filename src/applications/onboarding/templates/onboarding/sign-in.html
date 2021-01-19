@@ -1,0 +1,55 @@
+{% extends "_base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link type="image/x-icon" rel="shortcut icon" href="
+          {% static "icons/favicon.ico" %}">
+
+<link rel="stylesheet" href="
+        {% static 'onboarding/styles/onboarding_styles.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="intro">
+    <div class="container">
+        <div class="intro_inner">
+
+        <h2 class="intro_title">Sign In</h2>
+        <div class="container_form">
+          <article>
+            {% if form.errors %}
+              <p>Some errors</p>
+            {% endif %}
+            {% if next %}
+              {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. To proceed,
+                   please login with an account that has access.</p>
+              {% else %}
+                <p>Please login to see this page.</p>
+              {% endif %}
+            {% endif %}
+          </article>
+          {% if not user.is_authenticated %}
+            <article>
+              <form method="post">
+                {{ form.as_p }}
+                <button id="sign_button" type="submit">Sign In</button>
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ next }}">
+              </form>
+            <a title="Google" class="provider_google"
+               href="/accounts/google/login/?process=login">
+                <img height="50px" width="50px"  src="{% static "onboarding/img/google_logo.png" %}">
+            </a>
+
+            </article>
+          {% endif %}
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
