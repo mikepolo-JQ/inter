@@ -1,6 +1,5 @@
 body{
-    background: linear-gradient(to bottom, black, #00a2e8);
-    color: #fff
+    color: #333
 }
 
 /* intro */
@@ -25,19 +24,6 @@ body{
     background-size: cover;
 }
 
-.nav_sign:hover{
-    color: coral;
-}
-
-.nav__link:after{
-    background-color: coral;
-
-}
-
-.nav__link:hover{
-    color: coral;
-}
-
 /* ONBOARDING PAGE */
 
 .container_form{
@@ -50,7 +36,7 @@ body{
     margin-bottom: 20px;
     font-size: 70px;
     font-weight: 700;
-    color: white;
+    color: black;
     text-align: center;
     /*text-transform: uppercase;*/
 
@@ -60,7 +46,7 @@ body{
 label{
     display: flex;
     justify-content: center;
-    color: white;
+    color: black;
     font-size: 18px;
     font-weight: bold;
 }
@@ -75,14 +61,14 @@ input{
 
     box-sizing: border-box;
     border: none;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid black;
     border-radius: 20px;
 }
 
 button{
     margin: 0 auto;
 
-    color: white;
+    color: black;
     background: transparent;
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
@@ -92,7 +78,7 @@ button{
     width: 140px;
     padding: 5px 5px;
     box-sizing: border-box;
-    border: 3px solid white;
+    border: 3px solid black;
     border-radius: 4px;
 
     transition: background .1s linear,
@@ -100,8 +86,8 @@ button{
 }
 
 button:hover{
-    background-color: white;
-    color: #262835;
+    background-color: black;
+    color: white;
 }
 
 /* SIGN UP */
@@ -132,19 +118,3 @@ button:hover{
 .form-field{
     margin-bottom: 10px;
 }
-
-a.provider_google{
-    padding-top: 30px;
-    /*text-decoration: none;*/
-
-    /*background-color: red;*/
-    /*box-sizing: border-box;*/
-    /*border: 3px solid white;*/
-    /*padding: 10px 10px;*/
-    /*border-radius: 10px;*/
-}
-
-/*.provider_google:hover{*/
-/*    color: red;*/
-/*    background-color: white;*/
-/*}*/
