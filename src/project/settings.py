@@ -128,3 +128,7 @@ STATICFILES_DIRS = [
 
 if not DEBUG:
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+MEDIA_URL = "/images/"
+MEDIA_ROOT = DIR_REPO / "static/profiles/avatar"

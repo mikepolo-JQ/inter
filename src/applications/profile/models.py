@@ -10,3 +10,7 @@ class Profile(models.Model):
     created_at = models.DateTimeField(default=datetime.now)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username

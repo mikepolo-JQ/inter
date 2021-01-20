@@ -113,3 +113,8 @@ migrate:
 su:
 	$(call log, create superuser)
 	$(PYTHON) src/manage.py createsuperuser
+
+
+.PHONY: mg
+mg: migrations format migrate
+	$(call log, resetting db to initial state)
