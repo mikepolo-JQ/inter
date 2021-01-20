@@ -28,13 +28,13 @@ body{
 
 .container_form{
     width: 100%;
-    max-width: 350px;
+    max-width: 250px;
     margin: 0 auto;
 }
 
-.intro_title{
+.sign_title{
     margin-bottom: 20px;
-    font-size: 70px;
+    font-size: 20px;
     font-weight: 700;
     color: black;
     text-align: center;
@@ -47,7 +47,7 @@ label{
     display: flex;
     justify-content: center;
     color: black;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
 }
 
