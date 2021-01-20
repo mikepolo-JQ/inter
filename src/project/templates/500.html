@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link type="image/x-icon" rel="shortcut icon"
+      href="{% static "icons/favicon_red.ico" %}">
+
+<link rel="stylesheet" href="
+                {% static 'styles/error_styles.css' %}">
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container_5XX">
+    <div class="error">
+        <h1 class="error_title">WASTED</h1>
+
+        {% for frame, lineno in traceback %}
+        <p>File <a class="error__link"
+           href="http://{{ HOST }}/static/{{ frame.f_code.co_filename }}">
+            {{ frame.f_code.co_filename }}</a>, line {{ lineno }}</p>
+        {% endfor %}
+
+        <p>{{ error_name }}: {{ error }}</p>
+        <a href="/" class="button">< Go home</a>
+    </div>
+</div>
+
+{% endblock %}
