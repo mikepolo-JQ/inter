@@ -1,11 +1,11 @@
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import DetailView
+from django.views.generic import TemplateView
 
 from applications.profile.models import Profile
 
 
 class ProfileView(TemplateView):
     template_name = "profile/index.html"
-    model = Profile
 
 
 class SingleAva(DetailView):

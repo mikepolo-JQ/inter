@@ -1,6 +1,7 @@
 from django.urls import path
 
-from applications.profile.views import ProfileView, SingleAva
+from applications.profile.views import ProfileView
+from applications.profile.views import SingleAva
 
 urlpatterns = [
     path("", ProfileView.as_view(), name="prof_index"),

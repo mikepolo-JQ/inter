@@ -131,4 +131,4 @@ if not DEBUG:
 
 
 MEDIA_URL = "/images/"
-MEDIA_ROOT = DIR_REPO / "static/profiles/avatar"
+MEDIA_ROOT = DIR_REPO / ".static/profiles/avatar"
