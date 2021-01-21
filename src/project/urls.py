@@ -8,7 +8,6 @@ from django.urls import path
 import sys
 import traceback
 from django.conf.urls import handler500
-from django.views.defaults import ERROR_404_TEMPLATE_NAME
 from django.views.defaults import ERROR_500_TEMPLATE_NAME
 from dynaconf import settings as _ds
 from django.http import HttpResponse
