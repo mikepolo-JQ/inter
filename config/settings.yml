@@ -10,12 +10,16 @@ default:
     - config
     - scripts
     - src/project/static/
+    - src/applications/main/static/
+    - src/applications/onboarding/static/
+    - src/applications/profile/static/
   DIRS_SOURCES:
     - src
   DIRS_TEMPLATES:
     - src/project/templates/
-    - src/applications/hello/templates/
     - src/applications/main/templates/
+    - src/applications/onboarding/templates/
+    - src/applications/profile/templates/
   MODE_DEBUG: true
   MODE_PROFILING: false
   HOST: ""
@@ -41,6 +45,6 @@ ci:
 
 
 heroku:
-  HOST: ".herokuapp.com"
+  HOST: "inter-network.herokuapp.com"
   MODE_DEBUG: false
   VENV_SYNTHETIC: true

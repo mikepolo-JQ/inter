@@ -1,17 +1,16 @@
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import include
-from django.urls import path
-
-
 import sys
 import traceback
+
+from django.conf import settings
 from django.conf.urls import handler500
-from django.views.defaults import ERROR_500_TEMPLATE_NAME
-from dynaconf import settings as _ds
+from django.conf.urls.static import static
+from django.contrib import admin
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import include
+from django.urls import path
+from django.views.defaults import ERROR_500_TEMPLATE_NAME
+from dynaconf import settings as _ds
 
 
 def handle_error(request, template_name=ERROR_500_TEMPLATE_NAME):

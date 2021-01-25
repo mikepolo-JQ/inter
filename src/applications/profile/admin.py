@@ -4,5 +4,5 @@ from applications.profile.models import Profile
 
 
 @admin.register(Profile)
-class PostAdminModel(admin.ModelAdmin):
+class ProfileAdminModel(admin.ModelAdmin):
     pass

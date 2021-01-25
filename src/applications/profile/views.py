@@ -4,7 +4,8 @@ from django.views.generic import TemplateView
 from applications.profile.models import Profile
 
 
-class ProfileView(TemplateView):
+class ProfileView(DetailView):
+    model = Profile
     template_name = "profile/index.html"
 
 
