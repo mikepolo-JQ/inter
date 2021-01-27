@@ -1,0 +1,51 @@
+{% extends "_base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link type="image/x-icon" rel="shortcut icon" href="
+          {% static "icons/favicon.ico" %}">
+
+<link rel="stylesheet" href="
+        {% static 'onboarding/styles/onboarding_styles.css' %}">
+{% endblock %}
+
+{% block body %}
+<article class="intro">
+    <article class="container">
+        <article class="intro_inner">
+
+        <h2 class="intro_title">Sign In</h2>
+        <article class="container_form">
+          <article>
+            {% if form.errors %}
+              <p>Some errors</p>
+            {% endif %}
+            {% if next %}
+              {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. To proceed,
+                   please login with an account that has access.</p>
+              {% else %}
+                <p>Please login to see this page.</p>
+              {% endif %}
+            {% endif %}
+          </article>
+          {% if not user.is_authenticated %}
+            <article>
+              <form method="post">
+                {{ form.as_p }}
+                <button id="sign_button" type="submit">Sign In</button>
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ next }}">
+              </form>
+
+            </article>
+          {% endif %}
+        </article>
+
+        </article>
+    </article>
+</article>
+
+
+{% endblock %}

@@ -16,7 +16,7 @@ default:
     - src/project/templates/
     - src/applications/hello/templates/
     - src/applications/main/templates/
-  MODE_DEBUG: false
+  MODE_DEBUG: true
   MODE_PROFILING: false
   HOST: ""
   PORT: -1
