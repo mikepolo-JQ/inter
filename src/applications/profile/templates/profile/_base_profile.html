@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="
         {% static "profile/styles/profile_styles.css" %}">
 
+
 <link href="https://fonts.googleapis.com/css2?
         family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
@@ -30,6 +31,9 @@
 
                 <article class="profile__info">
                     <article class="profile__name">{{ user.first_name }} {{ user.last_name }}</article>
+                    <article class="profile__name profile__email">{{ user.username }} / {{ user.email }}</article>
+
+                    {% block profile %}{% endblock %}
                 </article>
             </article>
 

@@ -14,6 +14,16 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(null=True, blank=True, default="default_user.png")
 
+    birth = models.DateTimeField(null=True, blank=True)
+    sity = models.CharField(blank=True, null=True, max_length=30)
+    phone = models.CharField(blank=True, null=True, max_length=20)
+    needed_help_1 = models.TextField(blank=True, null=True)
+    needed_help_2 = models.TextField(blank=True, null=True)
+    needed_help_3 = models.TextField(blank=True, null=True)
+    provide_help_1 = models.TextField(blank=True, null=True)
+    provide_help_2 = models.TextField(blank=True, null=True)
+    provide_help_3 = models.TextField(blank=True, null=True)
+
     def __str__(self):
         return self.user.username
 
