@@ -1,7 +1,7 @@
 body{
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    color: white;
+    color: black;
     font-size: 14px;
 }
 
@@ -55,9 +55,6 @@ body{
 }
 
 .nav__item{
-
-    font-weight: bold;
-    font-size: 12px;
     display: inline-block;
     vertical-align: top;
     margin: 0 20px;
@@ -68,6 +65,9 @@ body{
     text-decoration: None;
 
     transition: opacity .2s linear;
+
+    font-weight: bold;
+    font-size: 12px;
 }
 
 .nav__item:hover{
@@ -77,6 +77,12 @@ body{
 
 h1, h2, h3, h4, h5, h6{
     margin: 0;
+}
+
+.header__user{
+    color: white;
+    font-weight: bold;
+    text-decoration: None;
 }
 
 .span_nav_sign{

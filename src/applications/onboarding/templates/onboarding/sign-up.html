@@ -7,7 +7,7 @@
           {% static "icons/favicon.ico" %}">
 
 <link rel="stylesheet" href="
-        {% static 'onboarding/styles/onboarding_styles.css' %}">
+        {% static "onboarding/styles/onboarding_styles.css" %}">
 {% endblock %}
 
 {% block body %}
@@ -16,29 +16,40 @@
     <div class="container">
         <div class="intro_inner">
 
-        <h2 class="intro_title">Sign Up</h2>
+        <h2 class="sign_title">Sign Up</h2>
           <form method="post">
             <div class="container_form">
-              <div class="form-field">
+
+                <div class="form-field">
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+                {{ form.first_name.errors }}
+                </div>
+                <div class="form-field">
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
+                </div>
+                <div class="form-field">
                 {{ form.username.label_tag }}
                 {{ form.username }}
                 {{ form.username.errors }}
-              </div>
-              <div class="form-field">
+                </div>
+                <div class="form-field">
                 {{ form.email.label_tag }}
                 {{ form.email }}
                 {{ form.email.errors }}
-              </div>
-              <div class="form-field">
+                </div>
+                <div class="form-field">
                 {{ form.password1.label_tag }}
                 {{ form.password1 }}
                 {{ form.password1.errors }}
-              </div>
-              <div class="form-field">
+                </div>
+                <div class="form-field">
                 {{ form.password2.label_tag }}
                 {{ form.password2 }}
                 {{ form.password2.errors }}
-              </div>
+                </div>
             </div>
             {% csrf_token %}
               <button id="sign_button" type="submit">Sign Up</button>

@@ -8,6 +8,9 @@ from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 
+from applications.onboarding.forms import SignUpForm
+from applications.profile.models import Profile
+
 
 class SignInView(LoginView):
     template_name = "onboarding/sign-in.html"
@@ -18,20 +21,6 @@ class SignOutView(LogoutView):
 
 
 User = get_user_model()
-
-
-class SignUpForm(UserCreationForm):
-    email = forms.EmailField()
-    username = forms.CharField(max_length=50)
-
-    class Meta:
-        model = User
-        fields = (
-            "email",
-            "password1",
-            "password2",
-            "username",
-        )
 
 
 class SignUpView(FormView):
@@ -47,5 +36,8 @@ class SignUpView(FormView):
 
         user = authenticate(self.request, username=username, password=password)
         login(self.request, user)
+
+        pf = Profile(user=self.request.user)
+        pf.save()
 
         return super().form_valid(form)

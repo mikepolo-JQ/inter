@@ -1,0 +1,140 @@
+/*////////////////////// INTRO ///////////////////////*/
+.intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: white center no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.intro__suptitle{
+    margin: 0 auto;
+    font-family: 'Kaushan Script', cursive;
+    color: black;
+    font-size: 50px;
+}
+
+.intro__title{
+    margin: 0 auto;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 80px;
+    font-weight: 700;
+    color: black;
+
+    text-transform: uppercase;
+
+    line-height: 1;
+}
+
+.intro__title:after{
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin: 20px auto;
+
+    background-color: red;
+}
+
+/*////////////////////// PROFILE ///////////////////////*/
+
+.profile{
+    display: flex;
+    justify-content: space-between;
+    width: max-content;
+    margin: 0 auto;
+
+}
+
+.profile__avatar img{
+    width: 70px;
+    height: 70px;
+}
+
+.profile__avatar{
+    border: 5px solid red;
+    border-radius: 100%;
+    background-color: black;
+    padding: 40px 40px;
+}
+
+.profile__name{
+    font-family: "Kaushan Script", sans-serif;
+    margin: 10px 30px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 15px;
+
+}
+
+.profile__email{
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    text-indent: 10px;
+}
+
+.profile__table{
+    margin: 20px 0;
+}
+
+.profile__table table{
+    border-spacing: 20px 5px;
+}
+
+.profile__table td{
+    border: 1px solid transparent;
+}
+
+.profile__table_tb1{
+    font-weight: bold;
+}
+
+.profile__table_tb2{
+    margin-left: 20px;
+    opacity: .8;
+}
+
+.profile__buttons{
+    display: flex;
+    justify-content: space-between;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.profile__button_item{
+    text-decoration: None;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px 10px;
+
+    margin: 0 5px;
+    transition: color .2s linear,
+    background-color .2s linear,
+    border .2s linear;
+
+    cursor: pointer;
+}
+
+.profile__button_item:hover{
+    background-color: black;
+    border-color: red;
+    color: white;
+}
+
+.profile__button_start{
+    border: 3px solid black;
+}
+
+.profile__update{
+    display: flex;
+    justify-content: center;
+}
+
+

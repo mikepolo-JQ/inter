@@ -20,15 +20,15 @@
         <div class="header">
             <div class="container">
                 <div class="header__inner">
-
                     <a href="/" class="header__logo">INTER</a>
-                    <div class="nav">
+
+                    <nav class="nav">
                         <a href="#home" class="nav__item">Home</a>
                         <a href="#about" class="nav__item">About</a>
                         <a href="#skills" class="nav__item">Skills</a>
                         <a href="#education" class="nav__item">Education</a>
                         <a href="#contact" class="nav__item">Contact</a>
-                    </div>
+                    </nav>
 
                     {% if not user.is_authenticated %}
                         <span class="span_nav_sign">
@@ -37,6 +37,7 @@
                             <a class="nav_sign" href="{% url "onboarding:sign-up" %}">Sign Up</a>
                         </span>
                     {% else %}
+                        <a class="header__user" href="/profile/{{ user.profile.id }}">{{ user.username }} | {{ user.email }}</a>
                         <span class="span_nav_sign">
                             <a class="nav_sign" href="{% url "onboarding:sign-out" %}">Sign Out</a>
                         </span>

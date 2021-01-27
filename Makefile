@@ -107,3 +107,14 @@ migrations:
 migrate:
 	$(call log, applying migrations)
 	$(PYTHON) src/manage.py migrate
+
+
+.PHONY: su
+su:
+	$(call log, create superuser)
+	$(PYTHON) src/manage.py createsuperuser
+
+
+.PHONY: mg
+mg: migrations format migrate
+	$(call log, resetting db to initial state)
