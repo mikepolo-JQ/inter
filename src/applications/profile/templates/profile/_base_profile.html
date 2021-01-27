@@ -30,8 +30,8 @@
                 </article>
 
                 <article class="profile__info">
-                    <article class="profile__name">{{ user.first_name }} {{ user.last_name }}</article>
-                    <article class="profile__name profile__email">{{ user.username }} / {{ user.email }}</article>
+                    <article class="profile__name">{{ object.user.first_name }} {{ object.user.last_name }}</article>
+                    <article class="profile__name profile__email">{{ object.user.username }} / {{ object.user.email }}</article>
 
                     {% block profile %}{% endblock %}
                 </article>

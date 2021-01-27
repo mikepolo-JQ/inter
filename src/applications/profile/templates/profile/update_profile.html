@@ -4,49 +4,58 @@
 
 {% block profile %}
 <article class="profile__table">
-    <table>
-        <tr>
-            <td class="profile__table_tb1">
-                <label for="birth">Date of birth:</label>
-            </td>
-            <td class="profile__table_tb2">
-                <input id="birth" name="birth" type="text" value="{{ object.birth }}">
-            </td>
-        </tr>
-        <tr>
-            <td class="profile__table_tb1">
-                <label for="sity">Sity:</label>
-            </td>
-            <td class="profile__table_tb2">
-                <input id="sity" name="sity" type="text" value="{{ object.sity }}">
-            </td>
-        </tr>
-        <tr>
-            <td class="profile__table_tb1">
-                <label for="phone">Phone:</label>
-            </td>
-            <td class="profile__table_tb2">
-                <input id="phone" name="phone" type="text" value="{{ object.phone }}">
-            </td>
-        </tr>
-        <tr>
-            <td class="profile__table_tb1">What help do you need:</td>
-            <td class="profile__table_tb2">
-                {{ object.needed_help_1 }}, {{ object.needed_help_2 }},
-                {{ object.needed_help_3 }}</td>
-        </tr>
-        <tr>
-            <td class="profile__table_tb1">What help can you provide:</td>
-            <td class="profile__table_tb2">
-                {{ object.provide_help_1 }}, {{ object.provide_help_2 }},
-                {{ object.provide_help_3 }}</td>
-        </tr>
-    </table>
-</article>
+    <form method="post" action="{% url "update_profile" object.pk %}">
+        <table>
+            <tr>
+                <td class="profile__table_tb1">
+                    <label for="birth">Date of birth:</label>
+                </td>
+                <td class="profile__table_tb2">
+                    <input id="birth" name="birth" type="date" value="{{ object.birth }}">
+                </td>
+            </tr>
 
-<article class="profile__buttons">
-    <article class="profile__button_item">Edit Profile</article>
-    <article class="profile__button_item profile__button_start">Start Working</article>
+            <tr>
+                <td class="profile__table_tb1">
+                    <label for="sity">Sity:</label>
+                </td>
+                <td class="profile__table_tb2">
+                    <input id="sity" name="sity" value="{{ object.sity }}">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="profile__table_tb1">
+                    <label for="phone">Phone:</label>
+                </td>
+                <td class="profile__table_tb2">
+                    <input id="phone" name="phone" type="text" value="{{ object.phone }}">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="profile__table_tb1">
+                    <label for="need_help">What help do you need:</label>
+                </td>
+                <td class="profile__table_tb2">
+                    <input id="need_help" name="needed_help" type="text" value="{{ object.needed_help }}">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="profile__table_tb1">
+                    <label for="provide_help">What help can you provide:</label>
+                </td>
+                <td class="profile__table_tb2">
+                    <input id="provide_help" name="provide_help" type="text" value="{{ object.provide_help }}">
+                </td>
+            </tr>
+        </table>
+
+        <article class="profile__update">
+            <button id="profile_update_button" class="profile__button_item">Update</button>
+        </article>
+    </form>
 </article>
 
 {% endblock %}
