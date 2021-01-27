@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "applications.main.apps.LandingConfig",
     "applications.onboarding.apps.OnboardingConfig",
     "applications.profile.apps.ProfileConfig",
+    "applications.smart.apps.SmartConfig",
 ]
 
 MIDDLEWARE = [

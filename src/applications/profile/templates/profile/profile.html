@@ -28,6 +28,6 @@
 
 <article class="profile__buttons">
     <a href="{% url "update_profile" object.pk %}" class="profile__button_item">Edit Profile</a>
-    <article class="profile__button_item profile__button_start">Start Working</article>
+    <a href="{% url "smartList" %}" class="profile__button_item profile__button_start">Start Working</a>
 </article>
 {% endblock %}

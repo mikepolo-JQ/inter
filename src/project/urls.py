@@ -42,6 +42,7 @@ urlpatterns = [
     path("", include("applications.main.urls"), name="index"),
     path("o/", include("applications.onboarding.urls"), name="onboarding"),
     path("profile/", include("applications.profile.urls"), name="profile"),
+    path("smart/", include("applications.smart.urls"), name="smart"),
     path("e/", make_error),
 ]
 
