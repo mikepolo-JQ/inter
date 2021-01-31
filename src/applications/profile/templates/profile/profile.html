@@ -28,6 +28,9 @@
 
 <article class="profile__buttons">
     <a href="{% url "update_profile" object.pk %}" class="profile__button_item">Edit Profile</a>
-    <a href="{% url "smartList" %}" class="profile__button_item profile__button_start">Start Working</a>
+    <form action="{% url "smartStart" %}" method="post">
+        {% csrf_token %}
+        <button class="profile__button_item profile__button_start">Start Working</button>
+    </form>
 </article>
 {% endblock %}

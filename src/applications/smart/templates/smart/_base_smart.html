@@ -21,10 +21,20 @@
     <article class="intro">
         <article class="container">
 
-
-                <h2 class="intro__suptitle">Welcome to</h2>
-                <h1 class="intro__title">smart page</h1>
-
+                <article class="match__table">
+                    <table>
+                        {% for object in object_list %}
+                        <tr>
+                            <td>
+                                <a href="{% url "profile" object.provider.pk %}" class="match__username_item">{{ object.provider }}</a> can help
+                                <a href="{% url "profile" object.needer.pk %}" class="match__username_item">{{ object.needer }}</a>
+                            </td>
+                            <td class="match__reason">{{ object.reason }}</td>
+                            <td class="match__created_at">{{ object.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </article>
 
         </article>
     </article>

@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Profile",
+            name="Match",
             fields=[
                 (
                     "id",
@@ -30,21 +30,20 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("created_at", models.DateTimeField(default=datetime.datetime.now)),
+                ("reason", models.TextField(default="reason")),
                 (
-                    "avatar",
-                    models.ImageField(
-                        blank=True, default="default_user.png", null=True, upload_to=""
+                    "needer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="needer",
+                        to=settings.AUTH_USER_MODEL,
                     ),
                 ),
-                ("birth", models.DateField(blank=True, null=True)),
-                ("sity", models.CharField(blank=True, max_length=30, null=True)),
-                ("phone", models.CharField(blank=True, max_length=20, null=True)),
-                ("needed_help", models.TextField(blank=True, null=True)),
-                ("provide_help", models.TextField(blank=True, null=True)),
                 (
-                    "user",
-                    models.OneToOneField(
+                    "provider",
+                    models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
+                        related_name="provider",
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),

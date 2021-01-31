@@ -41,5 +41,39 @@
 
 /*////////////////////// SMART PAGE ///////////////////////*/
 
+.match__table{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.match__username_item{
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+
+    text-decoration: None;
+    color: black;
+    transition: color .2s linear;
+}
+
+.match__username_item:hover{
+    color: red
+}
+
+.match__reason{
+    margin: 0 20px;
+}
+
+.match__table tr{
+    border-bottom: 2px solid black;
+}
+
+table{
+    border: 2px;
+}
+
+
 
 

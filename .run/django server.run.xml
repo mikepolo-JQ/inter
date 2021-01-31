@@ -1,12 +1,12 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="django server" type="PythonConfigurationType" factoryName="Python">
-    <module name="TMS" />
+    <module name="inter" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
       <env name="PYTHONUNBUFFERED" value="1" />
     </envs>
-    <option name="SDK_HOME" value="C:\Users\poloz\.virtualenvs\TMS-8-t02c-C\Scripts\python.exe" />
+    <option name="SDK_HOME" value="C:\Users\poloz\projects\inter\.venv\Scripts\python.exe" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="false" />
