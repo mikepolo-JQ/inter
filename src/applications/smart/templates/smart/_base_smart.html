@@ -21,6 +21,8 @@
     <article class="intro">
         <article class="container">
 
+
+        {% block table %}
                 <article class="match__table">
                     <table>
                         {% for object in object_list %}
@@ -35,7 +37,7 @@
                         {% endfor %}
                     </table>
                 </article>
-
+        {% endblock %}
         </article>
     </article>
 

@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # -------------------------------------
-    "applications.main.apps.LandingConfig",
+    "applications.main.apps.MainConfig",
     "applications.onboarding.apps.OnboardingConfig",
     "applications.profile.apps.ProfileConfig",
     "applications.smart.apps.SmartConfig",

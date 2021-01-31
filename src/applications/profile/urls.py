@@ -2,6 +2,9 @@ from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
 from applications.profile import views
+from applications.profile.apps import ProfileConfig
+
+app_name = ProfileConfig.label
 
 urlpatterns = [
     path("<int:pk>/", views.ProfileView.as_view(), name="profile"),

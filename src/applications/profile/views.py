@@ -17,7 +17,7 @@ class UpdateProfile(UpdateView):
     template_name = "profile/update_profile.html"
 
     def get_success_url(self):
-        success_url = reverse_lazy("profile", kwargs={"pk": self.object.pk})
+        success_url = reverse_lazy("profile:profile", kwargs={"pk": self.object.pk})
         return success_url
 
 

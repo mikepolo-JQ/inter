@@ -18,3 +18,25 @@ class Match(models.Model):
 
     def person_is_first(self, user) -> bool:
         return Match.objects.filter(pk=self.pk, first_user=user).exists()
+
+    def __eq__(self, other):
+        if self.provider == other.needer and other.provider == self.needer:
+            return True
+        return False
+
+    class Meta:
+        ordering = ["-created_at"]
+
+
+class Contact(models.Model):
+    created_at = models.DateTimeField(default=datetime.now)
+
+    first_match = models.ForeignKey(
+        Match, related_name="first", on_delete=models.CASCADE
+    )
+    second_match = models.ForeignKey(
+        Match, related_name="second", on_delete=models.CASCADE
+    )
+
+    class Meta:
+        ordering = ["-created_at"]

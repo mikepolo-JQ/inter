@@ -1,81 +1,60 @@
-from django.http import JsonResponse
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
-from django.views.generic import DetailView
 from django.views.generic import ListView
-from django.views.generic import TemplateView
-from django.views.generic import UpdateView
 from django.views.generic.base import View
 
 from applications.profile.models import Profile
+from applications.smart.models import Contact
 from applications.smart.models import Match
+from applications.smart.utils import create_contacts
+from applications.smart.utils import searcher_matches
+from applications.smart.utils import start_filter
 
 
-class SmartListView(ListView):
+class MatchListView(ListView):
     model = Match
-    template_name = "smart/_base_smart.html"
+    template_name = "smart/matches.html"
 
 
-def key_sort(arg):
-    return arg[0]
+class ContactListView(ListView):
+    model = Contact
+    template_name = "smart/contacts.html"
 
 
-def searcher_matches(providers, needers):
-    needers.sort(key=key_sort)
-    save_needers = needers.copy()
-    matches = []
-
-    start = 0
-    stop = len(needers) - 1
-
-    for pr, pr_user in providers:
-
-        while start <= stop:
-            mid = (start + stop) // 2
-
-            if pr == needers[mid][0]:
-                match = (pr_user, needers[mid][1], pr)
-                matches.append(match)
-                needers.pop(mid)
-
-                start = 0
-                stop = len(needers) - 1
-            elif pr < needers[mid][0]:
-                stop = mid - 1
-            else:
-                start = mid + 1
-
-        needers = save_needers.copy()
-        start = 0
-        stop = len(needers) - 1
-    return matches
-
-
-class SmartStartView(UpdateView):
-
-    success_url = reverse_lazy("smartList")
-
+class SmartStartView(View):
     def post(self, request, *args, **kwargs):
+
         profiles = Profile.objects.all()
+        providers = start_filter(
+            [[profile.provide_help, profile.user.pk] for profile in profiles]
+        )
+        needers = start_filter(
+            [[profile.needed_help, profile.user.pk] for profile in profiles]
+        )
 
-        providers = [(profile.provide_help, profile.user.pk) for profile in profiles]
-        needers = [(profile.needed_help, profile.user.pk) for profile in profiles]
-
+        print(f"providers after filter {providers}")
+        print(f"needers after filter {needers}")
         matches = searcher_matches(providers, needers)
 
         k = 0
         for m in matches:
             provider_id, needer_id, reason = m
 
-            if Match.objects.filter(provider_id=provider_id, needer_id=needer_id, reason=reason):
+            if Match.objects.filter(
+                provider_id=provider_id, needer_id=needer_id, reason=reason
+            ):
                 continue
 
             match = Match(provider_id=provider_id, needer_id=needer_id, reason=reason)
             match.save()
             k += 1
 
+        k_contact = create_contacts()
+
         payload = {
             "ok": True,
-            "data": f"You have {k} new matches",
+            "matches": f"{k} new matches",
+            "contacts": f"{k_contact} new contacts",
         }
-        return JsonResponse(payload)
+        print(payload)
+
+        return redirect("smart:contactList")
