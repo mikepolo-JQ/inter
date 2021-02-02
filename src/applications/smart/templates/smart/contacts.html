@@ -7,7 +7,7 @@
         <tr>
             <td>
                 <a href="{% url "profile:profile" object.first_match.provider.pk %}" class="match__username_item">{{ object.first_match.provider }}</a>
-                 and 
+                 and
                 <a href="{% url "profile:profile" object.first_match.needer.pk %}" class="match__username_item">{{ object.first_match.needer }}</a>
                  have a contact
             </td>

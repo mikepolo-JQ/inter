@@ -38,7 +38,7 @@
                             <a class="nav_sign" href="{% url "onboarding:sign-up" %}">Sign Up</a>
                         </span>
                     {% else %}
-                        <a class="header__user" href="{% url "profile:profile" user.profile.id %}">Profile {{ user.username }}</a>
+                        <a class="header__user" href="{% url "profile:profile" user.profile.id %}">{{ user.username }}</a>
                         <span class="span_nav_sign">
                             <a class="nav_sign" href="{% url "onboarding:sign-out" %}">Sign Out</a>
                         </span>

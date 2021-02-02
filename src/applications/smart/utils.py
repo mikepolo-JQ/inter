@@ -1,6 +1,5 @@
 from applications.smart.models import Contact
 from applications.smart.models import Match
-from project.settings import DIR_PROJECT
 
 
 def key_sort(arg):
@@ -59,12 +58,11 @@ def create_contacts() -> int:
     k = 0
     for i in range(len(matches) - 1):
         for j in range(i + 1, len(matches)):
-            if matches[i] == matches[j]:
-                if Contact.objects.filter(
-                    first_match=matches[i], second_match=matches[j]
-                ):
-                    continue
-                contact = Contact(first_match=matches[i], second_match=matches[j])
-                contact.save()
-                k += 1
+            if not matches[i] == matches[j] or Contact.objects.filter(
+                first_match=matches[i], second_match=matches[j]
+            ):
+                continue
+            contact = Contact(first_match=matches[i], second_match=matches[j])
+            contact.save()
+            k += 1
     return k
