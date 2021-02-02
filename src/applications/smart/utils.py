@@ -1,56 +1,46 @@
+from django.db.models import QuerySet
+
+from applications.profile.models import Profile
 from applications.smart.models import Contact
 from applications.smart.models import Match
 
 
-def key_sort(arg):
-    return arg[0]
+def update_matches(profiles: QuerySet) -> int:
+    before_count = Match.objects.all().count()
+
+    for profile in profiles:
+        profile.provide_help, profile.needed_help = filter_useless_words(profile.provide_help, profile.needed_help)
+
+    for profile in profiles:
+        needers = Profile.objects.filter(needed_help=profile.provide_help)
+        if needers:
+            create_matches(profile, needers)
+
+    return Match.objects.all().count() - before_count
 
 
-def searcher_matches(providers: list, needers: list) -> list:
-    needers.sort(key=key_sort)
-    save_needers = needers.copy()
-    matches = []
-
-    start = 0
-    stop = len(needers) - 1
-
-    for reason, pr_user in providers:
-
-        while start <= stop:
-            mid = (start + stop) // 2
-
-            if reason == needers[mid][0]:
-                match = (pr_user, needers[mid][1], reason)
-                matches.append(match)
-                needers.pop(mid)
-
-                start = 0
-                stop = len(needers) - 1
-            elif reason < needers[mid][0]:
-                stop = mid - 1
-            else:
-                start = mid + 1
-
-        needers = save_needers.copy()
-        start = 0
-        stop = len(needers) - 1
-    return matches
+def create_matches(provider: Profile, needers: QuerySet):
+    for needer in needers:
+        if Match.objects.filter(
+                provider_id=provider.id, needer_id=needer.id, reason=provider.provide_help
+        ):
+            continue
+        match = Match(provider_id=provider.id, needer_id=needer.id, reason=provider.provide_help)
+        match.save()
 
 
-def start_filter(reason: list) -> list:
+def filter_useless_words(*args) -> tuple:
     with open(
         "src/applications/smart/static/smart/useless_words.txt", "r", encoding="utf-8"
     ) as file:
         useless_words = {line.strip() for line in file}
 
-    for i in range(len(reason)):
-        r = set(reason[i][0].split(" "))
-        if useless_words.isdisjoint(r):
-            continue
-        r = r - useless_words
-
-        reason[i][0] = " ".join(r)
-    return reason
+    resp = ()
+    for help_string in args:
+        words_list = help_string.split(" ")
+        words = " ".join([words for words in words_list if words not in useless_words])
+        resp += (words,)
+    return resp
 
 
 def create_contacts() -> int:
