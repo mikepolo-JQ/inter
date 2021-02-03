@@ -16,10 +16,7 @@ class Match(models.Model):
 
     reason = models.TextField(null=False, default="reason")
 
-    def person_is_first(self, user) -> bool:
-        return Match.objects.filter(pk=self.pk, first_user=user).exists()
-
-    def __eq__(self, other):
+    def match_with(self, other) -> bool:
         if self.provider == other.needer and other.provider == self.needer:
             return True
         return False

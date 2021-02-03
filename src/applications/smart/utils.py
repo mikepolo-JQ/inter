@@ -9,7 +9,10 @@ def update_matches(profiles: QuerySet) -> int:
     before_count = Match.objects.all().count()
 
     for profile in profiles:
-        profile.provide_help, profile.needed_help = filter_useless_words(profile.provide_help, profile.needed_help)
+        profile.provide_help, profile.needed_help = filter_useless_words(
+            profile.provide_help, profile.needed_help
+        )
+        profile.save()
 
     for profile in profiles:
         needers = Profile.objects.filter(needed_help=profile.provide_help)
@@ -22,19 +25,22 @@ def update_matches(profiles: QuerySet) -> int:
 def create_matches(provider: Profile, needers: QuerySet):
     for needer in needers:
         if Match.objects.filter(
-                provider_id=provider.id, needer_id=needer.id, reason=provider.provide_help
+            provider_id=provider.id, needer_id=needer.id, reason=provider.provide_help
         ):
             continue
-        match = Match(provider_id=provider.id, needer_id=needer.id, reason=provider.provide_help)
+        match = Match(
+            provider_id=provider.id, needer_id=needer.id, reason=provider.provide_help
+        )
         match.save()
 
 
-def filter_useless_words(*args) -> tuple:
-    with open(
-        "src/applications/smart/static/smart/useless_words.txt", "r", encoding="utf-8"
-    ) as file:
-        useless_words = {line.strip() for line in file}
+with open(
+    "src/applications/smart/static/smart/useless_words.txt", "r", encoding="utf-8"
+) as file:
+    useless_words = {line.strip() for line in file}
 
+
+def filter_useless_words(*args) -> tuple:
     resp = ()
     for help_string in args:
         words_list = help_string.split(" ")
@@ -46,13 +52,18 @@ def filter_useless_words(*args) -> tuple:
 def create_contacts() -> int:
     matches = Match.objects.all()
     k = 0
+
     for i in range(len(matches) - 1):
         for j in range(i + 1, len(matches)):
-            if not matches[i] == matches[j] or Contact.objects.filter(
+
+            is_not_unique = Contact.objects.filter(
                 first_match=matches[i], second_match=matches[j]
-            ):
+            )
+            if not matches[i].match_with(matches[j]) or is_not_unique:
                 continue
+
             contact = Contact(first_match=matches[i], second_match=matches[j])
             contact.save()
             k += 1
+
     return k

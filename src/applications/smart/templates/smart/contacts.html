@@ -1,19 +1,30 @@
 {% extends "smart/_base_smart.html" %}
 
 {% block table %}
+<h2 class="intro__title">Contacts</h2>
+
+
 <article class="match__table">
-    <table>
+    <article class="table">
         {% for object in object_list %}
-        <tr>
-            <td>
+        <article class="match__table_str">
+            <article class="match__table_usernames">
                 <a href="{% url "profile:profile" object.first_match.provider.pk %}" class="match__username_item">{{ object.first_match.provider }}</a>
                  and
                 <a href="{% url "profile:profile" object.first_match.needer.pk %}" class="match__username_item">{{ object.first_match.needer }}</a>
-                 have a contact
-            </td>
-            <td class="match__created_at">{{ object.created_at }}</td>
-        </tr>
+            </article>
+            <article class="match__reason">can create a contact</article>
+            <article class="match__created_at">{{ object.created_at }}</article>
+        </article>
         {% endfor %}
-    </table>
+
+        {% if user.is_superuser %}
+        <form action="{% url "smart:delete_all_contacts" %}" method="post" >
+            <button id="reset_all_id">Reset all contacts</button>
+            {% csrf_token %}
+        </form>
+        {% endif %}
+    </article>
 </article>
+
 {% endblock %}
