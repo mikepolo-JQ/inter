@@ -4,6 +4,14 @@ from applications.profile.models import Profile
 from applications.smart.models import Contact
 from applications.smart.models import Match
 
+from pathlib import Path
+
+DIR_SMART = Path(__file__).resolve().parent
+
+DIR_SMART_STATIC = DIR_SMART / "static/smart"
+
+DIR_WORDS = DIR_SMART_STATIC
+
 
 def update_matches(profiles: QuerySet) -> int:
     before_count = Match.objects.all().count()
@@ -35,7 +43,7 @@ def create_matches(provider: Profile, needers: QuerySet):
 
 
 with open(
-    "src/applications/smart/static/smart/useless_words.txt", "r", encoding="utf-8"
+    DIR_WORDS / "useless_words.txt", "r", encoding="utf-8"
 ) as file:
     useless_words = {line.strip() for line in file}
 
