@@ -25,15 +25,15 @@ class Match(models.Model):
         ordering = ["-created_at"]
 
 
-class Contact(models.Model):
-    created_at = models.DateTimeField(default=datetime.now)
-
-    first_match = models.ForeignKey(
-        Match, related_name="first", on_delete=models.CASCADE
-    )
-    second_match = models.ForeignKey(
-        Match, related_name="second", on_delete=models.CASCADE
-    )
-
-    class Meta:
-        ordering = ["-created_at"]
+# class Contact(models.Model):
+#     created_at = models.DateTimeField(default=datetime.now)
+#
+#     first_user = models.ForeignKey(
+#         User, related_name="first", on_delete=models.CASCADE
+#     )
+#     second_user = models.ForeignKey(
+#         User, related_name="second", on_delete=models.CASCADE
+#     )
+#
+#     class Meta:
+#         ordering = ["-created_at"]

@@ -25,7 +25,9 @@
 
                     <nav class="nav">
                         <a href="{% url "main:index" %}" class="nav__item">Главная</a>
-                        <a href="{% url "smart:contactList" %}" class="nav__item">Контакты</a>
+                        {% if user.is_authenticated and not user.is_superuser %}
+                            <a href="{% url "profile:contactList" user.profile.pk %}" class="nav__item">Контакты</a>
+                        {% endif %}
                         <a href="{% url "smart:matchList" %}" class="nav__item">Совпадения</a>
                         <a href="#education" class="nav__item">Education</a>
                         <a href="#contact" class="nav__item">Contact</a>

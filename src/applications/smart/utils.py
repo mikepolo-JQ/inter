@@ -1,10 +1,9 @@
+from pathlib import Path
+
 from django.db.models import QuerySet
 
 from applications.profile.models import Profile
-from applications.smart.models import Contact
 from applications.smart.models import Match
-
-from pathlib import Path
 
 DIR_SMART = Path(__file__).resolve().parent
 
@@ -42,9 +41,7 @@ def create_matches(provider: Profile, needers: QuerySet):
         match.save()
 
 
-with open(
-    DIR_WORDS / "useless_words.txt", "r", encoding="utf-8"
-) as file:
+with open(DIR_WORDS / "useless_words.txt", "r", encoding="utf-8") as file:
     useless_words = {line.strip() for line in file}
 
 
@@ -58,20 +55,21 @@ def filter_useless_words(*args) -> tuple:
 
 
 def create_contacts() -> int:
+
     matches = Match.objects.all()
     k = 0
-
+    #
     for i in range(len(matches) - 1):
         for j in range(i + 1, len(matches)):
-
-            is_not_unique = Contact.objects.filter(
-                first_match=matches[i], second_match=matches[j]
-            )
-            if not matches[i].match_with(matches[j]) or is_not_unique:
+            if not matches[i].match_with(matches[j]):
                 continue
 
-            contact = Contact(first_match=matches[i], second_match=matches[j])
-            contact.save()
+            profile = Profile.objects.get(id=matches[i].provider.pk)
+            contact = Profile.objects.get(id=matches[j].provider.pk)
+            if contact in profile.get_contact_list:
+                continue
+
+            profile.contacts.add(contact)
             k += 1
 
     return k

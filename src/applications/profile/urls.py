@@ -14,4 +14,5 @@ urlpatterns = [
         name="update_profile",
     ),
     path("avatar/<int:pk>/", views.SingleAva.as_view(), name="profile_avatar"),
+    path("<int:pk>/contacts/", views.ContactListView.as_view(), name="contactList"),
 ]

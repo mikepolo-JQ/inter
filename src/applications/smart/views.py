@@ -5,7 +5,6 @@ from django.views.generic.base import RedirectView
 from django.views.generic.base import View
 
 from applications.profile.models import Profile
-from applications.smart.models import Contact
 from applications.smart.models import Match
 from applications.smart.utils import create_contacts
 from applications.smart.utils import update_matches
@@ -14,11 +13,6 @@ from applications.smart.utils import update_matches
 class MatchListView(ListView):
     model = Match
     template_name = "smart/matches.html"
-
-
-class ContactListView(ListView):
-    model = Contact
-    template_name = "smart/contacts.html"
 
 
 class SmartStartView(View):
@@ -37,7 +31,10 @@ class SmartStartView(View):
         }
         print(payload)
 
-        return redirect("smart:contactList")
+        redirect_url = reverse_lazy(
+            "profile:contactList", kwargs={"pk": request.user.pk}
+        )
+        return redirect(redirect_url)
 
 
 class DeleteAllMatches(RedirectView):
@@ -46,7 +43,10 @@ class DeleteAllMatches(RedirectView):
         return reverse_lazy("smart:matchList")
 
 
-class DeleteAllContacts(RedirectView):
+class DeleteContacts(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
-        Contact.objects.all().delete()
-        return reverse_lazy("smart:contactList")
+        pk = kwargs.get("pk", 0)
+        if pk:
+            person = Profile.objects.get(pk)
+            person.contacts.clear()
+        return reverse_lazy("profile:contactList", kwargs={"pk": pk})

@@ -9,17 +9,24 @@ User = get_user_model()
 
 
 class Profile(models.Model):
+
     created_at = models.DateTimeField(default=datetime.now)
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(null=True, blank=True, default="default_user.png")
 
-    birth = models.DateField(null=True, blank=True)
     sity = models.CharField(blank=True, null=True, max_length=30)
     phone = models.CharField(blank=True, null=True, max_length=20)
 
     needed_help = models.TextField(blank=True, null=True)
     provide_help = models.TextField(blank=True, null=True)
+
+    contacts = models.ManyToManyField("self", related_name="contact_of")
+
+    @property
+    def get_contact_list(self) -> list:
+        contact_list = list(self.contacts.all())
+        return contact_list
 
     def __str__(self):
         return self.user.username

@@ -24,6 +24,8 @@ whitenoise = "*"
 dj-database-url = "*"
 sentry-sdk = "*"
 pillow = "*"
+delorean = "*"
+pydantic = "*"
 
 [requires]
 python_version = "3.9"

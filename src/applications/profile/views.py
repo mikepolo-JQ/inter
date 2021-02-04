@@ -13,7 +13,7 @@ class ProfileView(DetailView):
 
 class UpdateProfile(UpdateView):
     model = Profile
-    fields = ["birth", "sity", "phone", "needed_help", "provide_help"]
+    fields = ["sity", "phone", "needed_help", "provide_help"]
     template_name = "profile/update_profile.html"
 
     def get_success_url(self):
@@ -24,3 +24,8 @@ class UpdateProfile(UpdateView):
 class SingleAva(DetailView):
     model = Profile
     template_name = "profile/img.html"
+
+
+class ContactListView(DetailView):
+    model = Profile
+    template_name = "smart/contacts.html"

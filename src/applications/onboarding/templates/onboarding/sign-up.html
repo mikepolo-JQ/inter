@@ -17,7 +17,7 @@
         <div class="intro_inner">
 
         <h2 class="sign_title">Sign Up</h2>
-          <form method="post">
+          <form method="post" action="{% url 'onboarding:sign-up' %}" id="id_sign_up_form">
             <div class="container_form">
 
                 <div class="form-field">
@@ -52,8 +52,8 @@
                 </div>
             </div>
             {% csrf_token %}
-              <button id="sign_button" type="submit">Sign Up</button>
-            <input name="next" type="hidden" value="{{ next }}">
+              <button id="id_sign_button" type="submit">Sign Up</button>
+            <input name="next" type="hidden" value="{{ next }}" id="id_sign_up_next">
           </form>
 
   {% if next %}
