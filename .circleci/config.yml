@@ -20,7 +20,7 @@ jobs:
       PYTHONPATH: src
 
     docker:
-      - image: circleci/python:3.8.5-browsers
+      - image: circleci/python:3.9.0-browsers
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
