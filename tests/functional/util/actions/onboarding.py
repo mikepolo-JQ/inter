@@ -18,8 +18,8 @@ class Credentials(BaseModel):
     username: Optional[str] = None
 
 
-def sign_up(browser: WebDriverT) -> Credentials:
-    current_url = browser.current_url
+def sign_up(browser: WebDriverT = None) -> Credentials:
+    # current_url = browser.current_url
     credentials = Credentials()
 
     try:
@@ -36,10 +36,13 @@ def sign_up(browser: WebDriverT) -> Credentials:
 
         validate_redirect(page, URL_LANDING)
 
-    finally:
-        browser.get(current_url)
+    except Exception:
+        pass
 
-    validate_redirect(page, current_url)
+    # finally:
+    #     browser.get(current_url)
+    #
+    # validate_redirect(page, current_url)
 
     return credentials
 

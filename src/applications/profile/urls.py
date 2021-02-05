@@ -7,12 +7,13 @@ from applications.profile.apps import ProfileConfig
 app_name = ProfileConfig.label
 
 urlpatterns = [
+    path("my/", views.MyProfileView.as_view(), name="my_profile"),
     path("<int:pk>/", views.ProfileView.as_view(), name="profile"),
+    path("sorry/", views.SorryView.as_view(), name="sorry_page"),
     path(
         "<int:pk>/update/",
         csrf_exempt(views.UpdateProfile.as_view()),
         name="update_profile",
     ),
-    path("avatar/<int:pk>/", views.SingleAva.as_view(), name="profile_avatar"),
     path("<int:pk>/contacts/", views.ContactListView.as_view(), name="contactList"),
 ]

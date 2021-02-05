@@ -1,52 +1,64 @@
 import pytest
 
-# from delorean import now
-# from selenium.common.exceptions import NoSuchElementException
-# from selenium.webdriver.remote.webelement import WebElement
-#
-# from tests.functional.pages.blog import AllPostsPage
-# from tests.functional.util.actions.onboarding import sign_in
-# from tests.functional.util.actions.onboarding import sign_up
-# from tests.functional.util.consts import URL_BLOG
+from delorean import now
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.remote.webelement import WebElement
+
+from tests.functional.pages import MainPage
+from tests.functional.pages import ProfilePage, SignUpPage
+from tests.functional.util.actions.onboarding import sign_in
+from tests.functional.util.actions.onboarding import sign_up
+from tests.functional.util.consts import URL_MY_PROFILE, URL_SIGN_UP
 from tests.functional.util.util import screenshot_on_failure
 
-# from tests.functional.util.util import validate_redirect
+from tests.functional.util.util import validate_redirect
+
+
+def create_profile_and_start(page: ProfilePage, url) -> tuple:
+    page.edit_button.click()
+    page.provide_input = "11"
+    page.needed_input = "22"
+    page.update_profile_button.click()
+    page.start_button.click()
+    # validate_redirect(page, url)
+    return "11", "22"
+
+
+def validate_profile(page: ProfilePage, provide, need) -> None:
+    assert page.needed_help_info == need
+    assert page.provide_help_info == provide
 
 
 @pytest.mark.functional
 @screenshot_on_failure
-def test_anonymous(browser, request):
-    pass
-    # page = AllPostsPage(browser, URL_BLOG)
-    # validate_can_create_posts(page, False)
+def test_single_user(browser, request):
+    # page = SignUpPage(browser, URL_SIGN_UP)
+
+    sign_up()
+
+    page = ProfilePage(browser, URL_MY_PROFILE)
+
+    provide_h, need_help = create_profile_and_start(page, URL_MY_PROFILE)
+
+    validate_profile(page, provide_h, need_help)
+
+    # content = "xxx"
+    #
+    # create_post(page, content)
+    # validate_number_of_posts(page, 1)
+    #
+    # post = get_post(page, 0)
+    # validate_post(post, content, True)
+    #
+    # delete_post(page, post)
     # validate_number_of_posts(page, 0)
-
-
-# @pytest.mark.functional
-# @screenshot_on_failure
-# def test_single_user(browser, request):
-#     page = AllPostsPage(browser, URL_BLOG)
-#     validate_number_of_posts(page, 0)
-#
-#     sign_up(page.browser)
-#
-#     content = "xxx"
-#
-#     create_post(page, content)
-#     validate_number_of_posts(page, 1)
-#
-#     post = get_post(page, 0)
-#     validate_post(post, content, True)
-#
-#     delete_post(page, post)
-#     validate_number_of_posts(page, 0)
-#
-#     create_post(page, "yyy")
-#     create_post(page, "zzz")
-#     validate_number_of_posts(page, 2)
-#
-#     wipe_posts(page)
-#     validate_number_of_posts(page, 0)
+    #
+    # create_post(page, "yyy")
+    # create_post(page, "zzz")
+    # validate_number_of_posts(page, 2)
+    #
+    # wipe_posts(page)
+    # validate_number_of_posts(page, 0)
 #
 #
 # @pytest.mark.functional
