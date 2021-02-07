@@ -1,16 +1,16 @@
 import pytest
-
 from delorean import now
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.remote.webelement import WebElement
 
 from tests.functional.pages import MainPage
-from tests.functional.pages import ProfilePage, SignUpPage
+from tests.functional.pages import ProfilePage
+from tests.functional.pages import SignUpPage
 from tests.functional.util.actions.onboarding import sign_in
 from tests.functional.util.actions.onboarding import sign_up
-from tests.functional.util.consts import URL_MY_PROFILE, URL_SIGN_UP
+from tests.functional.util.consts import URL_MY_PROFILE
+from tests.functional.util.consts import URL_SIGN_UP
 from tests.functional.util.util import screenshot_on_failure
-
 from tests.functional.util.util import validate_redirect
 
 
@@ -32,7 +32,7 @@ def validate_profile(page: ProfilePage, provide, need) -> None:
 @pytest.mark.functional
 @screenshot_on_failure
 def test_single_user(browser, request):
-    # page = SignUpPage(browser, URL_SIGN_UP)
+    page = SignUpPage(browser, URL_SIGN_UP)
 
     sign_up()
 
@@ -59,6 +59,8 @@ def test_single_user(browser, request):
     #
     # wipe_posts(page)
     # validate_number_of_posts(page, 0)
+
+
 #
 #
 # @pytest.mark.functional

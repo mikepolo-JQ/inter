@@ -2,8 +2,9 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView
+from django.views.generic import RedirectView
 from django.views.generic import TemplateView
-from django.views.generic import UpdateView, RedirectView
+from django.views.generic import UpdateView
 
 from applications.profile.models import Profile
 

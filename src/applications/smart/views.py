@@ -49,4 +49,7 @@ class DeleteContacts(RedirectView):
         if pk:
             person = Profile.objects.get(pk)
             person.contacts.clear()
-        return reverse_lazy("profile:contactList", kwargs={"pk": pk})
+            redirect_url = reverse_lazy("profile:contactList", kwargs={"pk": pk})
+        else:
+            redirect_url = reverse_lazy("smart:matchList")
+        return redirect_url
