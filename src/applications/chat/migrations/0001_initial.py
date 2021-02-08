@@ -18,7 +18,20 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Match",
+            name="Chat",
+            fields=[
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("name", models.CharField(default="chat", max_length=20)),
+                (
+                    "users",
+                    models.ManyToManyField(
+                        related_name="chats", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
+            ],
+        ),
+        migrations.CreateModel(
+            name="Message",
             fields=[
                 (
                     "id",
@@ -30,26 +43,20 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("created_at", models.DateTimeField(default=datetime.datetime.now)),
-                ("reason", models.TextField(default="reason")),
+                ("content", models.TextField(default="content")),
                 (
-                    "needer",
+                    "author",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="needer",
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),
                 (
-                    "provider",
+                    "chat",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="provider",
-                        to=settings.AUTH_USER_MODEL,
+                        on_delete=django.db.models.deletion.CASCADE, to="chat.chat"
                     ),
                 ),
             ],
-            options={
-                "ordering": ["-created_at"],
-            },
         ),
     ]

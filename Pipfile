@@ -16,16 +16,16 @@ pytest-selenium = "*"
 
 [packages]
 atomicwrites = "*"
+delorean = "*"
+dj-database-url = "*"
 django = "*"
 dynaconf = { extras = ["yaml"], version = "*" }
 gunicorn = "*"
-psycopg2-binary = "*"
-whitenoise = "*"
-dj-database-url = "*"
-sentry-sdk = "*"
 pillow = "*"
-delorean = "*"
+psycopg2-binary = "*"
 pydantic = "*"
+sentry-sdk = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.9"

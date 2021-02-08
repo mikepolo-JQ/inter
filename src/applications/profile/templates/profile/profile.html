@@ -22,11 +22,20 @@
     </table>
 </article>
 
+
 <article class="profile__buttons">
+{% if user == object.user %}
     <a id="id_edit_button" href="{% url "profile:update_profile" object.pk %}" class="profile__button_item">Edit Profile</a>
     <form action="{% url "smart:smartStart" %}" method="post">
         {% csrf_token %}
         <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Start Working</button>
     </form>
+{% else %}
+    <form action="{% url "smart:smartStart" %}" method="post">
+        {% csrf_token %}
+        <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Start Working</button>
+    </form>
+{% endif %}
 </article>
+
 {% endblock %}
