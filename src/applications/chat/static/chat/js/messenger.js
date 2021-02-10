@@ -1,6 +1,6 @@
-document.oncontextmenu = function (){
-    return false;
-}
+// document.oncontextmenu = function (){
+//     return false;
+// }
 
 window.onload = function(){
     let messages = document.getElementById("messages")

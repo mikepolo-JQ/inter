@@ -77,7 +77,7 @@
 /*////////////// MSG ///////////////////*/
 
 .msg_container{
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 80vh;
 }
 
@@ -121,6 +121,8 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
+
 }
 
 .contact_name{
@@ -131,7 +133,8 @@
 
 .last_msg{
     font-size: 13px;
-
+    overflow-x: hidden;
+    white-space: nowrap;
 }
 
 .last_msg_datetime{
@@ -188,19 +191,26 @@
 /*messages///////////////////////////////*/
 .messages{
     display: grid;
+    grid-template-rows: none;
     border: 2px solid black;
     overflow-y: auto;
+    /*align-items: end;*/
+    /*width: 100%;*/
+    /*grid-auto-rows: max-content;*/
+
+    /*align-content: flex-end;*/
 
 }
-
-
 
 .msg{
     z-index: 1;
     margin: 3px 10px;
-    align-self: center;
+    align-self: end;
+
     width: max-content;
-    max-width: 50%;
+    max-width: 60vh;
+    word-break: break-all;
+
 
     transition: background-color .2s linear;
 }
@@ -213,6 +223,7 @@
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 20px 20px 20px 0;
+
 }
 
 .your-msg-content{

@@ -34,9 +34,13 @@
                 <article class="profile__avatar">
                       <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
                 </article>
+
                 <article class="contact__info">
                     <article class="contact_name">{{ chat.talker }}</article>
-                    <article class="last_msg">{{ chat.last_message.content }}</article>
+
+                    <article class="last_msg">
+                        {% if chat.last_message.author == user %}You: {% endif %}{{ chat.last_message.content }}</article>
+
                     <article class="last_msg_datetime">{{ chat.last_message.get_datetime }}</article>
                 </article>
             </a>
