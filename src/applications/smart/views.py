@@ -32,7 +32,7 @@ class SmartStartView(View):
         print(payload)
 
         redirect_url = reverse_lazy(
-            "profile:contactList", kwargs={"pk": request.user.pk}
+            "profile:contactList", kwargs={"pk": request.user.profile.pk}
         )
         return redirect(redirect_url)
 

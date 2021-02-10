@@ -1,0 +1,73 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>chat page</title>
+
+<link type="image/x-icon" rel="shortcut icon" href="
+        {% static "icons/favicon.ico" %}">
+
+<link rel="stylesheet" href="
+        {% static "chat/styles/chat_styles.css" %}">
+
+
+<link href="https://fonts.googleapis.com/css2?
+        family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<script src="{% static 'chat/js/messenger.js' %}"></script>
+
+<article class="intro">
+    <article class="container">
+
+        <article class="main__container">
+            <article class="nav_menu">
+                <a href="{% url "profile:my" %}" class="nav_menu__item">Мой профиль</a>
+                <a href="{% url "profile:contactList" user.pk %}" class="nav_menu__item">Контакты</a>
+                <a href="{% url "chat:messenger" %}" class="nav_menu__item">Мессенджер</a>
+            </article>
+
+            <article class="chat_box">
+                <article class="chat_header">
+                    <a class="back-button" href="{% url "chat:messenger" %}">< Назад</a>
+                    <article class="chat_talker">{{ chat.talker }}</article>
+                </article>
+
+                <article id="messages" class="messages">
+
+                    {% for msg in chat.message_list %}
+                    <article onclick="openMenu(this);" class="msg {% if msg.author == user %}your-msg{% endif %}">
+
+                        <article class="msg-menu {% if msg.author == user %}your-msg-menu{% endif %}">
+
+                            <form method="post" action="{% url "chat:delete_msg" msg.pk%}">
+                            <button type="submit" class="del_button">Delete</button></form>
+                        </article>
+
+                        <article class="msg-content {% if msg.author == user %}your-msg-content{% endif %}
+                                ">{{ msg.content }}</article>
+
+                        <article class="msg-datetime {% if msg.author == user %}your-msg-dt{% endif %}
+                                ">{{ msg.get_datetime }}</article>
+
+                    </article>
+                    {% endfor %}
+                    <article id="start_page"></article>
+                </article>
+
+                <article class="msg-input">
+                    <form method="post" action="{% url "chat:chat" chat.pk %}">
+                        {% csrf_token %}
+                        <label for="content_id"></label>
+                        <input id="content_id" name="content" type="text" placeholder="Write your message...">
+{#                        <button class="msg-button" type="submit">Send</button>#}
+                    </form>
+                </article>
+            </article>
+        </article>
+
+    </article>
+</article>
+{% endblock %}

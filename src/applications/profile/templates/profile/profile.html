@@ -31,9 +31,9 @@
         <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Start Working</button>
     </form>
 {% else %}
-    <form action="{% url "smart:smartStart" %}" method="post">
+    <form action="{% url "chat:create" object.pk %}" method="post">
         {% csrf_token %}
-        <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Start Working</button>
+        <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Сообщения</button>
     </form>
 {% endif %}
 </article>

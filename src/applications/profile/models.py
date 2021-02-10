@@ -28,6 +28,19 @@ class Profile(models.Model):
         contact_list = list(self.contacts.all())
         return contact_list
 
+    @property
+    def get_chat_list(self) -> list:
+        chat_list = list(self.user.chats.all())
+        return chat_list
+
+    def have_chat_with(self, user) -> bool:
+        chat_list = self.get_chat_list
+        for chat in chat_list:
+            chat_users = chat.users.all()
+            if user in chat_users:
+                return True
+        return False
+
     def __str__(self):
         return self.user.username
 

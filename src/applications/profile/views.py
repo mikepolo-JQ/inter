@@ -14,9 +14,11 @@ class ProfileView(DetailView):
     template_name = "profile/profile.html"
 
 
-class MyProfileView(View):
-    def get(self, request, *args, **kwargs):
-        return redirect(reverse_lazy("profile:profile", kwargs={"pk": request.user.pk}))
+class MyProfileView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse_lazy(
+            "profile:profile", kwargs={"pk": self.request.user.profile.pk}
+        )
 
 
 class SorryView(TemplateView):
