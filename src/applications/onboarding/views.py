@@ -10,6 +10,7 @@ from django.views.generic import FormView
 
 from applications.onboarding.forms import SignUpForm
 from applications.profile.models import Profile
+from applications.profile.models import Rating
 
 
 class SignInView(LoginView):
@@ -37,7 +38,10 @@ class SignUpView(FormView):
         user = authenticate(self.request, username=username, password=password)
         login(self.request, user)
 
-        pf = Profile(user=self.request.user)
+        user = self.request.user
+        pf = Profile(user=user)
         pf.save()
+        rating = Rating(profile=pf)
+        rating.save()
 
         return super().form_valid(form)

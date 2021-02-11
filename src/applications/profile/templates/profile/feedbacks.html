@@ -1,0 +1,59 @@
+{% load static %}
+
+<h1 class="fdb__title">Reviews</h1>
+
+
+<article class="feedbacks_box">
+
+        <article class="fdb__create_button">Make review</article>
+
+        <article class="fdb-input">
+            <form method="post" action="{% url "profile:profile" profile.pk %}">
+                {% csrf_token %}
+
+                <fieldset class="rating">
+                    <legend class="rating__caption">Evaluate your work with <span>{{ profile.user.username }}</span></legend>
+                    <div class="rating__group">
+                        <input class="rating__star" type="radio" name="rating_value" value="1" >
+                        <input class="rating__star" type="radio" name="rating_value" value="2" >
+                        <input class="rating__star" type="radio" name="rating_value" value="3" >
+                        <input class="rating__star" type="radio" name="rating_value" value="4" >
+                        <input class="rating__star" type="radio" name="rating_value" value="5" >
+                    </div>
+                </fieldset>
+
+                <label for="content_id"></label>
+                <textarea id="content_id" name="content" placeholder="Write your feedback..."></textarea><br>
+                <button class="fdb-input-button" type="submit">Send</button>
+            </form>
+        </article>
+
+        <article class="fdb__container">
+        {% for fdb in profile.feedback_list %}
+        <article id="fdb_{{ fdb.pk }}" onclick="openFeedback(this, {{ fdb.pk }});" class="feedback">
+            <article class="fdb__avatar">
+                  <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
+            </article>
+
+            <article class="fdb__info">
+                <article class="fdb_author">{{ fdb.author }}</article>
+
+                <article class="fdb_rating">
+                    <img src="{% static "profile/img/on.png" %}">
+                    <article class="fdb_rating_num">{{ fdb.rating_value }}</article>
+                </article>
+
+                <article id="fdb_content_{{ fdb.pk }}" class="fdb_content">{{ fdb.content }}</article>
+
+                <article class="fdb_datetime">{{ fdb.get_datetime }}</article>
+            </article>
+        </article>
+        {% endfor %}
+        </article>
+
+</article>
+<script>
+openFeedback = function (elem, pk){
+    document.getElementById("fdb_content_"+ pk).classList.toggle("fdb_active");
+}
+</script>

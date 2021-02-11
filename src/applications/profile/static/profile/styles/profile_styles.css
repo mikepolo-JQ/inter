@@ -61,6 +61,36 @@
     padding: 40px 40px;
 }
 
+.profile__name-rating{
+    display: grid;
+    grid-template-columns: 2fr .5fr 1fr;
+}
+
+.profile__rating{
+    align-self: center;
+    justify-self: start;
+
+    font-weight: bold;
+    font-size: 1em;
+}
+.profile__name-rating img{
+    justify-self: end;
+    margin-right: 5px;
+    width: auto;
+    height: 1.5em;
+    align-self: center;
+}
+
+.green{
+    background-color: green;
+}
+.red{
+    background-color: red;
+}
+.yellow{
+    background-color: yellow;
+}
+
 .profile__name{
     font-family: "Kaushan Script", sans-serif;
     margin: 10px 30px;
@@ -136,5 +166,286 @@
     display: flex;
     justify-content: center;
 }
+
+
+
+/*////////////////////// RATING ///////////////////////*/
+
+.rating {
+    margin: 0 0 1em 0;
+    padding: 0;
+    border: none;
+}
+
+/* Caption */
+
+.rating__caption {
+    font-size: 1.6em;
+    margin-bottom: 0.5em;
+    padding: 0;
+}
+
+.rating span{
+    font-weight: bold;
+    text-decoration: underline red;
+}
+
+/* Group */
+
+.rating__group {
+    margin: 0 auto;
+    position: relative;
+    width: 10em;
+    height: 2em;
+    background-image: url("/static/profile/img/off.png");
+    background-size: 2em auto;
+    background-repeat: repeat-x;
+}
+
+.rating__group:focus-within {
+    outline: 0.2em solid #4a90e2;
+    outline-offset: 0.2em;
+}
+
+/* Star */
+
+.rating__star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    height: 2em;
+    font-size: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-size: 2em auto;
+    background-repeat: repeat-x;
+}
+
+.rating__star:focus {
+    outline: none;
+}
+
+.rating__star:hover,
+.rating__star:checked {
+    background-image: url("/static/profile/img/on.png");
+}
+
+.rating__star:hover ~ .rating__star {
+    background-image: url("/static/profile/img/off.png");
+}
+
+/* Options */
+
+.rating__star:nth-of-type(1) {
+    z-index: 5;
+    width: 2em;
+}
+
+.rating__star:nth-of-type(2) {
+    z-index: 4;
+    width: 4em;
+}
+
+.rating__star:nth-of-type(3) {
+    z-index: 3;
+    width: 6em;
+}
+
+.rating__star:nth-of-type(4) {
+    z-index: 2;
+    width: 8em;
+}
+
+.rating__star:nth-of-type(5) {
+    z-index: 1;
+    width: 10em;
+}
+
+/*////// FEEDBACKS //////*/
+
+.fdb__title{
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "Kaushan Script", sans-serif;
+    font-size: 3em;
+    margin-bottom: 30px;
+}
+
+.fdb__title:after{
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: red;
+    margin: 10px auto;
+}
+
+.fdb__create_button{
+    display: none;
+    font-weight: bold;
+    border: 2px black solid;
+    padding: 6px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    margin-bottom: 30px;
+}
+
+.fdb__create_button:hover{
+    background-color: black;
+    color: white;
+    border-color: red;
+}
+
+/*//////////// FDB INPUT ////////*/
+
+.fdb-input:before{
+    content: "";
+    display: block;
+    width: 550px;
+    height: 3px;
+    background-color: red;
+    margin-bottom: 30px;
+}
+
+.fdb-input{
+    display: block;
+    text-align: center;
+}
+
+#content_id{
+    width: 70%;
+    height: 10vh;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.fdb-input-button{
+    position: relative;
+    padding: 5px 10px;
+    height: 5vh;
+    width: 5em;
+
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+
+    margin-bottom: 20px;
+}
+
+.fdb-input-button:hover{
+    background-color: black;
+    color: white;
+    border-color: red;
+}
+
+.fdb-input:after{
+    content: "";
+    display: block;
+    width: 550px;
+    height: 3px;
+    background-color: red;
+    margin: 10px auto;
+}
+
+
+/*///////// FDB BOX ///////////*/
+
+.feedbacks_box{
+    display: grid;
+    justify-items: center;
+
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.feedback{
+    margin: 2px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px 40px;
+
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    justify-items: start;
+    cursor: pointer;
+}
+
+.feedback:hover{
+    /*background-color: #1e347b;*/
+    background-color: black;
+    color: white;
+}
+
+.fdb__avatar img{
+    width: 20px;
+    height: 20px;
+}
+
+.fdb__avatar{
+    max-height: 55px;
+    grid-auto-rows: minmax(10px, max-content);
+    display: flex;
+    justify-content: center;
+    width: max-content;
+
+    border: 2px solid red;
+    border-radius: 100%;
+    background-color: black;
+    padding: 15px;
+    margin-right: 10px;
+}
+
+.fdb__info{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.fdb_author{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.fdb_rating{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-columns: max-content;
+}
+
+.fdb_rating img{
+    width: auto;
+    height: 1.1em;
+    justify-self: end;
+}
+.fdb_rating_num{
+    justify-self: start;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.fdb_content{
+    font-size: 13px;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.fdb_active{
+    white-space: normal;
+
+}
+
+.fdb_datetime{
+    opacity: .7;
+    justify-self: end;
+    font-size: 10px;
+}
+
 
 
