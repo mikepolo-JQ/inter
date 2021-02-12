@@ -6,7 +6,8 @@ from django.views.generic.base import View
 
 from applications.profile.models import Profile
 from applications.smart.models import Match
-from applications.smart.utils import create_contacts, search_contacts_for
+from applications.smart.utils import create_contacts
+from applications.smart.utils import search_contacts_for
 from applications.smart.utils import update_matches
 
 
@@ -34,7 +35,6 @@ class SmartStartView(View):
 
 
 class BIGSmartUpdateView(View):
-
     def post(self, request, *args, **kwargs):
 
         k_matches = update_matches()
@@ -48,9 +48,7 @@ class BIGSmartUpdateView(View):
         }
         print(payload)
 
-        redirect_url = reverse_lazy(
-            "smart:matchList"
-        )
+        redirect_url = reverse_lazy("smart:matchList")
         return redirect(redirect_url)
 
 

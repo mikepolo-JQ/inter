@@ -100,11 +100,15 @@ def search_contacts_for(user_profile: Profile) -> int:
     k = 0
     active_profiles = get_active_profiles()
     if user_profile not in active_profiles:
-        raise ValueError("Your profile isn't active. Please fill help lines on your profile page.")
+        raise ValueError(
+            "Your profile isn't active. Please fill help lines on your profile page."
+        )
     editor_profile_help_strings(user_profile)
 
     needers = Profile.objects.filter(active=True, needed_help=user_profile.provide_help)
-    providers = Profile.objects.filter(active=True, provide_help=user_profile.needed_help)
+    providers = Profile.objects.filter(
+        active=True, provide_help=user_profile.needed_help
+    )
 
     for profile in needers:
         if not (profile in providers):
