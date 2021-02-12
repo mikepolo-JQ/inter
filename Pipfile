@@ -26,11 +26,6 @@ psycopg2-binary = "*"
 pydantic = "*"
 sentry-sdk = "*"
 whitenoise = "*"
-channels = "*"
-channels-redis = "*"
 
 [requires]
-python_version = "3.8"
-
-[pipenv]
-allow_prereleases = true
+python_version = "3.9"
