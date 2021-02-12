@@ -28,9 +28,7 @@ class SmartStartView(View):
         }
         print(payload)
 
-        redirect_url = reverse_lazy(
-            "profile:contactList", kwargs={"pk": request.user.profile.pk}
-        )
+        redirect_url = reverse_lazy("profile:contactList", kwargs={"pk": profile.pk})
         return redirect(redirect_url)
 
 

@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
     _ds.HOST,
 ]
 
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -35,7 +36,30 @@ INSTALLED_APPS = [
     "applications.profile.apps.ProfileConfig",
     "applications.smart.apps.SmartConfig",
     "applications.chat.apps.ChatConfig",
+    # -------------------------------------
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.vk",
+    "allauth.socialaccount.providers.telegram",
 ]
+
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        "APP": {
+            "client_id": "453590859237-9lvt6in5mtbvga1168m9pm0mobahlc6d.apps.googleusercontent.com",
+            "secret": "RswnChPbFzO8Cb9LKYKFMs6S",
+            "key": "",
+        }
+    }
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -46,6 +70,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "applications.chat.middleware.counter.CounterMiddleware",
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -76,6 +101,13 @@ database_url = os.getenv("DATABASE_URL", _ds.DATABASE_URL)
 
 DATABASES = {"default": dj_database_url.parse(database_url)}
 
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

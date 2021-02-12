@@ -186,7 +186,14 @@
 
 .chat_talker{
     font-weight: bold;
+    text-decoration: none;
+    color: white;
 
+    transition: all .2s linear;
+}
+
+.chat_talker:hover{
+    font-size: 1.1em;
 }
 /*messages///////////////////////////////*/
 .messages{
@@ -217,6 +224,7 @@
 
 .your-msg{
     justify-self: end;
+    cursor: pointer;
 }
 
 .msg-content{
@@ -357,4 +365,10 @@
 
 .contact_button_GoToChat:hover{
     color: red;
+}
+
+.sorry_contact_title{
+    font-family: "Kaushan Script", sans-serif;
+    font-size: 1.5em;
+    text-align: center;
 }

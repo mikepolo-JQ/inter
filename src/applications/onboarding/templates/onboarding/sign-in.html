@@ -15,32 +15,43 @@
     <article class="container">
         <article class="intro_inner">
 
-        <h2 class="intro_title">Sign In</h2>
-        <article class="container_form">
-          <article>
-            {% if form.errors %}
-              <p>Some errors</p>
-            {% endif %}
-            {% if next %}
-              {% if user.is_authenticated %}
-                <p>Your account doesn't have access to this page. To proceed,
-                   please login with an account that has access.</p>
-              {% else %}
-                <p>Please login to see this page.</p>
-              {% endif %}
-            {% endif %}
-          </article>
-          {% if not user.is_authenticated %}
-            <article>
-              <form id="id_sign_in_form" method="post">
-                {{ form.as_p }}
-                <button id="id_sign_in_submit" type="submit">Sign In</button>
-                {% csrf_token %}
-                <input id="id_sign_in_next" name="next" type="hidden" value="{{ next }}">
-              </form>
+        <h2 class="sign_title">Sign In</h2>
 
+        <article class="login__container">
+            <article class="social_login_buttons">
+                <a class="google_login" href="/accounts/google/login/?process=login">Google</a><br>
+                <a class="google_login vk_login" href="/accounts/google/login/?process=login">VK</a><br>
+                <a class="google_login telegram_login" href="/accounts/google/login/?process=login">Telegram</a>
             </article>
-          {% endif %}
+
+            <article class="or">or</article>
+
+            <article class="container_form">
+              <article>
+                {% if form.errors %}
+                  <p>Some errors</p>
+                {% endif %}
+                {% if next %}
+                  {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed,
+                       please login with an account that has access.</p>
+                  {% else %}
+                    <p>Please login to see this page.</p>
+                  {% endif %}
+                {% endif %}
+              </article>
+              {% if not user.is_authenticated %}
+                <article>
+                  <form id="id_sign_in_form" method="post">
+                    {{ form.as_p }}
+                    <button id="id_sign_in_submit" type="submit">Sign In</button>
+                    {% csrf_token %}
+                    <input id="id_sign_in_next" name="next" type="hidden" value="{{ next }}">
+                  </form>
+
+                </article>
+              {% endif %}
+            </article>
         </article>
 
         </article>

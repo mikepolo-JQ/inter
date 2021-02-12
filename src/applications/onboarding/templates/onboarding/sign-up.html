@@ -18,18 +18,8 @@
 
         <h2 class="sign_title">Sign Up</h2>
           <form method="post" action="{% url 'onboarding:sign-up' %}" id="id_sign_up_form">
-            <div class="container_form">
+            <div class="container_form-up">
 
-                <div class="form-field">
-                {{ form.first_name.label_tag }}
-                {{ form.first_name }}
-                {{ form.first_name.errors }}
-                </div>
-                <div class="form-field">
-                {{ form.last_name.label_tag }}
-                {{ form.last_name }}
-                {{ form.last_name.errors }}
-                </div>
                 <div class="form-field">
                 {{ form.username.label_tag }}
                 {{ form.username }}
@@ -52,7 +42,7 @@
                 </div>
             </div>
             {% csrf_token %}
-              <button id="id_sign_button" type="submit">Sign Up</button>
+              <button id="id_sign_in_submit" type="submit">Sign Up</button>
             <input name="next" type="hidden" value="{{ next }}" id="id_sign_up_next">
           </form>
 

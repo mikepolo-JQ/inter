@@ -15,6 +15,8 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(null=True, blank=True, default="default_user.png")
+    first_name = models.CharField(null=False, max_length=30, default="name")
+    last_name = models.CharField(null=False, max_length=30, default="last_name")
 
     sity = models.CharField(blank=True, null=True, max_length=30)
     phone = models.CharField(blank=True, null=True, max_length=20)
@@ -33,14 +35,14 @@ class Profile(models.Model):
 
     @property
     def get_chat_list(self) -> list:
-        chat_list = list(self.user.chats.all())
+        chat_list = list(self.chats.all())
         return chat_list
 
-    def have_chat_with(self, user) -> bool:
+    def have_chat_with(self, profile) -> bool:
         chat_list = self.get_chat_list
         for chat in chat_list:
-            chat_users = chat.users.all()
-            if user in chat_users:
+            chat_users = chat.profiles.all()
+            if profile in chat_users:
                 return True
         return False
 

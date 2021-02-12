@@ -24,18 +24,20 @@
                     <a href="/" class="header__logo">INTER</a>
 
                     <nav class="nav">
-                        <a href="{% url "main:index" %}" class="nav__item">Главная</a>
-                        {% if user.is_authenticated and not user.is_superuser %}
-                            <a href="{% url "profile:contactList" user.profile.pk %}" class="nav__item">Контакты</a>
+                        <a href="{% url "main:index" %}" class="nav__item">About</a>
+                        {% if user.is_authenticated and user.profile %}
+                            <a href="{% url "profile:contactList" user.profile.pk %}" class="nav__item">Contacts</a>
+
+                            <a href="{% url "smart:matchList" %}" class="nav__item">Matches</a>
+                            <a href="{% url "chat:messenger" %}" class="nav__item">Messenger</a>
                         {% endif %}
-                        <a href="{% url "smart:matchList" %}" class="nav__item">Совпадения</a>
-                        <a href="{% url "chat:messenger" %}" class="nav__item">Мессенджер</a>
-                        <a href="#contact" class="nav__item">Contact</a>
                     </nav>
 
 
-                    {% if not user.is_superuser and user.is_authenticated %}
+                    {% if user.is_authenticated and user.profile %}
                         <a class="header__user" href="{% url "profile:profile" user.profile.id %}">{{ user.username }}</a>
+                    {% elif user.is_authenticated %}
+                        <a class="header__user" href="{% url "profile:profile_create" %}">create profile</a>
                     {% endif %}
 
                     {% if not user.is_authenticated %}

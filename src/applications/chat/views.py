@@ -24,13 +24,6 @@ class MessengerView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-
-        user = self.request.user
-        chat_list = user.profile.get_chat_list
-
-        for chat in chat_list:
-            chat.talker = chat.get_talker_for(user).username
-            chat.save()
         return context
 
 
@@ -40,13 +33,13 @@ class ChatCreateView(View):
         profile = Profile.objects.filter(pk=pk).first()
 
         if not profile:
-            return HttpResponse("Error! Profile not found...")
+            raise ModuleNotFoundError(f"Profile {pk} not found...")
 
-        user = self.request.user
-        if profile.have_chat_with(user):
+        user_profile = self.request.user.profile
+        if profile.have_chat_with(user_profile):
             return redirect(reverse_lazy("chat:messenger"))
 
-        chat = Chat.create(profile.user, self.request.user)
+        chat = Chat.create(profile, user_profile)
         chat.save()
         return redirect(reverse_lazy("chat:chat", kwargs={"pk": chat.pk}))
 
@@ -68,7 +61,7 @@ class ChatView(CreateView):
 
     def form_valid(self, form):
         msg = form.save(commit=False)
-        msg.author = self.request.user
+        msg.author = self.request.user.profile
 
         pk = self.kwargs.get("pk", 0)
         if not pk:

@@ -4,6 +4,10 @@
 {% block container_msg %}
 
 <article class="msg_container_contact">
+
+{% if not object.get_contact_list %}
+    <article class="sorry_contact_title">You don't have any contacts yet...</article>
+{% else %}
 {% for contact in object.get_contact_list %}
 <a class="contact" href="{% url "profile:profile" contact.pk %}">
     <article class="profile__avatar_contact">
@@ -22,6 +26,7 @@
     </article>
 </a>
 {% endfor %}
+{% endif %}
 </article>
 
 {% endblock %}

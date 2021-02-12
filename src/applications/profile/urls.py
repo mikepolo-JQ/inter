@@ -9,6 +9,7 @@ app_name = ProfileConfig.label
 urlpatterns = [
     path("my/", views.MyProfileView.as_view(), name="my"),
     path("<int:pk>/", views.ProfileView.as_view(), name="profile"),
+    path("create/", views.ProfileCreateView.as_view(), name="profile_create"),
     path("sorry/", views.SorryView.as_view(), name="sorry_page"),
     path(
         "<int:pk>/update/",

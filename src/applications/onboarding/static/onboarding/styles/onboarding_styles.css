@@ -29,19 +29,21 @@ body{
 .container_form{
     width: 100%;
     max-width: 250px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .sign_title{
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 3em;
     font-weight: 700;
     color: black;
     text-align: center;
+    font-family: "Kaushan Script", sans-serif;
     /*text-transform: uppercase;*/
 
     line-height: 1;
 }
+
 
 label{
     display: flex;
@@ -92,7 +94,7 @@ button:hover{
 
 /* SIGN UP */
 
-#id_sign_button{
+#id_sign_in_submit{
     width: 100%;
     max-width: 100px;
     display: flex;
@@ -117,4 +119,69 @@ button:hover{
 
 .form-field{
     margin-bottom: 10px;
+}
+
+/* MY LOGIN */
+
+.login__container{
+    display: grid;
+    grid-template-columns: .8fr .1fr 1fr;
+}
+
+.social_login_buttons{
+    justify-self: right;
+    margin-right: 40px;
+    font-weight: bold;
+    display: grid;
+
+    grid-auto-rows: max-content;
+    align-self: center;
+
+}
+
+.google_login{
+    color: white;
+
+    background-color: red;
+    text-decoration: none;
+
+    height: max-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.vk_login{
+    background-color: blue;
+}
+.telegram_login{
+    background-color: dodgerblue;
+}
+
+.or{
+    align-self: center;
+
+    font-weight: bold;
+    font-size: 1.3em;
+    color: black;
+
+    background-color: grey;
+    width: max-content;
+
+    border: 2px solid transparent;
+    border-radius: 100%;
+
+    padding: 7px 10px;
+}
+
+.container_form{
+    justify-self: left;
+    margin-left: 20px;
+
+}
+
+.container_form-up{
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
 }

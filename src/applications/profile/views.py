@@ -10,6 +10,7 @@ from django.views.generic import UpdateView
 
 from applications.profile.models import Feedback
 from applications.profile.models import Profile
+from applications.profile.models import Rating
 
 
 class ProfileView(CreateView):
@@ -66,7 +67,7 @@ class SorryView(TemplateView):
 
 class UpdateProfile(UpdateView):
     model = Profile
-    fields = ["sity", "phone", "needed_help", "provide_help"]
+    fields = ["first_name", "last_name", "sity", "phone", "needed_help", "provide_help"]
     template_name = "profile/update_profile.html"
 
     def get_success_url(self):
@@ -93,8 +94,30 @@ class ContactReasonView(View):
 
         contacts_pk = [contact.pk for contact in contacts]
 
-        reasons = {contact.pk: profile.get_contact_reason_with(contact) for contact in contacts}
+        reasons = {
+            contact.pk: profile.get_contact_reason_with(contact) for contact in contacts
+        }
 
-        payload.update({"ok": True, "contacts_pk": contacts_pk, "contact_reasons": reasons, "reason": None})
+        payload.update(
+            {
+                "ok": True,
+                "contacts_pk": contacts_pk,
+                "contact_reasons": reasons,
+                "reason": None,
+            }
+        )
 
         return JsonResponse(payload)
+
+
+class ProfileCreateView(View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        pf = Profile(user=user)
+        pf.save()
+        rating = Rating(profile=pf)
+        rating.save()
+
+        redirect_url = reverse_lazy("profile:profile", kwargs={"pk": user.profile.pk})
+
+        return redirect(redirect_url)

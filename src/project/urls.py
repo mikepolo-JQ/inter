@@ -45,6 +45,7 @@ urlpatterns = [
     path("smart/", include("applications.smart.urls"), name="smart"),
     path("messenger/", include("applications.chat.urls"), name="chat"),
     path("e/", make_error),
+    path("accounts/", include("allauth.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

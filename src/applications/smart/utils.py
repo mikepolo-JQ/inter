@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 
 from applications.profile.models import Profile
@@ -10,6 +11,8 @@ DIR_SMART = Path(__file__).resolve().parent
 DIR_SMART_STATIC = DIR_SMART / "static/smart"
 
 DIR_WORDS = DIR_SMART_STATIC
+
+User = get_user_model()
 
 
 def update_matches() -> int:
@@ -115,10 +118,14 @@ def search_contacts_for(user_profile: Profile) -> int:
             continue
         user_profile.contacts.add(profile)
 
-        create_match_simple(provider=profile, needer=user_profile, reason=profile.provide_help)
+        create_match_simple(
+            provider=profile.user, needer=user_profile.user, reason=profile.provide_help
+        )
 
         create_match_simple(
-            provider=user_profile, needer=profile, reason=user_profile.provide_help
+            provider=user_profile.user,
+            needer=profile.user,
+            reason=user_profile.provide_help,
         )
 
         k += 1
@@ -126,8 +133,6 @@ def search_contacts_for(user_profile: Profile) -> int:
     return k
 
 
-def create_match_simple(provider: Profile, needer: Profile, reason: str) -> None:
-    match = Match(
-        provider=provider, needer=needer, reason=reason
-    )
+def create_match_simple(provider: User, needer: User, reason: str) -> None:
+    match = Match(provider=provider, needer=needer, reason=reason)
     match.save()
