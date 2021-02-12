@@ -9,11 +9,7 @@
 
 <link rel="stylesheet" href="
         {% static "profile/styles/profile_styles.css" %}">
-<script>
-openFeedback = function (elem, pk){
-    document.getElementById("fdb_content_"+ pk).classList.toggle("fdb_active");
-}
-</script>
+
 
 <link href="https://fonts.googleapis.com/css2?
         family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
@@ -39,7 +35,7 @@ openFeedback = function (elem, pk){
                     <article class="profile__name-rating">
                         <article class="profile__name">{{ profile.user.first_name }} {{ profile.user.last_name }}</article>
                         <img src="{% static "profile/img/on.png" %}">
-                        <article id="rating" class="profile__rating">{{ rating }}</article>
+                        <article id="rating" onclick="openFeedbackBox()" class="profile__rating">{{ rating }}</article>
                     </article>
                     <article class="profile__name profile__email">{{ profile.user.username }} / {{ profile.user.email }}</article>
 

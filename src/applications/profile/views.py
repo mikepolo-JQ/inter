@@ -77,4 +77,4 @@ class UpdateProfile(UpdateView):
 
 class ContactListView(DetailView):
     model = Profile
-    template_name = "smart/contacts.html"
+    template_name = "profile/contacts.html"

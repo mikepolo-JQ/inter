@@ -1,13 +1,11 @@
 {% load static %}
 
-<h1 class="fdb__title">Reviews</h1>
-
-
+<article id="feedback-box" class="off">
 <article class="feedbacks_box">
+        <h1 id="fdb__title" class="fdb__title">Reviews</h1>
+        <article id="fdb-input_open" onclick="openFeedbackinput(this)" class="fdb__create_button">Make review</article>
 
-        <article class="fdb__create_button">Make review</article>
-
-        <article class="fdb-input">
+        <article id="fdb-input" class="fdb-input">
             <form method="post" action="{% url "profile:profile" profile.pk %}">
                 {% csrf_token %}
 
@@ -52,8 +50,14 @@
         </article>
 
 </article>
+</article>
 <script>
 openFeedback = function (elem, pk){
     document.getElementById("fdb_content_"+ pk).classList.toggle("fdb_active");
+}
+
+openFeedbackinput = function (element){
+    element.style.display = "none";
+    document.getElementById("fdb-input").style.display = "block";
 }
 </script>

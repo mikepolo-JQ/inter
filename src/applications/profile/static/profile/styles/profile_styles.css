@@ -67,6 +67,7 @@
 }
 
 .profile__rating{
+    cursor: pointer;
     align-self: center;
     justify-self: start;
 
@@ -283,7 +284,7 @@
 }
 
 .fdb__create_button{
-    display: none;
+    display: block;
     font-weight: bold;
     border: 2px black solid;
     padding: 6px 15px;
@@ -311,7 +312,7 @@
 }
 
 .fdb-input{
-    display: block;
+    display: none;
     text-align: center;
 }
 
@@ -364,6 +365,10 @@
     margin: 0 auto;
 }
 
+.off{
+    display: none;
+}
+
 .feedback{
     margin: 2px 0;
     border: 2px solid black;
@@ -380,6 +385,10 @@
     /*background-color: #1e347b;*/
     background-color: black;
     color: white;
+}
+
+.feedback:last-child{
+    margin-bottom: 30px;
 }
 
 .fdb__avatar img{
