@@ -17,6 +17,10 @@
         {% endfor %}
 
         {% if user.is_superuser %}
+        <form action="{% url "smart:bigUpdate" %}" method="post" >
+            <button id="reset_all_id">BIG update</button>
+            {% csrf_token %}
+        </form>
         <form action="{% url "smart:delete_all_matches" %}" method="post" >
             <button id="reset_all_id">Reset all matches</button>
             {% csrf_token %}

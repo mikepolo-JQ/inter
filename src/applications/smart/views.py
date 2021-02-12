@@ -7,6 +7,7 @@ from django.views.generic.base import View
 from applications.profile.models import Profile
 from applications.smart.models import Match
 from applications.smart.utils import create_contacts
+from applications.smart.utils import search_contacts_for
 from applications.smart.utils import update_matches
 
 
@@ -18,9 +19,25 @@ class MatchListView(ListView):
 class SmartStartView(View):
     def post(self, request, *args, **kwargs):
 
-        profiles = Profile.objects.all()
+        profile = request.user.profile
+        k_contact = search_contacts_for(profile)
 
-        k_matches = update_matches(profiles)
+        payload = {
+            "ok": True,
+            "contacts": f"{k_contact} new contacts",
+        }
+        print(payload)
+
+        redirect_url = reverse_lazy(
+            "profile:contactList", kwargs={"pk": request.user.profile.pk}
+        )
+        return redirect(redirect_url)
+
+
+class BIGSmartUpdateView(View):
+    def post(self, request, *args, **kwargs):
+
+        k_matches = update_matches()
 
         k_contact = create_contacts()
 
@@ -31,9 +48,7 @@ class SmartStartView(View):
         }
         print(payload)
 
-        redirect_url = reverse_lazy(
-            "profile:contactList", kwargs={"pk": request.user.profile.pk}
-        )
+        redirect_url = reverse_lazy("smart:matchList")
         return redirect(redirect_url)
 
 

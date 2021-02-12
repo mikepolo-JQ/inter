@@ -10,6 +10,9 @@ urlpatterns = [
     path("matches/", views.MatchListView.as_view(), name="matchList"),
     path("start/", csrf_exempt(views.SmartStartView.as_view()), name="smartStart"),
     path(
+        "start/su/", csrf_exempt(views.BIGSmartUpdateView.as_view()), name="bigUpdate"
+    ),
+    path(
         "matches/delete/", views.DeleteAllMatches.as_view(), name="delete_all_matches"
     ),
     path(
