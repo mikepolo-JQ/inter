@@ -31,6 +31,16 @@ default:
   VENV_SYNTHETIC: false
   WEB_CONCURRENCY: 0
 
+  GOOGLE_CLIENT_ID: ""
+  GOOGLE_SECRET: ""
+
+  VK_CLIEN_ID: ""
+  VK_SECRET: ""
+  VK_KEY: ""
+
+  TELEGRAM_API_ID: ""
+  TELEGRAM_API_HASH: ""
+
 
 development:
   PORT: 8000

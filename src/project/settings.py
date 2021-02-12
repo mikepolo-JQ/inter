@@ -54,11 +54,31 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         "APP": {
-            "client_id": "453590859237-9lvt6in5mtbvga1168m9pm0mobahlc6d.apps.googleusercontent.com",
-            "secret": "RswnChPbFzO8Cb9LKYKFMs6S",
+            "client_id": _ds.GOOGLE_CLIENT_ID,
+            "secret": _ds.GOOGLE_SECRET,
             "key": "",
         }
-    }
+    },
+    "vk": {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        "APP": {
+            "client_id": _ds.VK_CLIENT_ID,
+            "secret": _ds.VK_SECRET,
+            "key": _ds.VK_KEY,
+        }
+    },
+    "telegram": {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        "APP": {
+            "client_id": "",
+            "secret": "",
+            "key": "",
+        }
+    },
 }
 
 MIDDLEWARE = [
