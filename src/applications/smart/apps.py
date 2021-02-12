@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MainConfig(AppConfig):
-    label = "main"
+class SmartConfig(AppConfig):
+    label = "smart"
     name = f"applications.{ label }"

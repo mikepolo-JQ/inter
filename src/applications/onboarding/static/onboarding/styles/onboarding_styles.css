@@ -92,7 +92,7 @@ button:hover{
 
 /* SIGN UP */
 
-#sign_button{
+#id_sign_button{
     width: 100%;
     max-width: 100px;
     display: flex;

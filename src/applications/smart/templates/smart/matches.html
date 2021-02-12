@@ -1,0 +1,28 @@
+{% extends "smart/_base_smart.html" %}
+
+{% block table %}
+<h2 class="intro__title">Matches</h2>
+
+<article class="match__table">
+    <article class="table">
+        {% for object in object_list %}
+        <article class="match__table_str">
+            <article class="match__table_usernames">
+                <a href="{% url "profile:profile" object.provider.pk %}" class="match__username_item">{{ object.provider }}</a> can help
+                <a href="{% url "profile:profile" object.needer.pk %}" class="match__username_item">{{ object.needer }}</a>
+            </article>
+            <article class="match__reason">{{ object.reason }}</article>
+            <article class="match__created_at">{{ object.created_at }}</article>
+        </article>
+        {% endfor %}
+
+        {% if user.is_superuser %}
+        <form action="{% url "smart:delete_all_matches" %}" method="post" >
+            <button id="reset_all_id">Reset all matches</button>
+            {% csrf_token %}
+        </form>
+        {% endif %}
+    </article>
+</article>
+
+{% endblock %}

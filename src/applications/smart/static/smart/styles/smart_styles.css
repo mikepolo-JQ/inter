@@ -1,0 +1,110 @@
+/*////////////////////// INTRO ///////////////////////*/
+.intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: white center no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.intro__suptitle{
+    margin: 0 auto;
+    font-family: 'Kaushan Script', cursive;
+    color: black;
+    font-size: 50px;
+}
+
+.intro__title{
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Kaushan Script', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.intro__title:after{
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin: 10px auto 20px;
+
+    background-color: red;
+}
+
+/*////////////////////// SMART PAGE ///////////////////////*/
+
+
+.match__table{
+    display: flex;
+    justify-content: center;
+}
+
+
+.match__table_str{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    border: 2px solid black;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 5px auto;
+
+    transition: color .2s linear;
+}
+
+.match__table_str:hover{
+    border-color: red;
+}
+
+.match__username_item{
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+
+    text-decoration: None;
+    color: black;
+    transition: color .2s linear;
+}
+
+.match__username_item:hover{
+    color: red
+}
+
+.match__reason{
+    margin: 0 20px;
+}
+
+#reset_all_id{
+    margin: 0 auto 30px;
+    background-color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #333545;
+    font-family: 'Montserrat', sans-serif;
+
+    width: 100%;
+    max-width: 800px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 3px solid #333545;
+    border-radius: 10px;
+
+    transition: background .1s linear,
+    color .1s linear;
+}
+
+#reset_all_id:hover{
+    background-color: #333545;
+    color: white;
+}
+
+
+
+

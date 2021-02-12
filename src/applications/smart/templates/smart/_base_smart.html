@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>inter main page</title>
+
+<link type="image/x-icon" rel="shortcut icon" href="
+        {% static "icons/favicon.ico" %}">
+
+<link rel="stylesheet" href="
+        {% static "smart/styles/smart_styles.css" %}">
+
+
+<link href="https://fonts.googleapis.com/css2?
+        family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+    <article class="intro">
+        <article class="container">
+
+
+        {% block table %}
+                <article class="match__table">
+                    <table>
+                        {% for object in object_list %}
+                        <tr>
+                            <td>
+                                <a href="{% url "profile" object.provider.pk %}" class="match__username_item">{{ object.provider }}</a> can help
+                                <a href="{% url "profile" object.needer.pk %}" class="match__username_item">{{ object.needer }}</a>
+                            </td>
+                            <td class="match__reason">{{ object.reason }}</td>
+                            <td class="match__created_at">{{ object.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </article>
+        {% endblock %}
+
+        </article>
+    </article>
+
+
+{% endblock %}

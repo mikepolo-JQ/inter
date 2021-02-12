@@ -82,7 +82,15 @@ h1, h2, h3, h4, h5, h6{
 .header__user{
     color: white;
     font-weight: bold;
+    font-size: 18px;
     text-decoration: None;
+    font-family: "Kaushan Script", sans-serif;
+
+    transition: color .2s linear;
+}
+
+.header__user:hover{
+    color: red;
 }
 
 .span_nav_sign{
