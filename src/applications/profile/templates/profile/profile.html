@@ -5,28 +5,37 @@
     <table>
         <tr>
             <td class="profile__table_tb1">Sity:</td>
-            <td id="id_profile_sity" class="profile__table_tb2">{{ object.sity }}</td>
+            <td id="id_profile_sity" class="profile__table_tb2">{{ profile.sity }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">Phone:</td>
-            <td id="id_profile_phone" class="profile__table_tb2">{{ object.phone }}</td>
+            <td id="id_profile_phone" class="profile__table_tb2">{{ profile.phone }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">What help do you need:</td>
-            <td id="id_profile_needed_help" class="profile__table_tb2">{{ object.needed_help }}</td>
+            <td id="id_profile_needed_help" class="profile__table_tb2">{{ profile.needed_help }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">What help can you provide:</td>
-            <td id="id_profile_provide_help" class="profile__table_tb2">{{ object.provide_help }}</td>
+            <td id="id_profile_provide_help" class="profile__table_tb2">{{ profile.provide_help }}</td>
         </tr>
     </table>
 </article>
 
+
 <article class="profile__buttons">
-    <a id="id_edit_button" href="{% url "profile:update_profile" object.pk %}" class="profile__button_item">Edit Profile</a>
+{% if user == profile.user %}
+    <a id="id_edit_button" href="{% url "profile:update_profile" profile.pk %}" class="profile__button_item">Edit Profile</a>
     <form action="{% url "smart:smartStart" %}" method="post">
         {% csrf_token %}
         <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Start Working</button>
     </form>
+{% else %}
+    <form action="{% url "chat:create" profile.pk %}" method="post">
+        {% csrf_token %}
+        <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Сообщения</button>
+    </form>
+{% endif %}
 </article>
+
 {% endblock %}

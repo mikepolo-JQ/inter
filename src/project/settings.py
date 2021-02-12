@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "applications.onboarding.apps.OnboardingConfig",
     "applications.profile.apps.ProfileConfig",
     "applications.smart.apps.SmartConfig",
+    "applications.chat.apps.ChatConfig",
 ]
 
 MIDDLEWARE = [
