@@ -20,7 +20,7 @@ from applications.profile.models import Profile
 
 
 class MessengerView(TemplateView):
-    template_name = "chat/index.html"
+    template_name = "chat/messenger.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
@@ -48,12 +48,13 @@ class ChatCreateView(View):
 
         chat = Chat.create(profile.user, self.request.user)
         chat.save()
-        return redirect(reverse_lazy("chat:messenger"))
+        return redirect(reverse_lazy("chat:chat", kwargs={"pk": chat.pk}))
 
 
 class ChatView(CreateView):
     fields = ["content"]
     model = Message
+    template_name = "chat/chat.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()

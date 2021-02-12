@@ -1,28 +1,27 @@
-{% extends "smart/_base_smart.html" %}
+{% extends "chat/_base_messenger.html" %}
+{% load static %}
 
-{% block table %}
-<h2 class="intro__title">Contacts</h2>
+{% block container_msg %}
 
-
-<article class="match__table">
-    <article class="table">
-        {% for contact in object.get_contact_list %}
-            <article class="match__table_str">
-                <article class="match__table_usernames">
-                    <a href="{% url "profile:profile" contact.pk %}" class="match__username_item">{{ contact.user.username }}</a>
-                </article>
-    {#            <article class="match__reason">can create a contact</article>#}
-    {#            <article class="match__created_at">{{ object.created_at }}</article>#}
-            </article>
-        {% endfor %}
-
-        {% if user.is_superuser %}
-        <form action="{% url "smart:delete_all_contacts" %}" method="post" >
-            <button id="reset_all_id">Reset all contacts</button>
-            {% csrf_token %}
-        </form>
-        {% endif %}
+<article class="msg_container_contact">
+{% for contact in object.get_contact_list %}
+<a class="contact" href="{% url "profile:profile" contact.pk %}">
+    <article class="profile__avatar_contact">
+          <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
     </article>
+
+    <article class="contact__info_contact">
+        <article class="contact_name_contact">{{ contact.user.username }}</article>
+        <article class="contact__rating-box">
+            <img src="{% static "profile/img/on.png" %}">
+            <article class="contact__rating">{{ contact.get_rating }}</article>
+        </article>
+
+        <article id="reason_with_{{ contact.pk }}" class="contact_button_GoToChat"></article>
+
+    </article>
+</a>
+{% endfor %}
 </article>
 
 {% endblock %}

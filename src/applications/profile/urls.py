@@ -16,4 +16,5 @@ urlpatterns = [
         name="update_profile",
     ),
     path("<int:pk>/contacts/", views.ContactListView.as_view(), name="contactList"),
+    # path("reasons/", csrf_exempt(views.ContactReasonView.as_view()), name="get_reasons")
 ]

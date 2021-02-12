@@ -304,4 +304,57 @@
     border-radius: 10px;
 }
 
+/*//////////// CONTACT ////////*/
 
+.contact__info_contact{
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+
+.profile__avatar_contact img{
+    width: 10px;
+    height: 10px;
+}
+
+.profile__avatar_contact{
+    grid-auto-rows: 10px;
+    display: flex;
+    justify-content: center;
+    width: max-content;
+
+    border: 2px solid red;
+    border-radius: 100%;
+    background-color: black;
+    padding: 10px;
+}
+
+.contact_name_contact{
+    font-weight: bold;
+    margin: auto 0;
+}
+
+.contact__info_contact img{
+    height: auto;
+    width: 1em;
+    justify-self: end;
+}
+
+.contact__rating{
+    font-weight: bold;
+}
+
+.contact__rating-box{
+    display: grid;
+    justify-self: end;
+    grid-template-columns: 1fr 1fr;
+}
+
+.msg_container_contact{
+    max-width: 30em;
+}
+
+.contact_button_GoToChat:hover{
+    color: red;
+}

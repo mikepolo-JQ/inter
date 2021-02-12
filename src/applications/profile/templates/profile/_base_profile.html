@@ -35,7 +35,7 @@
                     <article class="profile__name-rating">
                         <article class="profile__name">{{ profile.user.first_name }} {{ profile.user.last_name }}</article>
                         <img src="{% static "profile/img/on.png" %}">
-                        <article id="rating" onclick="openFeedbackBox()" class="profile__rating">{{ rating }}</article>
+                        <article id="rating" onclick="openFeedbackBox()" class="profile__rating">{{ profile.get_rating }}</article>
                     </article>
                     <article class="profile__name profile__email">{{ profile.user.username }} / {{ profile.user.email }}</article>
 

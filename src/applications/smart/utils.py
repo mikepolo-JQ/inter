@@ -111,9 +111,23 @@ def search_contacts_for(user_profile: Profile) -> int:
     )
 
     for profile in needers:
-        if not (profile in providers):
+        if profile not in providers:
             continue
         user_profile.contacts.add(profile)
+
+        create_match_simple(provider=profile, needer=user_profile, reason=profile.provide_help)
+
+        create_match_simple(
+            provider=user_profile, needer=profile, reason=user_profile.provide_help
+        )
+
         k += 1
 
     return k
+
+
+def create_match_simple(provider: Profile, needer: Profile, reason: str) -> None:
+    match = Match(
+        provider=provider, needer=needer, reason=reason
+    )
+    match.save()

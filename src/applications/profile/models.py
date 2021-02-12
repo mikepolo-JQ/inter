@@ -4,7 +4,7 @@ from datetime import timedelta
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from project.settings import MEDIA_ROOT
+from applications.smart.models import Match
 
 User = get_user_model()
 
@@ -49,11 +49,20 @@ class Profile(models.Model):
         fdb = list(self.rating.feedback_set.all())
         return fdb
 
+    @property
+    def get_rating(self):
+        rating = self.rating.value / (self.rating.feedback_set.all().count() or 1)
+        return "%.2f" % rating
+
+    def get_contact_reason_with(self, other):
+        match = Match.objects.filter(provider=other.user, needer=self.user).first()
+        return match.reason
+
     def __str__(self):
         return self.user.username
 
-    # def avatar_path(self):
-    #     return str(MEDIA_ROOT / self.pk)
+    class Meta:
+        ordering = ["rating", "-created_at"]
 
 
 class Rating(models.Model):

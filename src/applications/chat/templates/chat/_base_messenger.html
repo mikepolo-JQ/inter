@@ -28,6 +28,7 @@
                 <a href="{% url "chat:messenger" %}" class="nav_menu__item">Мессенджер</a>
             </article>
 
+            {% block container_msg %}
             <article class="msg_container">
             {% for chat in user.profile.get_chat_list %}
             <a class="contact" href="{% url "chat:chat" chat.pk %}">
@@ -47,8 +48,9 @@
 
             {% endfor %}
             </article>
-        </article>
+            {% endblock %}
 
+        </article>
     </article>
 </article>
 {% endblock %}

@@ -1,0 +1,43 @@
+{% extends "chat/_base_messenger.html" %}
+{% load static %}
+
+
+{% block container_msg %}
+<article class="chat_box">
+    <article class="chat_header">
+        <a class="back-button" href="{% url "chat:messenger" %}">< Назад</a>
+        <article class="chat_talker">{{ chat.talker }}</article>
+    </article>
+
+    <article id="messages" class="messages">
+
+        {% for msg in chat.message_list %}
+        <article onclick="openMenu(this);" class="msg {% if msg.author == user %}your-msg{% endif %}">
+
+            <article class="msg-menu {% if msg.author == user %}your-msg-menu{% endif %}">
+
+                <form method="post" action="{% url "chat:delete_msg" msg.pk%}">
+                <button type="submit" class="del_button">Delete</button></form>
+            </article>
+
+            <article class="msg-content {% if msg.author == user %}your-msg-content{% endif %}
+                    ">{{ msg.content }}</article>
+
+            <article class="msg-datetime {% if msg.author == user %}your-msg-dt{% endif %}
+                    ">{{ msg.get_datetime }}</article>
+
+        </article>
+        {% endfor %}
+        <article id="start_page"></article>
+    </article>
+
+    <article class="msg-input">
+        <form method="post" action="{% url "chat:chat" chat.pk %}">
+            {% csrf_token %}
+            <label for="content_id"></label>
+            <input id="content_id" name="content" type="text" placeholder="Write your message...">
+{#                        <button class="msg-button" type="submit">Send</button>#}
+        </form>
+    </article>
+</article>
+{% endblock %}
