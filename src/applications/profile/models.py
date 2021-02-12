@@ -22,6 +22,8 @@ class Profile(models.Model):
     needed_help = models.TextField(blank=True, null=True)
     provide_help = models.TextField(blank=True, null=True)
 
+    active = models.BooleanField(default=False)
+
     contacts = models.ManyToManyField("self", related_name="contact_of")
 
     @property
