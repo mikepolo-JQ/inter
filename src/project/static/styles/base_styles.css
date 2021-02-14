@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("/static/fonts/Montserrat.ttf");
+}
+
+@font-face {
+  font-family: "Kaushan Script";
+  src: url("/static/fonts/KaushanScript.ttf");
+}
+
+
+
 body{
     margin: 0;
     font-family: "Montserrat", sans-serif;

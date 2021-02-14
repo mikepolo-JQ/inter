@@ -124,39 +124,74 @@ button:hover{
 /* MY LOGIN */
 
 .login__container{
+    position: static;
     display: grid;
     grid-template-columns: .8fr .1fr 1fr;
+    grid-auto-columns: max-content;
 }
 
 .social_login_buttons{
-    justify-self: right;
-    margin-right: 40px;
+    justify-items: right;
+    width: max-content;
+    margin: 0 auto;
     font-weight: bold;
-    display: grid;
-
-    grid-auto-rows: max-content;
-    align-self: center;
-
 }
 
 .google_login{
     color: white;
 
-    background-color: red;
+
     text-decoration: none;
 
-    height: max-content;
-    padding: 5px 10px;
-    border-radius: 10px;
+
     text-align: center;
 }
 
-.vk_login{
-    background-color: blue;
+.google_login img{
+    height: auto;
+    width: 50px;
+    border-radius: 110%;
+
+    transition: all .2s linear;
+
 }
+
+.google_login img:hover{
+    background-color: red;
+}
+
+.vk_login img{
+
+    padding: 4px;
+}
+.vk_login img:hover{
+    background-color: #145fae;
+
+}
+
 .telegram_login{
+    display: block;
+    cursor: pointer;
+}
+.telegram_login img:hover{
     background-color: dodgerblue;
 }
+#telegram-login-inter_network_bot{
+    display: none;
+    position: relative;
+    left: 30px;
+    -webkit-transition: all.2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .5s linear;
+}
+button.tgme_widget_login_button{
+    background-color: red;
+}
+#telegram-login-inter_network_bot.open{
+    display: block;
+    left: 0;
+}
+
 
 .or{
     align-self: center;
@@ -184,4 +219,49 @@ button:hover{
     width: 100%;
     max-width: 250px;
     margin: 0 auto;
+}
+
+.inner_login{
+    background-color: black;
+    padding: 40px 60px;
+    border-radius: 20px;
+
+    width: max-content;
+    margin: 0 auto;
+}
+
+.login_title{
+    color: white;
+}
+
+#id_sign_in_form label{
+    color: white;
+}
+
+#id_sign_in_submit{
+    border-color: white;
+    color: white;
+}
+
+#id_sign_in_submit:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.signup__inner{
+    background-color: black;
+    width: max-content;
+    margin: 0 auto;
+    padding: 30px 40px;
+
+    border-radius: 20px;
+}
+
+.form-field label{
+    color: white;
+}
+
+.signup__inner .sign_title{
+    color: white;
 }
