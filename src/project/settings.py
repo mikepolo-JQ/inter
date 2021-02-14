@@ -69,9 +69,9 @@ SOCIALACCOUNT_PROVIDERS = {
             "key": _ds.VK_KEY,
         }
     },
-    'telegram': {
-        'TOKEN': _ds.TELEGRAM_TOKEN,
-    }
+    "telegram": {
+        "TOKEN": _ds.TELEGRAM_TOKEN,
+    },
 }
 
 MIDDLEWARE = [
