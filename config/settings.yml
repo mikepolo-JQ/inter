@@ -40,6 +40,7 @@ default:
 
   TELEGRAM_API_ID: ""
   TELEGRAM_API_HASH: ""
+  TELEGRAM_TOKEN: ""
 
 
 development:
