@@ -67,7 +67,15 @@ class SorryView(TemplateView):
 
 class UpdateProfile(UpdateView):
     model = Profile
-    fields = ["first_name", "last_name", "sity", "phone", "needed_help", "provide_help", "about"]
+    fields = [
+        "first_name",
+        "last_name",
+        "sity",
+        "phone",
+        "needed_help",
+        "provide_help",
+        "about",
+    ]
     template_name = "profile/update_profile.html"
 
     def get_success_url(self):
