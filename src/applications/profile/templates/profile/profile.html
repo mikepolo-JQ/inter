@@ -1,6 +1,12 @@
 {% extends "profile/_base_profile.html" %}
 
-{% block profile %}
+{% block profile  %}
+<script>
+const openAbout = function(elem){
+    elem.classList.toggle("fdb_active");
+}
+</script>
+
 <article class="profile__table">
     <table>
         <tr>
@@ -20,6 +26,12 @@
             <td id="id_profile_provide_help" class="profile__table_tb2">{{ profile.provide_help }}</td>
         </tr>
     </table>
+    {% if profile.about %}
+    <article>
+        <p class="profile__table_tb1 profile_present_about_tb1">About:</p>
+        <p id="id_profile_about" onclick="openAbout(this);" class="profile__table_tb2 profile_present_about_tb2">{{ profile.about }}</p>
+    </article>
+    {% endif %}
 </article>
 
 
@@ -37,5 +49,9 @@
     </form>
 {% endif %}
 </article>
+
+
+{% include "profile/feedbacks.html" %}
+
 
 {% endblock %}

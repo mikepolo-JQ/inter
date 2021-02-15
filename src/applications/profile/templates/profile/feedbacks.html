@@ -3,7 +3,10 @@
 <article id="feedback-box" class="off">
 <article class="feedbacks_box">
         <h1 id="fdb__title" class="fdb__title">Reviews</h1>
+
+        {% if profile != user.profile %}
         <article id="fdb-input_open" onclick="openFeedbackinput(this)" class="fdb__create_button">Make review</article>
+        {% endif %}
 
         <article id="fdb-input" class="fdb-input">
             <form method="post" action="{% url "profile:profile" profile.pk %}">
@@ -27,7 +30,7 @@
         </article>
 
         <article class="fdb__container">
-        {% for fdb in profile.feedback_list %}
+        {% for fdb in profile.rating.feedback_set.all %}
         <article id="fdb_{{ fdb.pk }}" onclick="openFeedback(this, {{ fdb.pk }});" class="feedback">
             <article class="fdb__avatar">
                   <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">

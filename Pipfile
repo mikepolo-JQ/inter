@@ -26,6 +26,7 @@ psycopg2-binary = "*"
 pydantic = "*"
 sentry-sdk = "*"
 whitenoise = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.9"

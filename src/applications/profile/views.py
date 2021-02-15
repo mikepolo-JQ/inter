@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -9,6 +10,7 @@ from django.views.generic import UpdateView
 
 from applications.profile.models import Feedback
 from applications.profile.models import Profile
+from applications.profile.models import Rating
 
 
 class ProfileView(CreateView):
@@ -22,11 +24,9 @@ class ProfileView(CreateView):
         pk = self.kwargs.get("pk", 0)
         profile = Profile.objects.filter(pk=pk).first()
         if not profile:
-            raise FileNotFoundError(f"Profile with pk = {pk} not found...")
+            raise ModuleNotFoundError(f"Profile with pk = {pk} not found...")
 
-        rating = profile.rating.value / (profile.rating.feedback_set.all().count() or 1)
-
-        context.update({"profile": profile, "rating": "%.2f" % rating})
+        context.update({"profile": profile})
         return context
 
     def form_valid(self, form):
@@ -37,7 +37,7 @@ class ProfileView(CreateView):
         profile = Profile.objects.filter(pk=pk).first()
 
         if not profile:
-            raise FileNotFoundError(f"Profile with pk = {pk} not found...")
+            raise ModuleNotFoundError(f"Profile with pk = {pk} not found...")
         feedback.rating_id = profile.rating.pk
 
         rating_value = form.cleaned_data["rating_value"]
@@ -49,7 +49,7 @@ class ProfileView(CreateView):
     def get_success_url(self):
         pk = self.kwargs.get("pk", 0)
         if not pk:
-            raise FileNotFoundError(f"Profile with pk = {pk} not found...")
+            raise ModuleNotFoundError(f"Profile with pk = {pk} not found...")
         success_url = reverse_lazy("profile:profile", kwargs={"pk": pk})
         return success_url
 
@@ -67,7 +67,15 @@ class SorryView(TemplateView):
 
 class UpdateProfile(UpdateView):
     model = Profile
-    fields = ["sity", "phone", "needed_help", "provide_help"]
+    fields = [
+        "first_name",
+        "last_name",
+        "sity",
+        "phone",
+        "needed_help",
+        "provide_help",
+        "about",
+    ]
     template_name = "profile/update_profile.html"
 
     def get_success_url(self):
@@ -78,3 +86,47 @@ class UpdateProfile(UpdateView):
 class ContactListView(DetailView):
     model = Profile
     template_name = "profile/contacts.html"
+
+
+class ContactReasonView(View):
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        profile = user.profile
+
+        payload = {"ok": False, "contact_reasons": 0, "reason": "unknown reason"}
+
+        if not profile:
+            payload.update({"reason": "profile not found"})
+
+        contacts = profile.contacts.all()
+
+        contacts_pk = [contact.pk for contact in contacts]
+
+        reasons = {
+            "pk" + str(contact.pk): profile.get_contact_reason_with(contact)
+            for contact in contacts
+        }
+
+        payload.update(
+            {
+                "ok": True,
+                "contacts_pk": contacts_pk,
+                "contact_reasons": reasons,
+                "reason": None,
+            }
+        )
+
+        return JsonResponse(payload)
+
+
+class ProfileCreateView(View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        pf = Profile(user=user)
+        pf.save()
+        rating = Rating(profile=pf)
+        rating.save()
+
+        redirect_url = reverse_lazy("profile:profile", kwargs={"pk": user.profile.pk})
+
+        return redirect(redirect_url)

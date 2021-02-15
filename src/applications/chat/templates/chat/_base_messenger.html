@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+
+<article class="intro">
+    <article class="container">
+
+        <article class="main__container main_profile_container">
+            <article class="nav_menu">
+                <a href="{% url "profile:my" %}" class="nav_menu__item">My profile</a>
+                <a href="{% url "profile:contactList" user.pk %}" class="nav_menu__item">Contacts</a>
+                <a href="{% url "chat:messenger" %}" class="nav_menu__item">Messenger</a>
+                <a href="#" class="nav_menu__item">News</a>
+            </article>
+
+            {% block container_msg %}{% endblock %}
+
+            <article class="only_to_you_grid"></article>
+
+        </article>
+    </article>
+</article>
+{% endblock %}

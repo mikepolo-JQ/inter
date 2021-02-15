@@ -1,28 +1,86 @@
-{% extends "smart/_base_smart.html" %}
+{% extends "chat/_base_messenger.html" %}
+{% load static %}
 
-{% block table %}
-<h2 class="intro__title">Contacts</h2>
+{% block head %}
+<title>chat page</title>
+
+<link type="image/x-icon" rel="shortcut icon" href="
+        {% static "icons/favicon.ico" %}">
+
+<link rel="stylesheet" href="
+        {% static "chat/styles/chat_styles.css" %}">
 
 
-<article class="match__table">
-    <article class="table">
-        {% for contact in object.get_contact_list %}
-            <article class="match__table_str">
-                <article class="match__table_usernames">
-                    <a href="{% url "profile:profile" contact.pk %}" class="match__username_item">{{ contact.user.username }}</a>
-                </article>
-    {#            <article class="match__reason">can create a contact</article>#}
-    {#            <article class="match__created_at">{{ object.created_at }}</article>#}
-            </article>
-        {% endfor %}
+<link href="https://fonts.googleapis.com/css2?
+        family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
 
-        {% if user.is_superuser %}
-        <form action="{% url "smart:delete_all_contacts" %}" method="post" >
-            <button id="reset_all_id">Reset all contacts</button>
-            {% csrf_token %}
-        </form>
-        {% endif %}
+<script>
+const getReason = function (){
+    let api_url = "/profile/reasons/";
+
+    fetch(api_url, {
+        method: "POST",
+    }).then(
+        resp => {
+            resp.json().then(
+                resp_payload => {
+                    if (resp_payload.ok) {
+                        let contacts_pk = resp_payload.contacts_pk;
+                        let contact_reasons = resp_payload.contact_reasons;
+
+                        console.log(JSON.stringify(contact_reasons["pk1"]));
+                        for(let i = 0; i < contacts_pk.length; ++i) {
+                            let key_my = "pk" + contacts_pk[i];
+                            let elem = document.getElementById("reason_with_" + contacts_pk[i]);
+                            elem.textContent = contact_reasons[key_my];
+                            console.log(contact_reasons[key_my]);
+                        }
+                    }else {
+                        console.log(JSON.stringify(resp_payload));
+                    }
+                }
+            );
+        }
+    );
+}
+</script>
+
+
+<script>
+    window.onload = getReason();
+</script>
+
+
+{% endblock %}
+
+
+{% block container_msg %}
+
+<article class="msg_container_contact">
+
+{% if not object.contacts.all %}
+    <article class="sorry_contact_title">You don't have any contacts yet...</article>
+{% else %}
+{% for contact in object.contacts.all %}
+<a class="contact" href="{% url "profile:profile" contact.pk %}">
+    <article class="profile__avatar_contact">
+          <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
     </article>
+
+    <article class="contact__info_contact">
+        <article class="contact_name_contact">{{ contact.user.username }}</article>
+        <article class="contact__rating-box">
+            <img src="{% static "profile/img/on.png" %}">
+            <article class="contact__rating">{{ contact.get_rating }}</article>
+        </article>
+
+        <article id="reason_with_{{ contact.pk }}" class="contact_button_GoToChat"></article>
+
+    </article>
+</a>
+{% endfor %}
+{% endif %}
 </article>
 
 {% endblock %}

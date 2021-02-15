@@ -16,10 +16,12 @@ class MatchListView(ListView):
     template_name = "smart/matches.html"
 
 
-class SmartStartView(View):
-    def post(self, request, *args, **kwargs):
+class SmartStartView(RedirectView):
+    http_method_names = ["post"]
 
-        profile = request.user.profile
+    def get_redirect_url(self, *args, **kwargs):
+
+        profile = self.request.user.profile
         k_contact = search_contacts_for(profile)
 
         payload = {
@@ -28,14 +30,14 @@ class SmartStartView(View):
         }
         print(payload)
 
-        redirect_url = reverse_lazy(
-            "profile:contactList", kwargs={"pk": request.user.profile.pk}
-        )
-        return redirect(redirect_url)
+        redirect_url = reverse_lazy("profile:contactList", kwargs={"pk": profile.pk})
+        return redirect_url
 
 
-class BIGSmartUpdateView(View):
-    def post(self, request, *args, **kwargs):
+class BIGSmartUpdateView(RedirectView):
+    http_method_names = ["post"]
+
+    def get_redirect_url(self, *args, **kwargs):
 
         k_matches = update_matches()
 
