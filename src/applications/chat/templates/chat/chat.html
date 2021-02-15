@@ -31,7 +31,7 @@ openMenu = function (element) {
 
     <article id="messages" class="messages">
 
-        {% for msg in chat.message_list %}
+        {% for msg in chat.message_set.all %}
         <article {% if msg.author == user.profile %}onclick="openMenu(this);"{% endif %}
                  class="msg {% if msg.author == user.profile %}your-msg{% endif %}">
 

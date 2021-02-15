@@ -1,14 +1,4 @@
 /*////////////////////// INTRO ///////////////////////*/
-.intro{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    background: white center no-repeat;
-    -webkit-background-size: cover;
-    background-size: cover;
-}
-
 .intro__suptitle{
     margin: 0 auto;
     font-family: 'Kaushan Script', cursive;
@@ -457,6 +447,64 @@
     justify-self: end;
     font-size: 10px;
 }
+
+/*///// contact right list ////////*/
+.main_profile_container{
+
+}
+
+.profile_sorry_title{
+    font-size: .8em;
+    text-align: left;
+}
+
+.only_to_you_grid{
+    display: none;
+}
+
+.profile__contact_list{
+    font-weight: bold;
+}
+
+.profile__contact_box{
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 3px 0;
+    padding: 5px;
+    cursor: pointer;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.profile__contact_box:hover{
+    color: white;
+    background-color: black;
+}
+
+.profile__right_contact_avatar{
+    background-color: black;
+    padding: 5px;
+    width: max-content;
+    height: 30px;
+    border-radius: 100%;
+    border: 2px solid red;
+}
+.profile__right_contact_avatar img{
+    width: 15px;
+    height: 15px;
+}
+
+
+.profile__right_contact_info{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.profile__right_contact_username{
+    font-size: .7em ;
+}
+
+
 
 
 

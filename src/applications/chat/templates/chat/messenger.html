@@ -18,7 +18,7 @@
 
 {% block container_msg %}
 <article class="msg_container">
-{% for chat in user.profile.get_chat_list %}
+{% for chat in user.profile.chats.all %}
 <a class="contact" href="{% url "chat:chat" chat.pk %}">
     <article class="profile__avatar">
           <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">

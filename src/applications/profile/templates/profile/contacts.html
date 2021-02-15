@@ -14,6 +14,44 @@
 <link href="https://fonts.googleapis.com/css2?
         family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
+
+<script>
+const getReason = function (){
+    let api_url = "/profile/reasons/";
+
+    fetch(api_url, {
+        method: "POST",
+    }).then(
+        resp => {
+            resp.json().then(
+                resp_payload => {
+                    if (resp_payload.ok) {
+                        let contacts_pk = resp_payload.contacts_pk;
+                        let contact_reasons = resp_payload.contact_reasons;
+
+                        console.log(JSON.stringify(contact_reasons["pk1"]));
+                        for(let i = 0; i < contacts_pk.length; ++i) {
+                            let key_my = "pk" + contacts_pk[i];
+                            let elem = document.getElementById("reason_with_" + contacts_pk[i]);
+                            elem.textContent = contact_reasons[key_my];
+                            console.log(contact_reasons[key_my]);
+                        }
+                    }else {
+                        console.log(JSON.stringify(resp_payload));
+                    }
+                }
+            );
+        }
+    );
+}
+</script>
+
+
+<script>
+    window.onload = getReason();
+</script>
+
+
 {% endblock %}
 
 
@@ -21,10 +59,10 @@
 
 <article class="msg_container_contact">
 
-{% if not object.get_contact_list %}
+{% if not object.contacts.all %}
     <article class="sorry_contact_title">You don't have any contacts yet...</article>
 {% else %}
-{% for contact in object.get_contact_list %}
+{% for contact in object.contacts.all %}
 <a class="contact" href="{% url "profile:profile" contact.pk %}">
     <article class="profile__avatar_contact">
           <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">

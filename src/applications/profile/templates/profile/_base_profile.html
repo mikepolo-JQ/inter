@@ -17,7 +17,11 @@
         family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
 
-<script src="{% static "profile/js/profile.js" %}"></script>
+<script type="text/javascript" src="{% static "profile/js/profile.js" %}"></script>
+
+<script>
+    window.onload = getReason();
+</script>
 
 {% endblock %}
 
@@ -42,6 +46,32 @@
                     {% block profile %}{% endblock %}
                 </article>
             </article>
+
+        {% if profile != user.profile %}
+            <article class="only_to_you_grid_from_profile"></article>
+        {% else %}
+
+            <article class="profile__contact_list">
+                <article class="profile__contact_list_title">Contacts</article>
+
+                {% if not profile.contacts.all %}
+                    <article class="sorry_contact_title profile_sorry_title">You don't have any contacts yet...</article>
+                {% else %}
+                {% for contact in profile.contacts.all %}
+                <article class="profile__contact_box">
+                    <article class="profile__right_contact_avatar">
+                        <img src="{% static "profile/avatar/default_user.png" %}">
+                    </article>
+                    <article class="profile__right_contact_info">
+                        <article class="profile__right_contact_username">{{ contact.user.username }}</article>
+                        <article id="reason_with_{{ contact.pk }}" class="profile__right_contact_reason"></article>
+                    </article>
+
+                </article>
+                {% endfor %}
+                {% endif %}
+            </article>
+        {% endif %}
 
 
 

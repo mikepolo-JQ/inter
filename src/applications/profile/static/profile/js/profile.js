@@ -15,33 +15,33 @@ openFeedbackBox = function (){
 }
 
 
-// const contactsReason = function (){
-//     let api_url = "/profile/reasons/";
-//
-//     fetch(api_url, {
-//         method: "POST",
-//     }).then(
-//         resp => {
-//             resp.json().then(
-//                 resp_payload => {
-//                     if (resp_payload.ok) {
-//
-//                          let contacts_pk = resp_payload.contacts_pk;
-//                          let contact_reasons = resp_payload.contact_reasons.json()
-//
-//
-//                          for(let i = 0; i < contacts_pk.length; ++i) {
-//                              let pk_contact = contacts_pk[i]
-//                              let elem = document.getElementById("reason_with_" + pk_contact);
-//
-//                              elem.textContent = contact_reasons.pk_contact;
-//                              console.log(contact_reasons.pk_contact)
-//                          }
-//                     } else {
-//                         console.log(JSON.stringify(resp_payload));
-//                     }
-//                 }
-//             );
-//         }
-//     );
-// }
+
+const getReason = function (){
+    let api_url = "/profile/reasons/";
+
+    fetch(api_url, {
+        method: "POST",
+    }).then(
+        resp => {
+            resp.json().then(
+                resp_payload => {
+                    if (resp_payload.ok) {
+                        let contacts_pk = resp_payload.contacts_pk;
+                        let contact_reasons = resp_payload.contact_reasons;
+
+                        console.log(JSON.stringify(contact_reasons["pk1"]));
+                        for(let i = 0; i < contacts_pk.length; ++i) {
+                            let key_my = "pk" + contacts_pk[i];
+                            let elem = document.getElementById("reason_with_" + contacts_pk[i]);
+                            elem.textContent = contact_reasons[key_my];
+                            console.log(contact_reasons[key_my]);
+                        }
+                    }else {
+                        console.log(JSON.stringify(resp_payload));
+                    }
+                }
+            );
+        }
+    );
+}
+

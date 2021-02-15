@@ -95,7 +95,7 @@ class ContactReasonView(View):
         contacts_pk = [contact.pk for contact in contacts]
 
         reasons = {
-            contact.pk: profile.get_contact_reason_with(contact) for contact in contacts
+            "pk" + str(contact.pk): profile.get_contact_reason_with(contact) for contact in contacts
         }
 
         payload.update(
