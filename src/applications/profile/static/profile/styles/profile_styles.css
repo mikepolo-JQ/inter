@@ -43,7 +43,7 @@
 }
 
 .profile__avatar{
-    border: 5px solid red;
+    border: 5px solid transparent;
     border-radius: 100%;
     background-color: black;
     padding: 20px 20px;
@@ -139,7 +139,7 @@
     text-align: center;
 }
 .profile_present_about_tb2{
-    max-width: 95%;
+    max-width: 60vh;
     overflow-x: hidden;
     white-space: nowrap;
     cursor: pointer;
@@ -150,7 +150,7 @@
     display: flex;
     justify-content: space-between;
     width: max-content;
-    margin: 0 auto;
+    margin: 20px auto 50px;
 }
 
 .profile__button_item{
@@ -493,7 +493,7 @@
 
 .profile__contact_list{
     font-weight: bold;
-    max-height: 160px;
+    max-height: 165px;
     overflow-y: hidden;
 }
 
@@ -520,7 +520,7 @@
     width: max-content;
     height: 30px;
     border-radius: 100%;
-    border: 2px solid red;
+    border: 2px solid transparent;
 }
 .profile__right_contact_avatar img{
     width: 15px;
@@ -540,6 +540,19 @@
 
 .profile__right_contact_reason{
     font-size: .7em;
+}
+
+.profile__contact_list_title{
+    text-decoration: none;
+    color:black;
+}
+.profile__contact_list_title:after{
+    content: "";
+    display: block;
+    background-color: black;
+    height: 2px;
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 

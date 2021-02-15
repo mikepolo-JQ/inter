@@ -47,6 +47,16 @@ class Profile(models.Model):
         rating = self.rating.value / (self.rating.feedback_set.all().count() or 1)
         return "%.2f" % rating
 
+    @property
+    def get_color(self):
+        rating = self.rating.value / (self.rating.feedback_set.all().count() or 1)
+        if rating < 3:
+            return "red"
+        elif rating < 4:
+            return "yellow"
+        else:
+            return "green"
+
     def get_contact_reason_with(self, other):
         match = Match.objects.filter(provider=other.user, needer=self.user).first()
         return match.reason

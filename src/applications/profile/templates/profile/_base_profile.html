@@ -20,7 +20,7 @@
 <script type="text/javascript" src="{% static "profile/js/profile.js" %}"></script>
 
 <script>
-    window.onload = getReason();
+    window.onload = getReason({{ profile.pk }});
 </script>
 
 {% endblock %}
@@ -28,9 +28,10 @@
 
 {% block container_msg %}
 
+            <article>
             <article class="profile">
                 <article class="profile__avatar_container">
-                    <article class="profile__avatar">
+                    <article id="avatar_{{ profile.pk }}" class="profile__avatar">
                           <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
                     </article>
                 </article>
@@ -43,8 +44,10 @@
                     </article>
                     <article class="profile__name profile__email">{{ profile.user.username }} / {{ profile.user.email }}</article>
 
-                    {% block profile %}{% endblock %}
+
                 </article>
+            </article>
+            {% block profile %}{% endblock %}
             </article>
 
         {% if profile != user.profile %}

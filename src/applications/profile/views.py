@@ -88,10 +88,12 @@ class ContactListView(DetailView):
     template_name = "profile/contacts.html"
 
 
-class ContactReasonView(View):
+class ContactReasonBackgroundView(View):
     def post(self, request, *args, **kwargs):
         user = request.user
         profile = user.profile
+        now_on_window_pk = kwargs.get("pk")
+        now_on_window = Profile.objects.filter(pk=now_on_window_pk).first()
 
         payload = {"ok": False, "contact_reasons": 0, "reason": "unknown reason"}
 
@@ -103,15 +105,19 @@ class ContactReasonView(View):
         contacts_pk = [contact.pk for contact in contacts]
 
         reasons = {
-            "pk" + str(contact.pk): profile.get_contact_reason_with(contact)
+            contact.pk: profile.get_contact_reason_with(contact)
             for contact in contacts
         }
+
+        background = {contact.pk: contact.get_color for contact in contacts}
 
         payload.update(
             {
                 "ok": True,
+                "color_to_pk": now_on_window.get_color,
                 "contacts_pk": contacts_pk,
                 "contact_reasons": reasons,
+                "contact_background": background,
                 "reason": None,
             }
         )

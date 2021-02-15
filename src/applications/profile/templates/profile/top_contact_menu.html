@@ -1,14 +1,14 @@
 {% load static %}
 
 <article class="profile__contact_list">
-    <article class="profile__contact_list_title">Contacts</article>
+    <a href="{% url "profile:contactList" profile.pk %}" class="profile__contact_list_title">Contacts</a>
 
     {% if not profile.contacts.all %}
         <article class="sorry_contact_title profile_sorry_title">You don't have any contacts yet...</article>
     {% else %}
     {% for contact in profile.contacts.all %}
     <a href="{% url "profile:profile" contact.pk %}" class="profile__contact_box">
-        <article class="profile__right_contact_avatar">
+        <article id="contact_back_{{ contact.pk }}" class="profile__right_contact_avatar">
             <img src="{% static "profile/avatar/default_user.png" %}" alt="ava">
         </article>
         <article class="profile__right_contact_info">
