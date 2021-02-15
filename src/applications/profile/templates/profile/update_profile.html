@@ -44,7 +44,7 @@
 
             <tr>
                 <td class="profile__table_tb1">
-                    <label for="input_need_help">What help do you need:</label>
+                    <label for="input_need_help">Needed help:</label>
                 </td>
                 <td class="profile__table_tb2">
                     <input id="input_need_help" name="needed_help" type="text" value="{{ object.needed_help }}">
@@ -53,13 +53,23 @@
 
             <tr>
                 <td class="profile__table_tb1">
-                    <label for="input_provide_help">What help can you provide:</label>
+                    <label for="input_provide_help">Offer help:</label>
                 </td>
                 <td class="profile__table_tb2">
                     <input id="input_provide_help" name="provide_help" type="text" value="{{ object.provide_help }}">
                 </td>
             </tr>
+
         </table>
+
+        <article>
+            <p class="profile__table_tb1 profile__about">
+                <label for="input_about">About me:</label>
+            </p>
+            <p class="profile__table_tb2">
+                <textarea id="input_about" name="about">{{ object.about }}</textarea>
+            </p>
+        </article>
 
         <article class="profile__update">
             <button id="id_profile_update_button" class="profile__button_item">Update</button>

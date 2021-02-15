@@ -67,7 +67,7 @@ class SorryView(TemplateView):
 
 class UpdateProfile(UpdateView):
     model = Profile
-    fields = ["first_name", "last_name", "sity", "phone", "needed_help", "provide_help"]
+    fields = ["first_name", "last_name", "sity", "phone", "needed_help", "provide_help", "about"]
     template_name = "profile/update_profile.html"
 
     def get_success_url(self):
@@ -95,7 +95,8 @@ class ContactReasonView(View):
         contacts_pk = [contact.pk for contact in contacts]
 
         reasons = {
-            "pk" + str(contact.pk): profile.get_contact_reason_with(contact) for contact in contacts
+            "pk" + str(contact.pk): profile.get_contact_reason_with(contact)
+            for contact in contacts
         }
 
         payload.update(

@@ -31,31 +31,16 @@ class Profile(models.Model):
     )
 
     active = models.BooleanField(default=False)
-
     contacts = models.ManyToManyField("self", related_name="contact_of")
-
-    @property
-    def get_contact_list(self) -> list:
-        contact_list = list(self.contacts.all())
-        return contact_list
-
-    @property
-    def get_chat_list(self) -> list:
-        chat_list = list(self.chats.all())
-        return chat_list
+    about = models.TextField(null=True, blank=True)
 
     def have_chat_with(self, profile) -> bool:
-        chat_list = self.get_chat_list
+        chat_list = self.chats.all()
         for chat in chat_list:
             chat_users = chat.profiles.all()
             if profile in chat_users:
                 return True
         return False
-
-    @property
-    def feedback_list(self):
-        fdb = list(self.rating.feedback_set.all())
-        return fdb
 
     @property
     def get_rating(self):

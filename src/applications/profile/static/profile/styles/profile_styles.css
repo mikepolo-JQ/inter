@@ -98,6 +98,13 @@
 
 .profile__table{
     margin: 20px 0;
+    max-width: 400px;
+
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+.profile__table input{
+    max-width: 200px;
 }
 
 .profile__table table{
@@ -113,9 +120,31 @@
 }
 
 .profile__table_tb2{
-    margin-left: 20px;
+    margin-left: 10px;
+
     opacity: .8;
 }
+.profile__about {
+    margin: 15px auto 10px;
+    max-width: max-content;
+}
+#input_about{
+    width: 100%;
+    height: 15vh;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.profile_present_about_tb1{
+    text-align: center;
+}
+.profile_present_about_tb2{
+    max-width: 95%;
+    overflow-x: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
 
 .profile__buttons{
     display: flex;
@@ -464,6 +493,8 @@
 
 .profile__contact_list{
     font-weight: bold;
+    max-height: 160px;
+    overflow-y: hidden;
 }
 
 .profile__contact_box{
@@ -472,6 +503,8 @@
     margin: 3px 0;
     padding: 5px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -501,7 +534,12 @@
 }
 
 .profile__right_contact_username{
-    font-size: .7em ;
+    font-size: .7em;
+    font-weight: bold;
+}
+
+.profile__right_contact_reason{
+    font-size: .7em;
 }
 
 

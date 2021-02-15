@@ -30,7 +30,7 @@
         </article>
 
         <article class="fdb__container">
-        {% for fdb in profile.feedback_set.all %}
+        {% for fdb in profile.rating.feedback_set.all %}
         <article id="fdb_{{ fdb.pk }}" onclick="openFeedback(this, {{ fdb.pk }});" class="feedback">
             <article class="fdb__avatar">
                   <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
