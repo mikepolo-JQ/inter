@@ -34,7 +34,7 @@ default:
   GOOGLE_CLIENT_ID: ""
   GOOGLE_SECRET: ""
 
-  VK_CLIEN_ID: ""
+  VK_CLIENT_ID: ""
   VK_SECRET: ""
   VK_KEY: ""
 
@@ -57,7 +57,7 @@ ci:
   GOOGLE_CLIENT_ID: "1"
   GOOGLE_SECRET: "1"
 
-  VK_CLIEN_ID: "1"
+  VK_CLIENT_ID: "1"
   VK_SECRET: "1"
   VK_KEY: "1"
 
