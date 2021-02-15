@@ -2,7 +2,6 @@
 .intro{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 100%;
     height: 100vh;
     background: white center no-repeat;
@@ -46,19 +45,18 @@
     justify-content: space-between;
     width: max-content;
     margin: 0 auto;
-
 }
 
 .profile__avatar img{
-    width: 70px;
-    height: 70px;
+    width: 40px;
+    height: 40px;
 }
 
 .profile__avatar{
     border: 5px solid red;
     border-radius: 100%;
     background-color: black;
-    padding: 40px 40px;
+    padding: 20px 20px;
 }
 
 .profile__name-rating{
@@ -168,6 +166,10 @@
     justify-content: center;
 }
 
+.main_profile_container{
+    width: max-content;
+}
+
 
 
 /*////////////////////// RATING ///////////////////////*/
@@ -270,14 +272,14 @@
     text-transform: uppercase;
     text-align: center;
     font-family: "Kaushan Script", sans-serif;
-    font-size: 3em;
-    margin-bottom: 30px;
+    font-size: 2em;
+    margin: 30px 0;
 }
 
 .fdb__title:after{
     content: "";
     display: block;
-    width: 60px;
+    width: 40px;
     height: 3px;
     background-color: red;
     margin: 10px auto;

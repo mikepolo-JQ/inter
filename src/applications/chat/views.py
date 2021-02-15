@@ -84,7 +84,11 @@ class DeleteSingleMsgView(DeleteView):
 
     def get_success_url(self):
         pk = self.kwargs.get("pk", 0)
-        msg = Message.objects.get(pk=pk)
 
+        if not pk:
+            success_url = reverse_lazy("chat:messenger")
+            return success_url
+
+        msg = Message.objects.get(pk=pk)
         success_url = reverse_lazy("chat:chat", kwargs={"pk": msg.chat_id})
         return success_url

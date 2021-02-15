@@ -1,6 +1,6 @@
 {% extends "profile/_base_profile.html" %}
 
-{% block profile %}
+{% block profile  %}
 <article class="profile__table">
     <table>
         <tr>
@@ -37,5 +37,9 @@
     </form>
 {% endif %}
 </article>
+
+
+{% include "profile/feedbacks.html" %}
+
 
 {% endblock %}

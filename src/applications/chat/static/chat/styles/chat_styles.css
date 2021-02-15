@@ -51,10 +51,11 @@
 }
 /*////////////// NAV MENU ///////////////////*/
 
-.nav_menu{
+.nav_menu {
     display: inherit;
     text-align: center;
     grid-auto-rows: max-content;
+    grid-auto-columns: max-content;
 }
 
 .nav_menu__item{

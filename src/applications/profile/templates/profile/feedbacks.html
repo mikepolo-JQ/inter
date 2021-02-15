@@ -3,7 +3,10 @@
 <article id="feedback-box" class="off">
 <article class="feedbacks_box">
         <h1 id="fdb__title" class="fdb__title">Reviews</h1>
+
+        {% if profile != user.profile %}
         <article id="fdb-input_open" onclick="openFeedbackinput(this)" class="fdb__create_button">Make review</article>
+        {% endif %}
 
         <article id="fdb-input" class="fdb-input">
             <form method="post" action="{% url "profile:profile" profile.pk %}">

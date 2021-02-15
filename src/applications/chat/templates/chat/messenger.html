@@ -1,6 +1,21 @@
 {% extends "chat/_base_messenger.html" %}
 {% load static %}
 
+{% block head %}
+<title>chat page</title>
+
+<link type="image/x-icon" rel="shortcut icon" href="
+        {% static "icons/favicon.ico" %}">
+
+<link rel="stylesheet" href="
+        {% static "chat/styles/chat_styles.css" %}">
+
+
+<link href="https://fonts.googleapis.com/css2?
+        family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+{% endblock %}
+
 {% block container_msg %}
 <article class="msg_container">
 {% for chat in user.profile.get_chat_list %}
@@ -13,7 +28,7 @@
         <article class="contact_name">{{ chat.talker }}</article>
 
         <article class="last_msg">
-            {% if chat.last_message.author == user %}You: {% endif %}{{ chat.last_message.content }}</article>
+            {% if chat.last_message.author == user.profile %}You: {% endif %}{{ chat.last_message.content }}</article>
 
         <article class="last_msg_datetime">{{ chat.last_message.get_datetime }}</article>
     </article>

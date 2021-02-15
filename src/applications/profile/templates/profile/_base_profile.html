@@ -1,4 +1,4 @@
-{% extends "_base.html" %}
+{% extends "chat/_base_messenger.html" %}
 {% load static %}
 
 {% block head %}
@@ -8,6 +8,8 @@
         {% static "icons/favicon.ico" %}">
 
 <link rel="stylesheet" href="
+    {% static "chat/styles/chat_styles.css" %}">
+<link rel="stylesheet" href="
         {% static "profile/styles/profile_styles.css" %}">
 
 
@@ -15,14 +17,12 @@
         family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
 
+<script src="{% static "profile/js/profile.js" %}"></script>
+
 {% endblock %}
 
 
-{% block body %}
-    <script type="text/javascript" src="{% static "profile/js/profile.js" %}"></script>
-
-    <article class="intro">
-        <article class="container">
+{% block container_msg %}
 
             <article class="profile">
                 <article class="profile__avatar_container">
@@ -34,7 +34,7 @@
                 <article class="profile__info">
                     <article class="profile__name-rating">
                         <article class="profile__name">{{ profile.first_name }} {{ profile.last_name }}</article>
-                        <img src="{% static "profile/img/on.png" %}">
+                        <img src="{% static "profile/img/on.png" %}" alt="red_star">
                         <article id="rating" onclick="openFeedbackBox()" class="profile__rating">{{ profile.get_rating }}</article>
                     </article>
                     <article class="profile__name profile__email">{{ profile.user.username }} / {{ profile.user.email }}</article>
@@ -42,10 +42,7 @@
                     {% block profile %}{% endblock %}
                 </article>
             </article>
-        </article>
-    </article>
 
-    {% include "profile/feedbacks.html" %}
 
 
 {% endblock %}

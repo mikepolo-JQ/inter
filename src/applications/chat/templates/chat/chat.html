@@ -1,6 +1,20 @@
 {% extends "chat/_base_messenger.html" %}
 {% load static %}
 
+{% block head %}
+<title>chat page</title>
+
+<link type="image/x-icon" rel="shortcut icon" href="
+        {% static "icons/favicon.ico" %}">
+
+<link rel="stylesheet" href="
+        {% static "chat/styles/chat_styles.css" %}">
+
+
+<link href="https://fonts.googleapis.com/css2?
+        family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+{% endblock %}
 
 {% block container_msg %}
 <script>

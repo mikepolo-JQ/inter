@@ -9,9 +9,9 @@ class CounterMiddleware:
         # Update talker name for user
         if request.path.startswith("/messenger") and request.method.lower() == "get":
             profile = request.user.profile
-            chat_list = profile.get_chat_list
+            chats = profile.chat_set.all()
 
-            for chat in chat_list:
+            for chat in chats:
                 chat.talker = chat.get_talker_for(profile)
                 chat.save()
 

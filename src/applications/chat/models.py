@@ -1,5 +1,6 @@
 from datetime import datetime
 from datetime import timedelta
+from typing import Optional
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -11,7 +12,6 @@ User = get_user_model()
 
 
 class Chat(models.Model):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(null=False, max_length=50, default="chat")
     talker = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
@@ -35,13 +35,16 @@ class Chat(models.Model):
             raise ValidationError(f"chat {self.name} does not have two user")
         return True
 
-    def get_talker_for(self, user: User) -> User:
+    def get_talker_for(self, user: Profile) -> Optional[Profile]:
         if not self.make_valid:
             return None
         users = self.profiles.all()
         if user not in users:
-            raise ValidationError(f"this user({user}) isn't in this chat({self.name})")
-        talker = [tk for tk in users if tk is not user][0]
+            raise ValidationError(
+                f"this profile({user}) isn't in this chat({self.name})"
+            )
+
+        talker = [tk for tk in users if tk != user][0]
         return talker
 
     @property

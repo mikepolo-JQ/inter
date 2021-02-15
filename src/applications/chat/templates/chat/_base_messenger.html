@@ -1,54 +1,22 @@
 {% extends "_base.html" %}
 {% load static %}
 
-{% block head %}
-<title>chat page</title>
-
-<link type="image/x-icon" rel="shortcut icon" href="
-        {% static "icons/favicon.ico" %}">
-
-<link rel="stylesheet" href="
-        {% static "chat/styles/chat_styles.css" %}">
-
-
-<link href="https://fonts.googleapis.com/css2?
-        family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
-        rel="stylesheet">
-{% endblock %}
+{% block head %}{% endblock %}
 
 {% block body %}
 
 <article class="intro">
     <article class="container">
 
-        <article class="main__container">
+        <article class="main__container main_profile_container">
             <article class="nav_menu">
                 <a href="{% url "profile:my" %}" class="nav_menu__item">Мой профиль</a>
                 <a href="{% url "profile:contactList" user.pk %}" class="nav_menu__item">Контакты</a>
                 <a href="{% url "chat:messenger" %}" class="nav_menu__item">Мессенджер</a>
+                <a href="#" class="nav_menu__item">Новости</a>
             </article>
 
-            {% block container_msg %}
-            <article class="msg_container">
-            {% for chat in user.profile.get_chat_list %}
-            <a class="contact" href="{% url "chat:chat" chat.pk %}">
-                <article class="profile__avatar">
-                      <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
-                </article>
-
-                <article class="contact__info">
-                    <article class="contact_name">{{ chat.talker }}</article>
-
-                    <article class="last_msg">
-                        {% if chat.last_message.author == user %}You: {% endif %}{{ chat.last_message.content }}</article>
-
-                    <article class="last_msg_datetime">{{ chat.last_message.get_datetime }}</article>
-                </article>
-            </a>
-
-            {% endfor %}
-            </article>
-            {% endblock %}
+            {% block container_msg %}{% endblock %}
 
         </article>
     </article>
