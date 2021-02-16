@@ -50,9 +50,6 @@ SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
         "APP": {
             "client_id": _ds.GOOGLE_CLIENT_ID,
             "secret": _ds.GOOGLE_SECRET,
@@ -60,9 +57,6 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     },
     "vk": {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
         "APP": {
             "client_id": _ds.VK_CLIENT_ID,
             "secret": _ds.VK_SECRET,
