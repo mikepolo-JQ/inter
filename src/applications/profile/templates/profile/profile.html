@@ -7,11 +7,16 @@ const openAbout = function(elem){
 }
 </script>
 
+<script>
+const redirectToUpdate = function(){
+    location.href = "/profile/" + {{ profile.pk }} + "/update/";
+}
+</script>
 <article class="profile__table">
     <table>
         <tr>
             <td class="profile__table_tb1">Sity:</td>
-            <td id="id_profile_sity" class="profile__table_tb2">{{ profile.sity }}</td>
+            <td onclick="redirectToUpdate();" id="id_profile_sity" class="profile__table_tb2">{{ profile.sity }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">Phone:</td>
@@ -37,7 +42,7 @@ const openAbout = function(elem){
 
 <article class="profile__buttons">
 {% if user == profile.user %}
-    <a id="id_edit_button" href="{% url "profile:update_profile" profile.pk %}" class="profile__button_item">Edit Profile</a>
+    <a id="id_edit_button" href="{% url "profile:update" profile.pk %}" class="profile__button_item">Edit Profile</a>
     <form action="{% url "smart:smartStart" %}" method="post">
         {% csrf_token %}
         <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Start Working</button>

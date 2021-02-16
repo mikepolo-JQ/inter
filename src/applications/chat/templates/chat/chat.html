@@ -17,10 +17,20 @@
 {% endblock %}
 
 {% block container_msg %}
+
+{% if user.profile not in chat.profiles.all %}
+    {% include "profile/sorry.html" %}
+{% else %}
 <script>
 openMenu = function (element) {
     element.firstElementChild.classList.toggle("msg-menu-active");
 }
+</script>
+
+<script>
+setTimeout(function(){
+   window.location.reload(1);
+}, 5000);
 </script>
 
 <article class="chat_box">
@@ -61,4 +71,6 @@ openMenu = function (element) {
         </form>
     </article>
 </article>
+
+{% endif %}
 {% endblock %}

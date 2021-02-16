@@ -4,7 +4,7 @@
 
 {% block profile %}
 <article class="profile__table">
-    <form method="post" action="{% url "profile:update_profile" object.pk %}">
+    <form method="post" action="{% url "profile:update" object.pk %}">
         <table>
             <tr>
                 <td class="profile__table_tb1">
