@@ -28,7 +28,7 @@
                         {% if user.is_authenticated and user.profile %}
                             <a href="{% url "profile:contactList" user.profile.pk %}" class="nav__item">Contacts</a>
 
-                            <a href="{% url "smart:matchList" user.profile.pk %}" class="nav__item">Matches</a>
+                            <a href="{% url "smart:matchList" user.pk %}" class="nav__item">Matches</a>
                             <a href="{% url "chat:messenger" %}" class="nav__item">Messenger</a>
                         {% endif %}
                     </nav>

@@ -11,9 +11,9 @@
         <article class="main__container main_profile_container">
             <article class="nav_menu">
                 <a href="{% url "profile:my" %}" class="nav_menu__item">My profile</a>
-                <a href="{% url "profile:contactList" user.pk %}" class="nav_menu__item">Contacts</a>
+                <a href="{% url "profile:contactList" user.profile.pk %}" class="nav_menu__item">Contacts</a>
                 <a href="{% url "chat:messenger" %}" class="nav_menu__item">Messenger</a>
-                <a href="{% url "smart:matchList" user.profile.pk %}" class="nav_menu__item">Matches</a>
+                <a href="{% url "smart:matchList" user.pk %}" class="nav_menu__item">Matches</a>
             </article>
 
             {% block container_msg %}{% endblock %}
