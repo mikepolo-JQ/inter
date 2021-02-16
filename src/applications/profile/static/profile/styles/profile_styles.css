@@ -407,6 +407,9 @@
     background-color: black;
     color: white;
 }
+.fdb__container{
+   max-width: 60vh;
+}
 
 .feedback:last-child{
     margin-bottom: 30px;

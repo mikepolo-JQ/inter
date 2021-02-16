@@ -41,7 +41,7 @@ const redirectToUpdate = function(){
 
 
 <article class="profile__buttons">
-{% if user == profile.user %}
+{% if user.profile == profile %}
     <a id="id_edit_button" href="{% url "profile:update" profile.pk %}" class="profile__button_item">Edit Profile</a>
     <form action="{% url "smart:smartStart" %}" method="post">
         {% csrf_token %}
@@ -50,7 +50,7 @@ const redirectToUpdate = function(){
 {% else %}
     <form action="{% url "chat:create" profile.pk %}" method="post">
         {% csrf_token %}
-        <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Сообщения</button>
+        <button id="id_profile_smart_start" class="profile__button_item profile__button_start">send message</button>
     </form>
 {% endif %}
 </article>

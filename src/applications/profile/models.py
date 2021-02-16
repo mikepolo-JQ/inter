@@ -34,13 +34,13 @@ class Profile(models.Model):
     contacts = models.ManyToManyField("self", related_name="contact_of")
     about = models.TextField(null=True, blank=True)
 
-    def have_chat_with(self, profile) -> bool:
+    def have_chat_with(self, profile) -> int:
         chat_list = self.chats.all()
         for chat in chat_list:
             chat_users = chat.profiles.all()
             if profile in chat_users:
-                return True
-        return False
+                return chat.pk
+        return 0
 
     @property
     def get_rating(self):
@@ -65,7 +65,7 @@ class Profile(models.Model):
         return self.user.username
 
     class Meta:
-        ordering = ["rating", "-created_at"]
+        ordering = ["-created_at"]
 
 
 class Rating(models.Model):

@@ -18,6 +18,8 @@ urlpatterns = [
     ),
     path("<int:pk>/contacts/", views.ContactListView.as_view(), name="contactList"),
     path(
-        "reasons_and_back/<int:pk>/", csrf_exempt(views.ContactReasonBackgroundView.as_view()), name="get_reasons_and_background"
+        "reasons_and_back/<int:pk>/",
+        csrf_exempt(views.ContactReasonBackgroundView.as_view()),
+        name="get_reasons_and_background",
     ),
 ]

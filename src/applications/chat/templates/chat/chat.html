@@ -19,8 +19,9 @@
 {% block container_msg %}
 
 {% if user.profile not in chat.profiles.all %}
-    {% include "profile/sorry.html" %}
+    <article class="sorry_contact_title">You don't have access...</article>
 {% else %}
+
 <script>
 openMenu = function (element) {
     element.firstElementChild.classList.toggle("msg-menu-active");

@@ -105,8 +105,7 @@ class ContactReasonBackgroundView(View):
         contacts_pk = [contact.pk for contact in contacts]
 
         reasons = {
-            contact.pk: profile.get_contact_reason_with(contact)
-            for contact in contacts
+            contact.pk: profile.get_contact_reason_with(contact) for contact in contacts
         }
 
         background = {contact.pk: contact.get_color for contact in contacts}

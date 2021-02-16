@@ -36,12 +36,13 @@ class ChatCreateView(View):
             raise ModuleNotFoundError(f"Profile {pk} not found...")
 
         user_profile = self.request.user.profile
-        if profile.have_chat_with(user_profile):
-            return redirect(reverse_lazy("chat:messenger"))
+        chat_pk = profile.have_chat_with(user_profile)
+        if not chat_pk:
+            chat = Chat.create(profile, user_profile)
+            chat.save()
+            chat_pk = chat.pk
 
-        chat = Chat.create(profile, user_profile)
-        chat.save()
-        return redirect(reverse_lazy("chat:chat", kwargs={"pk": chat.pk}))
+        return redirect(reverse_lazy("chat:chat", kwargs={"pk": chat_pk}))
 
 
 class ChatView(CreateView):

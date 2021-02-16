@@ -3,9 +3,13 @@
 {% block table %}
 <h2 class="intro__title">Matches</h2>
 
+
+{% if not matches %}
+    <article class="sorry_contact_title">You don't have any matches yet...</article>
+{% else %}
 <article class="match__table">
     <article class="table">
-        {% for object in object_list %}
+        {% for object in matches %}
         <article class="match__table_str">
             <article class="match__table_usernames">
                 <a href="{% url "profile:profile" object.provider.pk %}" class="match__username_item">{{ object.provider }}</a> can help
@@ -28,5 +32,6 @@
         {% endif %}
     </article>
 </article>
+{% endif %}
 
 {% endblock %}

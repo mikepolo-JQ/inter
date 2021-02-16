@@ -15,6 +15,16 @@ class MatchListView(ListView):
     model = Match
     template_name = "smart/matches.html"
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+
+        pk = self.kwargs.get("pk", 0)
+        matches = Match.objects.filter(needer_id=pk)
+        if not matches:
+            raise FileNotFoundError(f"Matches with pk = {pk} not found...")
+        context.update({"matches": matches})
+        return context
+
 
 class SmartStartView(RedirectView):
     http_method_names = ["post"]
