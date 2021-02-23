@@ -100,8 +100,9 @@
     margin: 20px 0;
     max-width: 400px;
 
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     white-space: nowrap;
+
 }
 .profile__table input{
     max-width: 200px;
@@ -121,7 +122,7 @@
 
 .profile__table_tb2{
     margin-left: 10px;
-
+    white-space: initial;
     opacity: .8;
 }
 .profile__about {
@@ -558,7 +559,21 @@
     margin-bottom: 5px;
 }
 
+/*//////   AFTER    /////*/
 
+
+.plus_helpString{
+    display: grid;
+    justify-content: center;
+    position: relative;
+    left: -15px;
+}
+
+.plus_helpString img{
+    height: auto;
+    width: 1.2em;
+    cursor: pointer;
+}
 
 
 

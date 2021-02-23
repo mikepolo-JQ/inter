@@ -20,15 +20,15 @@ const redirectToUpdate = function(){
         </tr>
         <tr>
             <td class="profile__table_tb1">Phone:</td>
-            <td id="id_profile_phone" class="profile__table_tb2">{{ profile.phone }}</td>
+            <td onclick="redirectToUpdate();" id="id_profile_phone" class="profile__table_tb2">{{ profile.phone }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">What help do you need:</td>
-            <td id="id_profile_needed_help" class="profile__table_tb2">{{ profile.needed_help }}</td>
+            <td onclick="redirectToUpdate();" id="id_profile_needed_help" class="profile__table_tb2">{{ profile.needed_help }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">What help can you provide:</td>
-            <td id="id_profile_provide_help" class="profile__table_tb2">{{ profile.provide_help }}</td>
+            <td onclick="redirectToUpdate();" id="id_profile_provide_help" class="profile__table_tb2">{{ profile.provide_help }}</td>
         </tr>
     </table>
 </article>

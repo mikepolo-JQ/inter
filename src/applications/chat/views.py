@@ -27,8 +27,8 @@ class MessengerView(TemplateView):
         return context
 
 
-class ChatCreateView(View):
-    def post(self, request, *args, **kwargs):
+class ChatCreateView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
         pk = self.kwargs.get("pk", 0)
         profile = Profile.objects.filter(pk=pk).first()
 
@@ -42,7 +42,9 @@ class ChatCreateView(View):
             chat.save()
             chat_pk = chat.pk
 
-        return redirect(reverse_lazy("chat:chat", kwargs={"pk": chat_pk}))
+        redirect_url = reverse_lazy("chat:chat", kwargs={"pk": chat_pk})
+
+        return redirect_url
 
 
 class ChatView(CreateView):

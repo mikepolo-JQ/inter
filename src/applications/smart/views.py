@@ -19,9 +19,8 @@ class MatchListView(ListView):
         context = super().get_context_data()
 
         pk = self.kwargs.get("pk", 0)
-        matches = Match.objects.filter(needer_id=pk)
-        if not matches:
-            raise FileNotFoundError(f"Matches with pk = {pk} not found...")
+        matches = list(Match.objects.filter(needer_id=pk))
+        matches += Match.objects.filter(provider_id=pk)
         context.update({"matches": matches})
         return context
 

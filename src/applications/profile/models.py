@@ -115,3 +115,15 @@ class Feedback(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
+
+class TemporaryProfile(models.Model):
+    profile = models.ForeignKey(Profile, related_name="copy", on_delete=models.CASCADE)
+    needed_help = models.TextField(
+        null=False,
+        default="",
+    )
+    provide_help = models.TextField(
+        null=False,
+        default="",
+    )

@@ -72,11 +72,54 @@ class UpdateProfile(UpdateView):
         "last_name",
         "sity",
         "phone",
-        "needed_help",
-        "provide_help",
         "about",
     ]
     template_name = "profile/update_profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+
+        profile = self.request.user.profile
+
+        ndh = profile.needed_help
+        ndh = ndh.split(" | ")
+        for x in range(3 - len(ndh)):
+            ndh.append("")
+        ndh, ndh_1, ndh_2 = ndh
+
+        pdh = profile.provide_help
+        pdh = pdh.split(" | ")
+        for x in range(3 - len(pdh)):
+            pdh.append("")
+        pdh, pdh_1, pdh_2 = pdh or ""
+
+        context.update(
+            {
+                "ndh": ndh,
+                "ndh_1": ndh_1,
+                "ndh_2": ndh_2,
+                "pdh": pdh,
+                "pdh_1": pdh_1,
+                "pdh_2": pdh_2,
+            }
+        )
+        return context
+
+    def form_valid(self, form):
+        profile = form.save(commit=False)
+        data = dict(form.data)
+
+        ndh = data["needed_help"]
+        ndh = [st for st in ndh if st]
+        needed_help = " | ".join(ndh)
+        profile.needed_help = needed_help
+
+        pdh = data["provide_help"]
+        pdh = [st for st in pdh if st]
+        provide_help = " | ".join(pdh)
+        profile.provide_help = provide_help
+
+        return super().form_valid(form)
 
     def get_success_url(self):
         success_url = reverse_lazy("profile:profile", kwargs={"pk": self.object.pk})
