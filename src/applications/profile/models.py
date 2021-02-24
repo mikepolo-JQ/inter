@@ -18,8 +18,8 @@ class Profile(models.Model):
     first_name = models.CharField(null=False, max_length=30, default="name")
     last_name = models.CharField(null=False, max_length=30, default="last_name")
 
-    sity = models.CharField(null=False, default="", max_length=30)
-    phone = models.CharField(null=False, default="", max_length=20)
+    sity = models.CharField(null=True, default="", max_length=30)
+    phone = models.CharField(null=True, default="", max_length=20)
 
     needed_help = models.TextField(
         null=False,

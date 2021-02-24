@@ -80,6 +80,19 @@
     background-color: yellow;
 }
 
+
+
+.table{
+    display: grid;
+    grid-template-columns: 33% 67%;
+    margin-left: 35px;
+    grid-gap: .5em;
+    grid-auto-columns: max-content;
+}
+
+
+
+
 .profile__name{
     font-family: "Kaushan Script", sans-serif;
     margin: 10px 30px;
@@ -121,10 +134,66 @@
 }
 
 .profile__table_tb2{
-    margin-left: 10px;
     white-space: initial;
     opacity: .8;
 }
+
+.help_string{
+    display: grid;
+    grid-template-columns: 73% 10%;
+    align-items: center;
+}
+.plus_helpString{
+    display: grid;
+    justify-items: right;
+}
+
+.plus_helpString img{
+    height: auto;
+    width: 1.2em;
+    cursor: pointer;
+}
+#first_plus_need{}
+#second_input_need{
+
+
+}
+
+.no_active_input{
+    opacity: 0;
+
+    -moz-transition: all .5s linear;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear;
+}
+
+.active_input{
+    opacity: .8;
+
+}
+
+.input_move{
+    display: flex;
+    top: -56px;
+    position: relative;
+
+    -moz-transition: all .5s linear;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear;
+}
+.input_move img{
+    margin-left: 9px;
+}
+
+
+#first_plus_provide{}
+#second_input_provide{
+
+}
+#third_input_provide{
+}
+
+
 .profile__about {
     margin: 15px auto 10px;
     max-width: max-content;
@@ -558,22 +627,3 @@
     width: 100%;
     margin-bottom: 5px;
 }
-
-/*//////   AFTER    /////*/
-
-
-.plus_helpString{
-    display: grid;
-    justify-content: center;
-    position: relative;
-    left: -15px;
-}
-
-.plus_helpString img{
-    height: auto;
-    width: 1.2em;
-    cursor: pointer;
-}
-
-
-

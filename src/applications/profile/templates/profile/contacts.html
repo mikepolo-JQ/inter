@@ -30,7 +30,7 @@
 <article class="msg_container_contact">
 
 {% if not object.contacts.all %}
-    <article class="sorry_contact_title">You don't have any contacts yet...</article>
+    <article class="sorry_contact_title">You have no contacts yet...</article>
 {% else %}
 {% for contact in object.contacts.all %}
 <a class="contact" href="{% url "profile:profile" contact.pk %}">
