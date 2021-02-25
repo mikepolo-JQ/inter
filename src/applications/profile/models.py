@@ -32,7 +32,7 @@ class Profile(models.Model):
 
     active = models.BooleanField(default=False)
     contacts = models.ManyToManyField("self", related_name="contact_of")
-    about = models.TextField(null=True, blank=True)
+    about = models.TextField(null=True, blank=True, default="")
 
     def have_chat_with(self, profile) -> int:
         chat_list = self.chats.all()
