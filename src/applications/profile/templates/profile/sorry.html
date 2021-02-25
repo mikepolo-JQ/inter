@@ -9,6 +9,8 @@
 
 <link rel="stylesheet" href="
         {% static 'profile/styles/profile_styles.css' %}">
+<link rel="stylesheet" href="
+        {% static 'profile/styles/sorry.css' %}">
 
 <link href="https://fonts.googleapis.com/css2?
         family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
@@ -17,8 +19,17 @@
 
 
 {% block body %}
-    <article class="intro">
-        <h2 class="intro__suptitle">Welcome to</h2>
-        <h1 class="intro__title">SORRY page</h1>
-    </article>
+
+    <div class="intro_sorry">
+    <div class="container">
+        <div class="intro_inner">
+
+        <h2 style="color: grey" class="intro__suptitle">Welcome to</h2>
+        <h1 style="color: grey" class="intro__title">SORRY page</h1>
+
+        <h2 style="text-align: center; color: grey">You don't have access...</h2>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

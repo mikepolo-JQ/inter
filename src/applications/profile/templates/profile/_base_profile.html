@@ -20,39 +20,42 @@
 <script type="text/javascript" src="{% static "profile/js/profile.js" %}"></script>
 
 <script>
-    window.onload = getReason();
+    window.onload = getProfilePageStyles({{ profile.pk }});
 </script>
+
+    {% block base_head %}{% endblock %}
 
 {% endblock %}
 
 
 {% block container_msg %}
 
-            <article class="profile">
-                <article class="profile__avatar_container">
-                    <article class="profile__avatar">
-                          <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
-                    </article>
-                </article>
-
-                <article class="profile__info">
-                    <article class="profile__name-rating">
-                        <article class="profile__name">{{ profile.first_name }} {{ profile.last_name }}</article>
-                        <img src="{% static "profile/img/on.png" %}" alt="red_star">
-                        <article id="rating" onclick="openFeedbackBox()" class="profile__rating">{{ profile.get_rating }}</article>
-                    </article>
-                    <article class="profile__name profile__email">{{ profile.user.username }} / {{ profile.user.email }}</article>
-
-                    {% block profile %}{% endblock %}
-                </article>
+    <article>
+    <article class="profile">
+        <article class="profile__avatar_container">
+            <article id="avatar_{{ profile.pk }}" class="profile__avatar">
+                  <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
             </article>
+        </article>
 
-        {% if profile != user.profile %}
-            <article class="only_to_you_grid_from_profile"></article>
-        {% else %}
-            {% include "profile/top_contact_menu.html" %}
-        {% endif %}
+        <article class="profile__info">
+            <article class="profile__name-rating">
+                <article class="profile__name">{{ profile.first_name }} {{ profile.last_name }}</article>
+                <img src="{% static "profile/img/on.png" %}" alt="red_star">
+                <article id="rating" onclick="openFeedbackBox()" class="profile__rating">{{ profile.get_rating }}</article>
+            </article>
+            <article class="profile__name profile__email">{{ profile.user.username }} / {{ profile.user.email }}</article>
 
 
+        </article>
+    </article>
+    {% block profile %}{% endblock %}
+    </article>
+
+{% if profile != user.profile %}
+    <article class="only_to_you_grid_from_profile"></article>
+{% else %}
+    {% include "profile/top_contact_menu.html" %}
+{% endif %}
 
 {% endblock %}

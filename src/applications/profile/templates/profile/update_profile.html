@@ -1,77 +1,112 @@
 {% extends "profile/_base_profile.html" %}
 {% load static %}
 
+{% block base_head %}
+
+{% endblock %}
 
 {% block profile %}
 <article class="profile__table">
-    <form method="post" action="{% url "profile:update_profile" object.pk %}">
-        <table>
-            <tr>
-                <td class="profile__table_tb1">
-                    <label for="first_name">First name:</label>
-                </td>
-                <td class="profile__table_tb2">
-                    <input id="first_name" name="first_name" value="{{ object.first_name }}">
-                </td>
-            </tr>
+    <form method="post" action="{% url "profile:update" object.pk %}">
+        <article class="table">
 
-            <tr>
-                <td class="profile__table_tb1">
-                    <label for="last_name">Last name:</label>
-                </td>
-                <td class="profile__table_tb2">
-                    <input id="last_name" name="last_name" value="{{ object.last_name }}">
-                </td>
-            </tr>
+{#            FIRST NAME#}
+            <span class="profile__table_tb1">
+                <label for="first_name">First name:</label>
+            </span>
+            <span class="profile__table_tb2">
+                <input id="first_name" name="first_name" value="{{ object.first_name }}">
+            </span>
 
-            <tr>
-                <td class="profile__table_tb1">
-                    <label for="sity">Sity:</label>
-                </td>
-                <td class="profile__table_tb2">
-                    <input id="sity" name="sity" value="{{ object.sity }}">
-                </td>
-            </tr>
+{#            LAST NAME#}
+            <span class="profile__table_tb1">
+                <label for="last_name">Last name:</label>
+            </span>
+            <span class="profile__table_tb2">
+                <input id="last_name" name="last_name" value="{{ object.last_name }}">
+            </span>
 
-            <tr>
-                <td class="profile__table_tb1">
-                    <label for="phone">Phone:</label>
-                </td>
-                <td class="profile__table_tb2">
-                    <input id="phone" name="phone" type="text" value="{{ object.phone }}">
-                </td>
-            </tr>
+{#            SITY#}
+            <span class="profile__table_tb1">
+                <label for="sity">Sity:</label>
+            </span>
+            <span class="profile__table_tb2">
+                <input id="sity" name="sity" value="{{ object.sity }}">
+            </span>
 
-            <tr>
-                <td class="profile__table_tb1">
-                    <label for="input_need_help">Needed help:</label>
-                </td>
-                <td class="profile__table_tb2">
-                    <input id="input_need_help" name="needed_help" type="text" value="{{ object.needed_help }}">
-                </td>
-            </tr>
+{#            PHONE#}
+            <span class="profile__table_tb1">
+                <label for="phone">Phone:</label>
+            </span>
+            <span class="profile__table_tb2">
+                <input id="phone" name="phone" type="text" value="{{ object.phone }}">
+            </span>
 
-            <tr>
-                <td class="profile__table_tb1">
-                    <label for="input_provide_help">Offer help:</label>
-                </td>
-                <td class="profile__table_tb2">
-                    <input id="input_provide_help" name="provide_help" type="text" value="{{ object.provide_help }}">
-                </td>
-            </tr>
+{#            NEEDED HELP#}
+            <span class="profile__table_tb1">
+                <label for="input_need_help">Needed help:</label>
+            </span>
+            <span class="profile__table_tb2 help_string">
+                <input id="input_need_help" name="needed_help" type="text" value="{{ ndh }}">
+                <span onclick="plusInput(this)" id="need_first_plus" class="plus_helpString">
+                    <img src="{% static "profile/img/blueplus.png" %}" alt="plus"></span>
+            </span>
 
-        </table>
+{#            Second needed help input#}
+            <span class="profile__table_tb1"><label for="second_input_need_help"></label></span>
+            <span id="second_input_need" class="profile__table_tb2 help_string no_active_input">
+                <input id="second_input_need_help" name="needed_help" type="text" value="{{ ndh_1 }}">
+                <span onclick="plusInput(this)" id="need_second_plus" class="plus_helpString">
+                    <img src="{% static "profile/img/blueplus.png" %}" alt="plus"></span>
+            </span>
+
+{#            Third needed help input#}
+            <span class="profile__table_tb1"><label for="third_input_need_help"></label></span>
+            <span id="third_input_need" class="profile__table_tb2 help_string no_active_input">
+                <input id="third_input_need_help" name="needed_help" type="text" value="{{ ndh_2 }}">
+                <span id="need_third_plus" class="plus_helpString">
+                    <img src="{% static "profile/img/grayplus.png" %}" alt="plus"></span>
+            </span>
+
+{#            PROVIDE HELP#}
+            <span class="profile__table_tb1 input_move">
+                <label for="input_provide_help">Offer help:</label>
+            </span>
+            <span class="profile__table_tb2 help_string input_move">
+                <input id="input_provide_help" name="provide_help" type="text" value="{{ pdh }}">
+                <span onclick="plusInput(this)" id="provide_first_plus" class="plus_helpString">
+                    <img src="{% static "profile/img/blueplus.png" %}" alt="plus"></span>
+            </span>
+
+{#            second provide help input#}
+            <span class="profile__table_tb1 input_move"><label for="second_input_provide_help"></label></span>
+            <span id="second_input_provide" class="profile__table_tb2 help_string no_active_input input_move">
+                <input id="second_input_provide_help" name="provide_help" type="text" value="{{ pdh_1 }}">
+                <span onclick="plusInput(this)" id="provide_second_plus" class="plus_helpString">
+                    <img src="{% static "profile/img/blueplus.png" %}" alt="plus"></span>
+            </span>
+
+{#            third provide help input#}
+            <span class="profile__table_tb1 input_move"><label for="third_input_provide_help"></label></span>
+            <span id="third_input_provide" class="profile__table_tb2 help_string no_active_input input_move">
+                <input id="third_input_provide_help" name="provide_help" type="text" value="{{ pdh_2 }}">
+                <span id="provide_third_plus" class="plus_helpString">
+                    <img src="{% static "profile/img/grayplus.png" %}" alt="plus"></span>
+            </span>
+
+
+        </article>{# END TABLE #}
 
         <article>
-            <p class="profile__table_tb1 profile__about">
+            <p class="profile__table_tb1 profile__about input_move input_move_provide" style="top: -112px;">
                 <label for="input_about">About me:</label>
             </p>
-            <p class="profile__table_tb2">
-                <textarea id="input_about" name="about">{{ object.about }}</textarea>
+            <p class="profile__table_tb2 input_move input_move_provide" style="top: -112px;">
+                <textarea id="input_about" name="about" placeholder=" Tell about yourself and about your offer...">{{ object.about }}</textarea>
             </p>
         </article>
 
-        <article class="profile__update">
+        <article class="profile__update input_move input_move_provide" style="top: -112px;">
             <button id="id_profile_update_button" class="profile__button_item">Update</button>
         </article>
     </form>

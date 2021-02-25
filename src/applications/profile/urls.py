@@ -14,10 +14,12 @@ urlpatterns = [
     path(
         "<int:pk>/update/",
         csrf_exempt(views.UpdateProfile.as_view()),
-        name="update_profile",
+        name="update",
     ),
     path("<int:pk>/contacts/", views.ContactListView.as_view(), name="contactList"),
     path(
-        "reasons/", csrf_exempt(views.ContactReasonView.as_view()), name="get_reasons"
+        "reasons_and_back/<int:pk>/",
+        csrf_exempt(views.ContactReasonBackgroundView.as_view()),
+        name="get_reasons_and_background",
     ),
 ]

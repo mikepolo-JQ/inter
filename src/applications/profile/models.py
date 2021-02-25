@@ -18,8 +18,8 @@ class Profile(models.Model):
     first_name = models.CharField(null=False, max_length=30, default="name")
     last_name = models.CharField(null=False, max_length=30, default="last_name")
 
-    sity = models.CharField(null=False, default="", max_length=30)
-    phone = models.CharField(null=False, default="", max_length=20)
+    sity = models.CharField(null=True, default="", max_length=30)
+    phone = models.CharField(null=True, default="", max_length=20)
 
     needed_help = models.TextField(
         null=False,
@@ -32,20 +32,30 @@ class Profile(models.Model):
 
     active = models.BooleanField(default=False)
     contacts = models.ManyToManyField("self", related_name="contact_of")
-    about = models.TextField(null=True, blank=True)
+    about = models.TextField(null=True, blank=True, default="")
 
-    def have_chat_with(self, profile) -> bool:
+    def have_chat_with(self, profile) -> int:
         chat_list = self.chats.all()
         for chat in chat_list:
             chat_users = chat.profiles.all()
             if profile in chat_users:
-                return True
-        return False
+                return chat.pk
+        return 0
 
     @property
     def get_rating(self):
         rating = self.rating.value / (self.rating.feedback_set.all().count() or 1)
         return "%.2f" % rating
+
+    @property
+    def get_color(self):
+        rating = self.rating.value / (self.rating.feedback_set.all().count() or 1)
+        if rating < 3:
+            return "red"
+        elif rating < 4:
+            return "yellow"
+        else:
+            return "green"
 
     def get_contact_reason_with(self, other):
         match = Match.objects.filter(provider=other.user, needer=self.user).first()
@@ -55,7 +65,7 @@ class Profile(models.Model):
         return self.user.username
 
     class Meta:
-        ordering = ["rating", "-created_at"]
+        ordering = ["-created_at"]
 
 
 class Rating(models.Model):
@@ -105,3 +115,15 @@ class Feedback(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
+
+class TemporaryProfile(models.Model):
+    profile = models.ForeignKey(Profile, related_name="copy", on_delete=models.CASCADE)
+    needed_help = models.TextField(
+        null=False,
+        default="",
+    )
+    provide_help = models.TextField(
+        null=False,
+        default="",
+    )

@@ -19,6 +19,7 @@ atomicwrites = "*"
 delorean = "*"
 dj-database-url = "*"
 django = "*"
+django-allauth = "*"
 dynaconf = { extras = ["yaml"], version = "*" }
 gunicorn = "*"
 pillow = "*"
@@ -26,7 +27,6 @@ psycopg2-binary = "*"
 pydantic = "*"
 sentry-sdk = "*"
 whitenoise = "*"
-django-allauth = "*"
 
 [requires]
 python_version = "3.9"

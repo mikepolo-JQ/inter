@@ -7,37 +7,42 @@ const openAbout = function(elem){
 }
 </script>
 
+<script>
+const redirectToUpdate = function(){
+    location.href = "/profile/" + {{ profile.pk }} + "/update/";
+}
+</script>
 <article class="profile__table">
     <table>
         <tr>
             <td class="profile__table_tb1">Sity:</td>
-            <td id="id_profile_sity" class="profile__table_tb2">{{ profile.sity }}</td>
+            <td onclick="redirectToUpdate();" id="id_profile_sity" class="profile__table_tb2">{{ profile.sity }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">Phone:</td>
-            <td id="id_profile_phone" class="profile__table_tb2">{{ profile.phone }}</td>
+            <td onclick="redirectToUpdate();" id="id_profile_phone" class="profile__table_tb2">{{ profile.phone }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">What help do you need:</td>
-            <td id="id_profile_needed_help" class="profile__table_tb2">{{ profile.needed_help }}</td>
+            <td onclick="redirectToUpdate();" id="id_profile_needed_help" class="profile__table_tb2">{{ profile.needed_help }}</td>
         </tr>
         <tr>
             <td class="profile__table_tb1">What help can you provide:</td>
-            <td id="id_profile_provide_help" class="profile__table_tb2">{{ profile.provide_help }}</td>
+            <td onclick="redirectToUpdate();" id="id_profile_provide_help" class="profile__table_tb2">{{ profile.provide_help }}</td>
         </tr>
     </table>
-    {% if profile.about %}
-    <article>
-        <p class="profile__table_tb1 profile_present_about_tb1">About:</p>
-        <p id="id_profile_about" onclick="openAbout(this);" class="profile__table_tb2 profile_present_about_tb2">{{ profile.about }}</p>
-    </article>
-    {% endif %}
 </article>
+{% if profile.about %}
+<article>
+    <p class="profile__table_tb1 profile_present_about_tb1">About:</p>
+    <p id="id_profile_about" onclick="openAbout(this);" class="profile__table_tb2 profile_present_about_tb2">{{ profile.about }}</p>
+</article>
+{% endif %}
 
 
 <article class="profile__buttons">
-{% if user == profile.user %}
-    <a id="id_edit_button" href="{% url "profile:update_profile" profile.pk %}" class="profile__button_item">Edit Profile</a>
+{% if user.profile == profile %}
+    <a id="id_edit_button" href="{% url "profile:update" profile.pk %}" class="profile__button_item">Edit Profile</a>
     <form action="{% url "smart:smartStart" %}" method="post">
         {% csrf_token %}
         <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Start Working</button>
@@ -45,7 +50,7 @@ const openAbout = function(elem){
 {% else %}
     <form action="{% url "chat:create" profile.pk %}" method="post">
         {% csrf_token %}
-        <button id="id_profile_smart_start" class="profile__button_item profile__button_start">Сообщения</button>
+        <button id="id_profile_smart_start" class="profile__button_item profile__button_start">send message</button>
     </form>
 {% endif %}
 </article>

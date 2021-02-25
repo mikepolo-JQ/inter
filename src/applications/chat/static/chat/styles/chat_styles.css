@@ -112,7 +112,7 @@
     justify-content: center;
     width: max-content;
 
-    border: 2px solid red;
+    border: 2px solid transparent;
     border-radius: 100%;
     background-color: black;
     padding: 15px;
@@ -333,7 +333,7 @@
     justify-content: center;
     width: max-content;
 
-    border: 2px solid red;
+    border: 2px solid transparent;
     border-radius: 100%;
     background-color: black;
     padding: 10px;
@@ -369,6 +369,7 @@
 }
 
 .sorry_contact_title{
+    margin-bottom: 40px;
     font-family: "Kaushan Script", sans-serif;
     font-size: 1.5em;
     text-align: center;

@@ -43,7 +43,7 @@
 }
 
 .profile__avatar{
-    border: 5px solid red;
+    border: 5px solid transparent;
     border-radius: 100%;
     background-color: black;
     padding: 20px 20px;
@@ -80,6 +80,19 @@
     background-color: yellow;
 }
 
+
+
+.table{
+    display: grid;
+    grid-template-columns: 33% 67%;
+    margin-left: 35px;
+    grid-gap: .5em;
+    grid-auto-columns: max-content;
+}
+
+
+
+
 .profile__name{
     font-family: "Kaushan Script", sans-serif;
     margin: 10px 30px;
@@ -100,8 +113,9 @@
     margin: 20px 0;
     max-width: 400px;
 
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     white-space: nowrap;
+
 }
 .profile__table input{
     max-width: 200px;
@@ -120,10 +134,77 @@
 }
 
 .profile__table_tb2{
-    margin-left: 10px;
-
+    white-space: initial;
     opacity: .8;
 }
+
+.help_string{
+    display: grid;
+    grid-template-columns: 73% 10%;
+    align-items: center;
+}
+.plus_helpString{
+    display: grid;
+    justify-items: right;
+}
+
+.plus_helpString img{
+    height: auto;
+    width: 1.2em;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 100%;
+    padding: 1px;
+
+    transition: background-color .3s linear;
+    -webkit-transition: background-color .3s linear;
+    -moz-transition: background-color .3s linear;
+}
+
+.plus_helpString img:hover{
+    background-color: darkblue;
+}
+#first_plus_need{}
+#second_input_need{
+
+
+}
+
+.no_active_input{
+    opacity: 0;
+
+    -moz-transition: all .5s linear;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear;
+}
+
+.active_input{
+    opacity: .8;
+
+}
+
+.input_move{
+    display: flex;
+    top: -56px;
+    position: relative;
+
+    -moz-transition: all .5s linear;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear;
+}
+.input_move img{
+    margin-left: 9px;
+}
+
+
+#first_plus_provide{}
+#second_input_provide{
+
+}
+#third_input_provide{
+}
+
+
 .profile__about {
     margin: 15px auto 10px;
     max-width: max-content;
@@ -139,7 +220,7 @@
     text-align: center;
 }
 .profile_present_about_tb2{
-    max-width: 95%;
+    max-width: 60vh;
     overflow-x: hidden;
     white-space: nowrap;
     cursor: pointer;
@@ -150,7 +231,7 @@
     display: flex;
     justify-content: space-between;
     width: max-content;
-    margin: 0 auto;
+    margin: 20px auto 50px;
 }
 
 .profile__button_item{
@@ -407,6 +488,9 @@
     background-color: black;
     color: white;
 }
+.fdb__container{
+   max-width: 60vh;
+}
 
 .feedback:last-child{
     margin-bottom: 30px;
@@ -493,7 +577,7 @@
 
 .profile__contact_list{
     font-weight: bold;
-    max-height: 160px;
+    max-height: 165px;
     overflow-y: hidden;
 }
 
@@ -520,7 +604,7 @@
     width: max-content;
     height: 30px;
     border-radius: 100%;
-    border: 2px solid red;
+    border: 2px solid transparent;
 }
 .profile__right_contact_avatar img{
     width: 15px;
@@ -542,7 +626,15 @@
     font-size: .7em;
 }
 
-
-
-
-
+.profile__contact_list_title{
+    text-decoration: none;
+    color:black;
+}
+.profile__contact_list_title:after{
+    content: "";
+    display: block;
+    background-color: black;
+    height: 2px;
+    width: 100%;
+    margin-bottom: 5px;
+}

@@ -14,13 +14,20 @@
 <link href="https://fonts.googleapis.com/css2?
         family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
+
+
+<script type="text/javascript" src="{% static "profile/js/profile.js" %}"></script>
+
+<script>
+    window.onload = getProfilePageStyles();
+</script>
 {% endblock %}
 
 {% block container_msg %}
 <article class="msg_container">
 {% for chat in user.profile.chats.all %}
 <a class="contact" href="{% url "chat:chat" chat.pk %}">
-    <article class="profile__avatar">
+    <article id="contact_back_{{ chat.talker.pk }}" class="profile__avatar">
           <img alt="avatar" src="{% static "profile/avatar/default_user.png" %}">
     </article>
 

@@ -27,8 +27,8 @@ class MessengerView(TemplateView):
         return context
 
 
-class ChatCreateView(View):
-    def post(self, request, *args, **kwargs):
+class ChatCreateView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
         pk = self.kwargs.get("pk", 0)
         profile = Profile.objects.filter(pk=pk).first()
 
@@ -36,12 +36,15 @@ class ChatCreateView(View):
             raise ModuleNotFoundError(f"Profile {pk} not found...")
 
         user_profile = self.request.user.profile
-        if profile.have_chat_with(user_profile):
-            return redirect(reverse_lazy("chat:messenger"))
+        chat_pk = profile.have_chat_with(user_profile)
+        if not chat_pk:
+            chat = Chat.create(profile, user_profile)
+            chat.save()
+            chat_pk = chat.pk
 
-        chat = Chat.create(profile, user_profile)
-        chat.save()
-        return redirect(reverse_lazy("chat:chat", kwargs={"pk": chat.pk}))
+        redirect_url = reverse_lazy("chat:chat", kwargs={"pk": chat_pk})
+
+        return redirect_url
 
 
 class ChatView(CreateView):

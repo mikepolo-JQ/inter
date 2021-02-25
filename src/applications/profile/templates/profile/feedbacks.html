@@ -30,6 +30,9 @@
         </article>
 
         <article class="fdb__container">
+        {% if not profile.rating.feedback_set.all %}
+            <article class="sorry_contact_title">This profile have no reviews yet...</article>
+        {% else %}
         {% for fdb in profile.rating.feedback_set.all %}
         <article id="fdb_{{ fdb.pk }}" onclick="openFeedback(this, {{ fdb.pk }});" class="feedback">
             <article class="fdb__avatar">
@@ -50,6 +53,7 @@
             </article>
         </article>
         {% endfor %}
+        {% endif %}
         </article>
 
 </article>

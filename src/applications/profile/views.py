@@ -72,11 +72,54 @@ class UpdateProfile(UpdateView):
         "last_name",
         "sity",
         "phone",
-        "needed_help",
-        "provide_help",
         "about",
     ]
     template_name = "profile/update_profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+
+        profile = self.request.user.profile
+
+        ndh = profile.needed_help
+        ndh = ndh.split(" | ")
+        for x in range(3 - len(ndh)):
+            ndh.append("")
+        ndh, ndh_1, ndh_2 = ndh
+
+        pdh = profile.provide_help
+        pdh = pdh.split(" | ")
+        for x in range(3 - len(pdh)):
+            pdh.append("")
+        pdh, pdh_1, pdh_2 = pdh or ""
+
+        context.update(
+            {
+                "ndh": ndh,
+                "ndh_1": ndh_1,
+                "ndh_2": ndh_2,
+                "pdh": pdh,
+                "pdh_1": pdh_1,
+                "pdh_2": pdh_2,
+            }
+        )
+        return context
+
+    def form_valid(self, form):
+        profile = form.save(commit=False)
+        data = dict(form.data)
+
+        ndh = data["needed_help"]
+        ndh = [st for st in ndh if st]
+        needed_help = " | ".join(ndh)
+        profile.needed_help = needed_help
+
+        pdh = data["provide_help"]
+        pdh = [st for st in pdh if st]
+        provide_help = " | ".join(pdh)
+        profile.provide_help = provide_help
+
+        return super().form_valid(form)
 
     def get_success_url(self):
         success_url = reverse_lazy("profile:profile", kwargs={"pk": self.object.pk})
@@ -88,10 +131,12 @@ class ContactListView(DetailView):
     template_name = "profile/contacts.html"
 
 
-class ContactReasonView(View):
+class ContactReasonBackgroundView(View):
     def post(self, request, *args, **kwargs):
         user = request.user
         profile = user.profile
+        now_on_window_pk = kwargs.get("pk")
+        now_on_window = Profile.objects.filter(pk=now_on_window_pk).first()
 
         payload = {"ok": False, "contact_reasons": 0, "reason": "unknown reason"}
 
@@ -103,15 +148,18 @@ class ContactReasonView(View):
         contacts_pk = [contact.pk for contact in contacts]
 
         reasons = {
-            "pk" + str(contact.pk): profile.get_contact_reason_with(contact)
-            for contact in contacts
+            contact.pk: profile.get_contact_reason_with(contact) for contact in contacts
         }
+
+        background = {contact.pk: contact.get_color for contact in contacts}
 
         payload.update(
             {
                 "ok": True,
+                "color_to_pk": now_on_window.get_color,
                 "contacts_pk": contacts_pk,
                 "contact_reasons": reasons,
+                "contact_background": background,
                 "reason": None,
             }
         )
