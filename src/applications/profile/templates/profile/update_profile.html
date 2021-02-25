@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block base_head %}
-<script src="{% static "profile/js/plusInput.js" %}"></script>
+
 {% endblock %}
 
 {% block profile %}
@@ -10,6 +10,7 @@
     <form method="post" action="{% url "profile:update" object.pk %}">
         <article class="table">
 
+{#            FIRST NAME#}
             <span class="profile__table_tb1">
                 <label for="first_name">First name:</label>
             </span>
@@ -17,6 +18,7 @@
                 <input id="first_name" name="first_name" value="{{ object.first_name }}">
             </span>
 
+{#            LAST NAME#}
             <span class="profile__table_tb1">
                 <label for="last_name">Last name:</label>
             </span>
@@ -24,6 +26,7 @@
                 <input id="last_name" name="last_name" value="{{ object.last_name }}">
             </span>
 
+{#            SITY#}
             <span class="profile__table_tb1">
                 <label for="sity">Sity:</label>
             </span>
@@ -31,6 +34,7 @@
                 <input id="sity" name="sity" value="{{ object.sity }}">
             </span>
 
+{#            PHONE#}
             <span class="profile__table_tb1">
                 <label for="phone">Phone:</label>
             </span>
@@ -38,6 +42,7 @@
                 <input id="phone" name="phone" type="text" value="{{ object.phone }}">
             </span>
 
+{#            NEEDED HELP#}
             <span class="profile__table_tb1">
                 <label for="input_need_help">Needed help:</label>
             </span>
@@ -48,23 +53,22 @@
             </span>
 
 {#            Second needed help input#}
-            <span class="profile__table_tb1"></span>
+            <span class="profile__table_tb1"><label for="second_input_need_help"></label></span>
             <span id="second_input_need" class="profile__table_tb2 help_string no_active_input">
-                <input id="input_need_help" name="needed_help" type="text" value="{{ ndh_1 }}">
+                <input id="second_input_need_help" name="needed_help" type="text" value="{{ ndh_1 }}">
                 <span onclick="plusInput(this)" id="need_second_plus" class="plus_helpString">
                     <img src="{% static "profile/img/blueplus.png" %}" alt="plus"></span>
             </span>
 
 {#            Third needed help input#}
-            <span class="profile__table_tb1"></span>
+            <span class="profile__table_tb1"><label for="third_input_need_help"></label></span>
             <span id="third_input_need" class="profile__table_tb2 help_string no_active_input">
-                <input id="input_need_help" name="needed_help" type="text" value="{{ ndh_2 }}">
+                <input id="third_input_need_help" name="needed_help" type="text" value="{{ ndh_2 }}">
                 <span id="need_third_plus" class="plus_helpString">
                     <img src="{% static "profile/img/grayplus.png" %}" alt="plus"></span>
             </span>
 
 {#            PROVIDE HELP#}
-
             <span class="profile__table_tb1 input_move">
                 <label for="input_provide_help">Offer help:</label>
             </span>
@@ -75,19 +79,17 @@
             </span>
 
 {#            second provide help input#}
-
-            <span class="profile__table_tb1 input_move"></span>
+            <span class="profile__table_tb1 input_move"><label for="second_input_provide_help"></label></span>
             <span id="second_input_provide" class="profile__table_tb2 help_string no_active_input input_move">
-                <input id="input_provide_help" name="provide_help" type="text" value="{{ pdh_1 }}">
+                <input id="second_input_provide_help" name="provide_help" type="text" value="{{ pdh_1 }}">
                 <span onclick="plusInput(this)" id="provide_second_plus" class="plus_helpString">
                     <img src="{% static "profile/img/blueplus.png" %}" alt="plus"></span>
             </span>
 
 {#            third provide help input#}
-
-            <span class="profile__table_tb1 input_move"></span>
+            <span class="profile__table_tb1 input_move"><label for="third_input_provide_help"></label></span>
             <span id="third_input_provide" class="profile__table_tb2 help_string no_active_input input_move">
-                <input id="input_provide_help" name="provide_help" type="text" value="{{ pdh_2 }}">
+                <input id="third_input_provide_help" name="provide_help" type="text" value="{{ pdh_2 }}">
                 <span id="provide_third_plus" class="plus_helpString">
                     <img src="{% static "profile/img/grayplus.png" %}" alt="plus"></span>
             </span>
