@@ -14,6 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?
         family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
+
+<script src="{% static "chat/js/messenger.js" %}"></script>
 {% endblock %}
 
 {% block container_msg %}
@@ -29,9 +31,32 @@ openMenu = function (element) {
 </script>
 
 <script>
-setTimeout(function(){
-   window.location.reload(1);
-}, 5000);
+{#setTimeout(function(){#}
+{#   window.location.reload(1);#}
+{#, 5000);#}
+lastMessageTime = "";
+window.setInterval(
+    function (){
+        let api_url = "/messenger/chat/" + {{chat.pk}} + "/update/" + lastMessageTime + "/";
+        console.log("YES");
+
+         fetch(api_url, {
+             method: "POST",
+         }).then(
+             resp => {
+                 resp.json().then(
+                     resp_payload => {
+                         if (resp_payload.ok) {
+                             console.log(JSON.stringify(resp_payload));
+                         } else {
+                             console.log(JSON.stringify(resp_payload));
+                         }
+                     }
+                 );
+             }
+         );
+    }
+    , 5000);
 </script>
 
 <article class="chat_box">

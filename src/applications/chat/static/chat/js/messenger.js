@@ -13,24 +13,24 @@ openMenu = function (element) {
 
 }
 
-// const like = function (element, post_id) {
-//     let api_url = "/blog/post/" + post_id + "/like/";
-//
-//     fetch(api_url, {
-//         method: "POST",
-//     }).then(
-//         resp => {
-//             resp.json().then(
-//                 resp_payload => {
-//                     if (resp_payload.ok) {
-//                         element.firstElementChild.classList.toggle("like_red");
-//                         element.lastElementChild.textContent = resp_payload.nr_likes;
-//                     } else {
-//                         console.log(JSON.stringify(resp_payload));
-//                     }
-//                 }
-//             );
-//         }
-//     );
-// }
+chatUpdate = function (chat_pk, last_message_createtime) {
+    // let api_url = "/messenger/chat/" + chat_pk + "/update/" + last_message_createtime + "/";
+    console.log("YES");
+
+    // fetch(api_url, {
+    //     method: "POST",
+    // }).then(
+    //     resp => {
+    //         resp.json().then(
+    //             resp_payload => {
+    //                 if (resp_payload.ok) {
+    //                     console.log(JSON.stringify(resp_payload));
+    //                 } else {
+    //                     console.log(JSON.stringify(resp_payload));
+    //                 }
+    //             }
+    //         );
+    //     }
+    // );
+}
 

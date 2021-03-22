@@ -18,6 +18,11 @@ urlpatterns = [
         csrf_exempt(views.DeleteSingleMsgView.as_view()),
         name="delete_msg",
     ),
+    path(
+        "chat/<int:pk>/update/<str:time>/",
+        csrf_exempt(views.ChatUpdateView.as_view()),
+        name="chat_update",
+    ),
     # path("chat/<int:pk>/newmsg/", views.NewMsgView.as_view(), name="new-msg"),
     # path("start/", csrf_exempt(views.SmartStartView.as_view()), name="smartStart"),
 ]
