@@ -26,13 +26,19 @@
 openMenu = function (element) {
     element.firstElementChild.classList.toggle("msg-menu-active");
 }
+
+window.onload = function(){
+    let messages = document.getElementById("messages");
+    var offsetY = document.getElementById('start_page').offsetTop;
+    messages.scrollTo(0, offsetY);
+}
 </script>
 
-<script>
-setTimeout(function(){
-   window.location.reload(1);
-}, 5000);
-</script>
+{# <script> #}
+{#setTimeout(function(){#}
+{#   window.location.reload(1);#}
+{# }, 5000);#}
+{# </script>#}
 
 <article class="chat_box">
     <article class="chat_header">
@@ -48,7 +54,7 @@ setTimeout(function(){
 
             <article class="msg-menu {% if msg.author == user.profile %}your-msg-menu{% endif %}">
 
-                <form method="post" action="{% url "chat:delete_msg" msg.pk%}">
+                <form method="post" action="{% url "chat:delete_msg" msg.pk %}">
                 <button type="submit" class="del_button">Delete</button></form>
             </article>
 

@@ -3,7 +3,7 @@
 // }
 
 window.onload = function(){
-    let messages = document.getElementById("messages")
+    let messages = document.getElementById("messages");
     var offsetY = document.getElementById('start_page').offsetTop;
     messages.scrollTo(0, offsetY);
 }
