@@ -16,6 +16,8 @@ pytest-selenium = "*"
 
 [packages]
 atomicwrites = "*"
+channels = "*"
+channels-redis = "*"
 delorean = "*"
 dj-database-url = "*"
 django = "*"

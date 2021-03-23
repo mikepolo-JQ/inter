@@ -27,11 +27,13 @@ openMenu = function (element) {
     element.firstElementChild.classList.toggle("msg-menu-active");
 }
 
-window.onload = function(){
+
+
+ScrolltoBottom = function(){
     let messages = document.getElementById("messages");
-    var offsetY = document.getElementById('start_page').offsetTop;
-    messages.scrollTo(0, offsetY);
+    messages.scrollTop = messages.scrollHeight;
 }
+window.onload = ScrolltoBottom;
 </script>
 
 {# <script> #}
@@ -66,18 +68,84 @@ window.onload = function(){
 
         </article>
         {% endfor %}
-        <article id="start_page"></article>
+
     </article>
 
     <article class="msg-input">
-        <form method="post" action="{% url "chat:chat" chat.pk %}">
-            {% csrf_token %}
-            <label for="content_id"></label>
-            <input id="content_id" name="content" type="text" placeholder="Write your message...">
-{#                        <button class="msg-button" type="submit">Send</button>#}
-        </form>
+
+        <label for="chat-message-input"></label>
+        <input id="chat-message-input" name="content" type="text" placeholder="Write your message...">
+        <button id="chat-message-submit" style="display: none" class="msg-button" type="submit">Send</button>
+
     </article>
+    {{ user.profile.pk|json_script:"profile_pk" }}
+    {{ room_name|json_script:"room-name" }}
 </article>
+
+<script> {# channels js #}
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    const profilePk = JSON.parse(document.getElementById('profile_pk').textContent);
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/chat/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+
+        let author = profilePk === data.profile_pk;
+        let yourMsgMenu = "";
+        let onclickMenu = "";
+        let yourMsg = "";
+        let yourMsgContent = "";
+        let yourMsgDt = "";
+        let delMsgUrl = "/messenger/delmsg/" + data.message_pk + "/";
+        if (author){
+            yourMsgMenu = "your-msg-menu";
+            onclickMenu = "onclick=\"openMenu(this);\"";
+            yourMsg = "your-msg";
+            yourMsgContent = "your-msg-content";
+            yourMsgDt = "your-msg-dt"
+        }
+        let new_message = "<article " + onclickMenu + "class=\"msg " + yourMsg + "\">\n" +
+            "            <article class=\"msg-menu " + yourMsgMenu + "\">\n" +
+            "                <form method=\"post\" action=\""+ delMsgUrl +"\">\n" +
+            "                <button type=\"submit\" class=\"del_button\">Delete</button></form>\n" +
+            "            </article>\n" +
+            "            <article class=\"msg-content " + yourMsgContent + "\">" + data.content + "</article>\n" +
+            "            <article class=\"msg-datetime " + yourMsgDt + "\">" + data.datetime + "</article>\n" +
+            "        </article>"
+
+        document.querySelector('#messages').innerHTML += new_message
+        ScrolltoBottom();
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const content = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'content': content,
+            'profile_pk': profilePk,
+            'room_name': roomName
+        }));
+        messageInputDom.value = '';
+    };
+</script>
 
 {% endif %}
 {% endblock %}

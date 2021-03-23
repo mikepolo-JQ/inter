@@ -12,14 +12,16 @@ DIR_PROJECT = (DIR_SRC / "project").resolve()
 DIR_REPO = DIR_SRC.parent.resolve()
 
 
-SECRET_KEY = _ds.SECRET_KEY
+# SECRET_KEY = _ds.SECRET_KEY
+SECRET_KEY = "111"
 
-DEBUG = _ds.MODE_DEBUG
+# DEBUG = _ds.MODE_DEBUG
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    _ds.HOST,
+    # _ds.HOST,
 ]
 
 
@@ -44,6 +46,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.vk",
     "allauth.socialaccount.providers.telegram",
+    # -------------------------------------
+    "channels",
 ]
 
 SITE_ID = 1
@@ -51,20 +55,20 @@ SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
-            "client_id": _ds.GOOGLE_CLIENT_ID,
-            "secret": _ds.GOOGLE_SECRET,
-            "key": "",
+            # "client_id": _ds.GOOGLE_CLIENT_ID,
+            # "secret": _ds.GOOGLE_SECRET,
+            # "key": "",
         }
     },
     "vk": {
         "APP": {
-            "client_id": _ds.VK_CLIENT_ID,
-            "secret": _ds.VK_SECRET,
-            "key": _ds.VK_KEY,
+            # "client_id": _ds.VK_CLIENT_ID,
+            # "secret": _ds.VK_SECRET,
+            # "key": _ds.VK_KEY,
         }
     },
     "telegram": {
-        "TOKEN": _ds.TELEGRAM_TOKEN,
+        # "TOKEN": _ds.TELEGRAM_TOKEN,
     },
 }
 
@@ -100,11 +104,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "project.wsgi.application"
 
+# Channels
+ASGI_APPLICATION = 'project.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-database_url = os.getenv("DATABASE_URL", _ds.DATABASE_URL)
+database_url = os.getenv("DATABASE_URL", "postgresql://postgres:100inovun@localhost:5432/inter")
 
 DATABASES = {"default": dj_database_url.parse(database_url)}
 
