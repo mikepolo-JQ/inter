@@ -23,24 +23,17 @@
 {% else %}
 
 <script>
-openMenu = function (element) {
-    element.firstElementChild.classList.toggle("msg-menu-active");
-}
-
-
-
 ScrolltoBottom = function(){
     let messages = document.getElementById("messages");
     messages.scrollTop = messages.scrollHeight;
 }
 window.onload = ScrolltoBottom;
-</script>
 
-{# <script> #}
-{#setTimeout(function(){#}
-{#   window.location.reload(1);#}
-{# }, 5000);#}
-{# </script>#}
+openMenu = function (element) {
+    element.firstElementChild.classList.toggle("msg-menu-active");
+    ScrolltoBottom();
+}
+</script>
 
 <article class="chat_box">
     <article class="chat_header">

@@ -12,16 +12,15 @@ DIR_PROJECT = (DIR_SRC / "project").resolve()
 DIR_REPO = DIR_SRC.parent.resolve()
 
 
-# SECRET_KEY = _ds.SECRET_KEY
-SECRET_KEY = "111"
+SECRET_KEY = _ds.SECRET_KEY
 
-# DEBUG = _ds.MODE_DEBUG
-DEBUG = True
+DEBUG = _ds.MODE_DEBUG
+
 
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    # _ds.HOST,
+    _ds.HOST,
 ]
 
 
@@ -55,20 +54,20 @@ SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
-            # "client_id": _ds.GOOGLE_CLIENT_ID,
-            # "secret": _ds.GOOGLE_SECRET,
-            # "key": "",
+            "client_id": _ds.GOOGLE_CLIENT_ID,
+            "secret": _ds.GOOGLE_SECRET,
+            "key": "",
         }
     },
     "vk": {
         "APP": {
-            # "client_id": _ds.VK_CLIENT_ID,
-            # "secret": _ds.VK_SECRET,
-            # "key": _ds.VK_KEY,
+            "client_id": _ds.VK_CLIENT_ID,
+            "secret": _ds.VK_SECRET,
+            "key": _ds.VK_KEY,
         }
     },
     "telegram": {
-        # "TOKEN": _ds.TELEGRAM_TOKEN,
+        "TOKEN": _ds.TELEGRAM_TOKEN,
     },
 }
 

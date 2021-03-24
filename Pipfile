@@ -22,7 +22,7 @@ delorean = "*"
 dj-database-url = "*"
 django = "*"
 django-allauth = "*"
-dynaconf = { extras = ["yaml"], version = "*" }
+dynaconf = "==3.1.2"
 gunicorn = "*"
 pillow = "*"
 psycopg2-binary = "*"
