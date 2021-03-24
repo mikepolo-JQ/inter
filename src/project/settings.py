@@ -104,12 +104,12 @@ TEMPLATES = [
 WSGI_APPLICATION = "project.wsgi.application"
 
 # Channels
-ASGI_APPLICATION = 'project.asgi.application'
+ASGI_APPLICATION = "project.asgi.application"
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
         },
     },
 }
@@ -118,7 +118,9 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-database_url = os.getenv("DATABASE_URL", "postgresql://postgres:100inovun@localhost:5432/inter")
+database_url = os.getenv(
+    "DATABASE_URL", "postgresql://postgres:100inovun@localhost:5432/inter"
+)
 
 DATABASES = {"default": dj_database_url.parse(database_url)}
 

@@ -61,7 +61,7 @@ class ChatView(CreateView):
         if not chat:
             raise FileNotFoundError(f"Chat is not found...")
 
-        context.update({"chat": chat, 'room_name': room_name})
+        context.update({"chat": chat, "room_name": room_name})
         return context
 
     def form_valid(self, form):
