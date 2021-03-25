@@ -10,7 +10,7 @@ django_asgi_app = get_asgi_application()
 
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
-from applications.chat import consumers
+from src.applications.chat import consumers
 
 application = ProtocolTypeRouter({
     # Django's ASGI application to handle traditional HTTP requests
