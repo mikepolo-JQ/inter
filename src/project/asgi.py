@@ -12,7 +12,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
-from applications.chat import consumers
+from project import consumers
 
 application = ProtocolTypeRouter({
     # Django's ASGI application to handle traditional HTTP requests
