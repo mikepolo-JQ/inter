@@ -32,11 +32,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # -------------------------------------
-    "applications.main.apps.MainConfig",
-    "applications.onboarding.apps.OnboardingConfig",
-    "applications.profile.apps.ProfileConfig",
-    "applications.smart.apps.SmartConfig",
-    "applications.chat.apps.ChatConfig",
+    "src.applications.main.apps.MainConfig",
+    "src.applications.onboarding.apps.OnboardingConfig",
+    "src.applications.profile.apps.ProfileConfig",
+    "src.applications.smart.apps.SmartConfig",
+    "src.applications.chat.apps.ChatConfig",
     # -------------------------------------
     "django.contrib.sites",
     "allauth",

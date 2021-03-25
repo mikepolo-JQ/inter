@@ -14,9 +14,9 @@ from django.views.generic import RedirectView
 from django.views.generic import TemplateView
 from dynaconf import ValidationError
 
-from applications.chat.models import Chat
-from applications.chat.models import Message
-from applications.profile.models import Profile
+from src.applications.chat.models import Chat
+from src.applications.chat.models import Message
+from src.applications.profile.models import Profile
 
 
 class MessengerView(TemplateView):

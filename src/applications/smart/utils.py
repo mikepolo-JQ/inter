@@ -5,9 +5,9 @@ from typing import Union
 from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 
-from applications.profile.models import Profile
-from applications.profile.models import TemporaryProfile
-from applications.smart.models import Match
+from src.applications.profile.models import Profile
+from src.applications.profile.models import TemporaryProfile
+from src.applications.smart.models import Match
 
 DIR_SMART = Path(__file__).resolve().parent
 
