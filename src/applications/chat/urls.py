@@ -1,13 +1,13 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
-from chat import views
-from chat.apps import ChatConfig
+from src.applications.chat import views
+from src.applications.chat.apps import ChatConfig
 
 # from django.views.decorators.csrf import csrf_exempt
 
 
-app_name = ChatConfig.name
+app_name = ChatConfig.label
 
 urlpatterns = [
     path("chat/<int:pk>/", views.ChatView.as_view(), name="chat"),

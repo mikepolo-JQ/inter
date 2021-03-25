@@ -39,11 +39,11 @@ def make_error(_request):
 
 urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
-    path("", include("main.urls"), name="index"),
-    path("o/", include("onboarding.urls"), name="onboarding"),
-    path("profile/", include("profile.urls"), name="profile"),
-    path("smart/", include("smart.urls"), name="smart"),
-    path("messenger/", include("chat.urls"), name="chat"),
+    path("", include("src.applications.main.urls"), name="index"),
+    path("o/", include("src.applications.onboarding.urls"), name="onboarding"),
+    path("profile/", include("src.applications.profile.urls"), name="profile"),
+    path("smart/", include("src.applications.smart.urls"), name="smart"),
+    path("messenger/", include("src.applications.chat.urls"), name="chat"),
     path("e/", make_error),
     path("accounts/", include("allauth.urls")),
 ]

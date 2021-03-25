@@ -1,10 +1,10 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
-from profile import views
-from profile.apps import ProfileConfig
+from src.applications.profile import views
+from src.applications.profile.apps import ProfileConfig
 
-app_name = ProfileConfig.name
+app_name = ProfileConfig.label
 
 urlpatterns = [
     path("my/", views.MyProfileView.as_view(), name="my"),

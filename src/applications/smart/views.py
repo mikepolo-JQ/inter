@@ -4,11 +4,11 @@ from django.views.generic import ListView
 from django.views.generic.base import RedirectView
 from django.views.generic.base import View
 
-from profile.models import Profile
-from smart.models import Match
-from smart.utils import create_contacts
-from smart.utils import search_contacts_for
-from smart.utils import update_matches
+from src.applications.profile.models import Profile
+from src.applications.smart.models import Match
+from src.applications.smart.utils import create_contacts
+from src.applications.smart.utils import search_contacts_for
+from src.applications.smart.utils import update_matches
 
 
 class MatchListView(ListView):

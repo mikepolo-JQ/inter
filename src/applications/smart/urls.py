@@ -1,10 +1,10 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
-from smart import views
-from smart.apps import SmartConfig
+from src.applications.smart import views
+from src.applications.smart.apps import SmartConfig
 
-app_name = SmartConfig.name
+app_name = SmartConfig.label
 
 urlpatterns = [
     path("matches/<int:pk>/", views.MatchListView.as_view(), name="matchList"),

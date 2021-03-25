@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from chat.models import Chat
-from chat.models import Message
+from src.applications.chat.models import Chat
+from src.applications.chat.models import Message
 
 
 @admin.register(Message)
