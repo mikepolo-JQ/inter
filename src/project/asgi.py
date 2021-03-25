@@ -5,7 +5,7 @@ import os
 from django.core.asgi import get_asgi_application
 from django.urls import re_path
 
-from applications.chat import consumers
+from src.applications.chat import consumers
 
 django_asgi_app = get_asgi_application()
 
