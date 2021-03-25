@@ -29,6 +29,7 @@ pillow = "*"
 psycopg2-binary = "*"
 pydantic = "*"
 sentry-sdk = "*"
+twisted = {extras = ["http2", "tls"], version = "*"}
 whitenoise = "*"
 
 [requires]
