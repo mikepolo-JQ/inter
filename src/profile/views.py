@@ -8,9 +8,9 @@ from django.views.generic import RedirectView
 from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 
-from src.applications.profile.models import Feedback
-from src.applications.profile.models import Profile
-from src.applications.profile.models import Rating
+from profile.models import Feedback
+from profile.models import Profile
+from profile.models import Rating
 
 
 class ProfileView(CreateView):

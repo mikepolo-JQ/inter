@@ -1,9 +1,9 @@
 from django.urls import path
 
-from src.applications.onboarding import views
-from src.applications.onboarding.apps import OnboardingConfig
+from onboarding import views
+from onboarding.apps import OnboardingConfig
 
-app_name = OnboardingConfig.label
+app_name = OnboardingConfig.name
 
 urlpatterns = [
     path("sign-in/", views.SignInView.as_view(), name="sign-in"),

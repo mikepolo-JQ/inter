@@ -8,9 +8,9 @@ from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 
-from src.applications.onboarding.forms import SignUpForm
-from src.applications.profile.models import Profile
-from src.applications.profile.models import Rating
+from onboarding.forms import SignUpForm
+from profile.models import Profile
+from profile.models import Rating
 
 
 class SignInView(LoginView):

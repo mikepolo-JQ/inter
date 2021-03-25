@@ -32,11 +32,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # -------------------------------------
-    "src.applications.main.apps.MainConfig",
-    "src.applications.onboarding.apps.OnboardingConfig",
-    "src.applications.profile.apps.ProfileConfig",
-    "src.applications.smart.apps.SmartConfig",
-    "src.applications.chat.apps.ChatConfig",
+    "main",
+    "onboarding",
+    "profile",
+    "smart",
+    "chat",
     # -------------------------------------
     "django.contrib.sites",
     "allauth",
@@ -80,7 +80,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "applications.chat.middleware.counter.CounterMiddleware",
+    "chat.middleware.counter.CounterMiddleware",
 ]
 
 ROOT_URLCONF = "project.urls"

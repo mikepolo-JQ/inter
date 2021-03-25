@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from src.applications.smart.models import Match
+from smart.models import Match
 
 
 @admin.register(Match)
