@@ -25,7 +25,7 @@ run: static
 .PHONY: run-prod
 run-prod:
 	$(call log, starting local web server)
-	$(RUN) daphne src.project.asgi:application
+	$(RUN) daphne src.project.asgi:application --port $PORT --bind 0.0.0.0 -v2
 
 
 .PHONY: sh
