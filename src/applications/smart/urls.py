@@ -1,8 +1,8 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
-from applications.smart import views
-from applications.smart.apps import SmartConfig
+from src.applications.smart import views
+from src.applications.smart.apps import SmartConfig
 
 app_name = SmartConfig.label
 

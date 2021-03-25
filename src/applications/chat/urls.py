@@ -1,8 +1,8 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
-from applications.chat import views
-from applications.chat.apps import ChatConfig
+from src.applications.chat import views
+from src.applications.chat.apps import ChatConfig
 
 # from django.views.decorators.csrf import csrf_exempt
 

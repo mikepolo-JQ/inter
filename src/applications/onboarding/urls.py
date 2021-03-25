@@ -1,7 +1,7 @@
 from django.urls import path
 
-from applications.onboarding import views
-from applications.onboarding.apps import OnboardingConfig
+from src.applications.onboarding import views
+from src.applications.onboarding.apps import OnboardingConfig
 
 app_name = OnboardingConfig.label
 

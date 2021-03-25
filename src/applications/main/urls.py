@@ -1,7 +1,7 @@
 from django.urls import path
 
-from applications.main.apps import MainConfig
-from applications.main.views import IndexView
+from src.applications.main.apps import MainConfig
+from src.applications.main.views import IndexView
 
 app_name = MainConfig.label
 

@@ -1,18 +1,11 @@
-from django.db.models import TextField
-from django.forms import CharField
-from django.forms import forms
-from django.http import HttpResponse
-from django.shortcuts import redirect
+
 from django.urls import reverse_lazy
-from django.views import View
+
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
-from django.views.generic import DetailView
-from django.views.generic import FormView
-from django.views.generic import ListView
+
 from django.views.generic import RedirectView
 from django.views.generic import TemplateView
-from dynaconf import ValidationError
 
 from src.applications.chat.models import Chat
 from src.applications.chat.models import Message
