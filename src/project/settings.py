@@ -104,7 +104,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "project.wsgi.application"
 
 # Channels
-ASGI_APPLICATION = "project.asgi.application"
+ASGI_APPLICATION = "src.project.asgi.application"
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
