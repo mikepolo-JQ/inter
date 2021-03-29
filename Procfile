@@ -1,3 +1,3 @@
 release: make data
-web: make run-prod
-chatworker: python src.manage.py runworker --settings=src.project.settings -v2
+web: daphne core.asgi:application --port $PORT --bind 0.0.0.0 -v2
+worker: make worker

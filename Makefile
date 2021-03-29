@@ -25,7 +25,13 @@ run: static
 .PHONY: run-prod
 run-prod:
 	$(call log, starting local web server)
-	$(RUN) daphne src.project.asgi:application -p 8002
+	$(RUN) daphne src.project.asgi:application -p 8001
+
+
+.PHONY: worker
+worker:
+	$(call log, starting worker)
+	$(RUN) src.manage.py runworker --settings=src.project.settings -v2
 
 
 .PHONY: sh
