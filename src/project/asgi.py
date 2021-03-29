@@ -7,7 +7,7 @@ from django.urls import re_path
 
 django_asgi_app = get_asgi_application()
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.project.settings")
 
 from src.applications.chat import consumers
 from channels.auth import AuthMiddlewareStack
