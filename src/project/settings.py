@@ -101,7 +101,7 @@ MIDDLEWARE = [
     "src.applications.chat.middleware.counter.CounterMiddleware",
 ]
 
-ROOT_URLCONF = "project.urls"
+ROOT_URLCONF = "src.project.urls"
 
 TEMPLATES = [
     {
