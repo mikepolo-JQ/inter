@@ -50,11 +50,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # -------------------------------------
-    "src.applications.main.apps.MainConfig",
-    "src.applications.onboarding.apps.OnboardingConfig",
-    "src.applications.profile.apps.ProfileConfig",
-    "src.applications.smart.apps.SmartConfig",
-    "src.applications.chat.apps.ChatConfig",
+    "applications.main.apps.MainConfig",
+    "applications.onboarding.apps.OnboardingConfig",
+    "applications.profile.apps.ProfileConfig",
+    "applications.smart.apps.SmartConfig",
+    "applications.chat.apps.ChatConfig",
     # -------------------------------------
     "django.contrib.sites",
     "allauth",
@@ -98,10 +98,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "src.applications.chat.middleware.counter.CounterMiddleware",
+    "applications.chat.middleware.counter.CounterMiddleware",
 ]
 
-ROOT_URLCONF = "src.project.urls"
+ROOT_URLCONF = "project.urls"
 
 TEMPLATES = [
     {
@@ -119,10 +119,10 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "src.project.wsgi.application"
+WSGI_APPLICATION = "project.wsgi.application"
 
 # Channels
-ASGI_APPLICATION = "src.project.asgi.application"
+ASGI_APPLICATION = "project.asgi.application"
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
