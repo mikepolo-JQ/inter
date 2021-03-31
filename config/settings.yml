@@ -21,7 +21,7 @@ default:
     - src/applications/onboarding/templates/
     - src/applications/profile/templates/
   DJANGO_SETTINGS_MODULE: "src.project.settings"
-  MODE_DEBUG: false
+  MODE_DEBUG: true
   MODE_PROFILING: false
   HOST: ""
   PORT: -1
