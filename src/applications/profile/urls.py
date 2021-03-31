@@ -1,8 +1,8 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
-from src.applications.profile import views
-from src.applications.profile.apps import ProfileConfig
+from applications.profile import views
+from applications.profile.apps import ProfileConfig
 
 app_name = ProfileConfig.label
 

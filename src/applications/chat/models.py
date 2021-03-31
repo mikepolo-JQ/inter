@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from dynaconf import ValidationError
 
-from src.applications.profile.models import Profile
+from applications.profile.models import Profile
 
 User = get_user_model()
 
