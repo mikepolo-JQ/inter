@@ -1,1 +1,1 @@
-from src.applications.onboarding.forms.signup import SignUpForm
+from applications.onboarding.forms.signup import SignUpForm
