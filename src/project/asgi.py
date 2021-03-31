@@ -1,4 +1,3 @@
-
 import os
 
 # from channels.routing import get_default_application
@@ -9,18 +8,26 @@ django_asgi_app = get_asgi_application()
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 
-from applications.chat import consumers
 from channels.auth import AuthMiddlewareStack
-from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.routing import ProtocolTypeRouter
+from channels.routing import URLRouter
 
-application = ProtocolTypeRouter({
-    # Django's ASGI application to handle traditional HTTP requests
-    "http": django_asgi_app,
+from applications.chat import consumers
 
-    # WebSocket chat handler
-    "websocket": AuthMiddlewareStack(
-        URLRouter([
-            re_path(r"ws/chat/(?P<room_name>\w+)/$", consumers.ChatConsumer.as_asgi()),
-        ])
-    ),
-})
+application = ProtocolTypeRouter(
+    {
+        # Django's ASGI application to handle traditional HTTP requests
+        "http": django_asgi_app,
+        # WebSocket chat handler
+        "websocket": AuthMiddlewareStack(
+            URLRouter(
+                [
+                    re_path(
+                        r"ws/chat/(?P<room_name>\w+)/$",
+                        consumers.ChatConsumer.as_asgi(),
+                    ),
+                ]
+            )
+        ),
+    }
+)
