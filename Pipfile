@@ -16,16 +16,20 @@ pytest-selenium = "*"
 
 [packages]
 atomicwrites = "*"
+channels = "*"
+channels-redis = "*"
+daphne = "*"
 delorean = "*"
 dj-database-url = "*"
 django = "*"
 django-allauth = "*"
-dynaconf = { extras = ["yaml"], version = "*" }
+dynaconf = "==3.1.2"
 gunicorn = "*"
 pillow = "*"
 psycopg2-binary = "*"
 pydantic = "*"
 sentry-sdk = "*"
+twisted = {extras = ["http2", "tls"], version = "*"}
 whitenoise = "*"
 
 [requires]

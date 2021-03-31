@@ -20,6 +20,7 @@ default:
     - src/applications/main/templates/
     - src/applications/onboarding/templates/
     - src/applications/profile/templates/
+  DJANGO_SETTINGS_MODULE: "src.project.settings"
   MODE_DEBUG: true
   MODE_PROFILING: false
   HOST: ""
@@ -56,6 +57,7 @@ ci:
 
 
 heroku:
+  DJANGO_SETTINGS_MODULE: "src.project.settings"
   HOST: "inter-network.herokuapp.com"
   MODE_DEBUG: false
   VENV_SYNTHETIC: true

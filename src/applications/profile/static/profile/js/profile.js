@@ -7,14 +7,6 @@ openFeedbackinput = function (element){
     document.getElementById("fdb-input").style.display = "block";
 }
 
-openFeedbackBox = function (){
-    document.getElementById("feedback-box").style.display = "block";
-
-    var offsetY = document.getElementById('fdb__title').offsetTop;
-    window.scrollTo(0, offsetY);
-}
-
-
 plusInput = function (element){
 
     element.style.display = "none";
@@ -46,8 +38,6 @@ plusInput = function (element){
 
     let moveElements = document.getElementsByClassName(classToMove)
 
-
-    console.log(parseInt(moveElements[0].style.top) - 10)
     for(let i = 0; i < moveElements.length; ++i){
         let elementTopValue = parseInt(moveElements[i].style.top)
         if (elementTopValue){
@@ -97,8 +87,7 @@ const getProfilePageStyles = function (pk){
 
                         if(pk){
                         document.getElementById("avatar_" + pk).style.borderColor = resp_payload.color_to_pk;}
-                        console.log(JSON.stringify(resp_payload));
-                        console.log(JSON.stringify(resp_payload.color_to_pk + " is you"));
+
                         for(let i = 0; i < contacts_pk.length; ++i) {
                             let key_my = contacts_pk[i];
 

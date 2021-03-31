@@ -16,6 +16,23 @@ SECRET_KEY = _ds.SECRET_KEY
 
 DEBUG = _ds.MODE_DEBUG
 
+if not DEBUG:
+    # sentry_sdk.init(_ds.SENTRY_DSN, traces_sample_rate=1.0)
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(
+        dsn=_ds.SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+    )
+
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
@@ -44,6 +61,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.vk",
     "allauth.socialaccount.providers.telegram",
+    # -------------------------------------
+    "channels",
 ]
 
 SITE_ID = 1
@@ -100,11 +119,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "project.wsgi.application"
 
+# Channels
+ASGI_APPLICATION = "project.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get("REDIS_URL", ("127.0.0.1", 6379))],
+        },
+    },
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-database_url = os.getenv("DATABASE_URL", _ds.DATABASE_URL)
+database_url = os.getenv(
+    "DATABASE_URL", "postgresql://postgres:100inovun@localhost:5432/inter"
+)
 
 DATABASES = {"default": dj_database_url.parse(database_url)}
 

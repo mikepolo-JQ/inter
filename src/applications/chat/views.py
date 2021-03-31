@@ -1,18 +1,8 @@
-from django.db.models import TextField
-from django.forms import CharField
-from django.forms import forms
-from django.http import HttpResponse
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views import View
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
-from django.views.generic import DetailView
-from django.views.generic import FormView
-from django.views.generic import ListView
 from django.views.generic import RedirectView
 from django.views.generic import TemplateView
-from dynaconf import ValidationError
 
 from applications.chat.models import Chat
 from applications.chat.models import Message
@@ -54,12 +44,14 @@ class ChatView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-
         pk = self.kwargs.get("pk", 0)
+
         chat = Chat.objects.filter(pk=pk).first()
+        room_name = str(pk)
         if not chat:
-            raise FileNotFoundError(f"Chat with pk = {pk} not found...")
-        context.update({"chat": chat})
+            raise FileNotFoundError(f"Chat is not found...")
+
+        context.update({"chat": chat, "room_name": room_name})
         return context
 
     def form_valid(self, form):
@@ -72,13 +64,6 @@ class ChatView(CreateView):
         msg.chat_id = pk
 
         return super().form_valid(form)
-
-    def get_success_url(self):
-        pk = self.kwargs.get("pk", 0)
-        if not pk:
-            raise FileNotFoundError(f"Chat with pk = {pk} not found...")
-        success_url = reverse_lazy("chat:chat", kwargs={"pk": pk})
-        return success_url
 
 
 class DeleteSingleMsgView(DeleteView):

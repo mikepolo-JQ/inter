@@ -463,12 +463,27 @@
     display: grid;
     justify-items: center;
 
+
     max-width: 550px;
     margin: 0 auto;
+
+
+
 }
+
+
 
 .off{
     display: none;
+    opacity: 0;
+
+    transition: all .8s linear;
+    -webkit-transition: all .8s linear;
+    -moz-transition: all .8s linear;
+}
+
+.feedbacks_box_active{
+    opacity: 1;
 }
 
 .feedback{
