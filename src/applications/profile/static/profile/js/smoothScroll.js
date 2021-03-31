@@ -1,7 +1,7 @@
 $(document).ready(function (){
     $("#rating").on("click", function (e){
         e.preventDefault();
-        console.log("hekllosfsf");
+
         let fdbBox = document.getElementById("feedback-box");
 
         fdbBox.style.display = "block";

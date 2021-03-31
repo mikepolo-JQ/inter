@@ -80,7 +80,7 @@ openMenu = function (element) {
     const profilePk = JSON.parse(document.getElementById('profile_pk').textContent);
 
     const chatSocket = new WebSocket(
-        'ws://'
+        'wss://'
         + window.location.host
         + '/ws/chat/'
         + roomName

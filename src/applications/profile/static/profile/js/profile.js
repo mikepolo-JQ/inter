@@ -7,28 +7,6 @@ openFeedbackinput = function (element){
     document.getElementById("fdb-input").style.display = "block";
 }
 
-openFeedbackBox = function (){
-    let fdbBox = document.getElementById("feedback-box");
-    fdbBox.style.display = "block";
-
-
-    // function f() {
-    //     document.getElementById('fdb__title').classList.toggle("active_input");
-    // }
-
-    // var offsetY = document.getElementById('fdb__title').offsetTop;
-
-    function f() {
-        fdbBox.classList.toggle("feedbacks_box_active")
-        document.querySelector("" + "#fdb__title").scrollIntoView({
-            behavior: 'smooth',
-        })
-    }
-    setTimeout(f, 600);
-    // window.scrollTo(0, offsetY);
-}
-
-
 plusInput = function (element){
 
     element.style.display = "none";
